@@ -54,6 +54,7 @@ Original paper: [2023_xiang_effort.pdf](../original_paper/2023_xiang_effort.pdf)
 ### Power Analysis
 
 ```{r}
+#| echo: false
 # adapted from ./original_code/competence_effort/Code/main_text/regression.R
 
 cohensd <- {
@@ -85,9 +86,9 @@ The original effect size is _d_ = `r round(cohensd$Cohens_d,2)`. To achieve 80%,
 
 Power|Necessary N
 ---|---
-80%|`r paste(pwr::pwr.t.test(n=6, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided"))`
-90%|`r paste(pwr::pwr.t.test(n=8, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided"))`
-95%|`r paste(pwr::pwr.t.test(n=9, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided"))`
+80%|`r knitr::kable(unclass(pwr::pwr.t.test(n=6, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")))`
+90%|`r knitr::kable(unclass(pwr::pwr.t.test(n=8, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")))`
+95%|`r knitr::kable(unclass(pwr::pwr.t.test(n=9, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")))`
 
 9 subjects is completely feasible.
 
