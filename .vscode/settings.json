@@ -1,0 +1,4 @@
+{
+    "r.rterm.mac": "${workspaceFolder}/.pixi/envs/default/bin/R",
+    "r.rpath.mac": "${workspaceFolder}/.pixi/envs/default/bin/R"
+}

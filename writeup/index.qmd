@@ -53,7 +53,43 @@ Original paper: [2023_xiang_effort.pdf](../original_paper/2023_xiang_effort.pdf)
 
 ### Power Analysis
 
-...Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size.  Considerations of feasibility for selecting planned sample size...
+```{r}
+# adapted from ./original_code/competence_effort/Code/main_text/regression.R
+
+cohensd <- {
+  library('tidyverse')
+
+  dat <- read.csv('./original_code/competence_effort/Data/exp1.csv', header = T, stringsAsFactors = T)
+  dat$agent <- factor(dat$agent, labels = c('A', 'B'))
+  dat$round <- as.factor(dat$round)
+  dat$scenario <- factor(dat$scenario, levels = c('F,F;F,F','F,F;F,L','F,L;F,L','F,F;L,L','F,L;L,L','L,L;L,L'), ordered = T)
+  dat$prob[dat$round==3 & dat$agent=='B'] <- NaN # so that the probabilities are only counted once for joint lifting
+  dat <- arrange(dat,subject,scenario,round,agent)
+  dat$subject <- as.factor(dat$subject)
+
+  # Lift probability
+  ttest_result <- t.test(dat$prob[dat$round == 3 & dat$scenario == 'F,F;F,F' & dat$agent == 'A'], mu = 0, alternative = 'two.sided')
+  # filter one agent so that the probability is only counted once. Round 3 is a joint lift.
+
+  effectsize::effectsize(ttest_result)
+}
+
+# pwr::pwr.t.test(n=50, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")
+
+# pwr::pwr.t.test(n=6, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")
+# pwr::pwr.t.test(n=8, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")
+# pwr::pwr.t.test(n=9, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")
+```
+
+The original effect size is _d_ = `r round(cohensd$Cohens_d,2)`. To achieve 80%, 90%, or 95% power to detect that effect size, I'd need:
+
+Power|Necessary N
+---|---
+80%|`r paste(pwr::pwr.t.test(n=6, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided"))`
+90%|`r paste(pwr::pwr.t.test(n=8, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided"))`
+95%|`r paste(pwr::pwr.t.test(n=9, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided"))`
+
+9 subjects is completely feasible.
 
 ### Planned Sample
 
