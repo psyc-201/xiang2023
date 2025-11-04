@@ -1,6 +1,7 @@
 [submodule "original_code/competence_effort"]
 	path = original_code/competence_effort
 	url = git@github.com:jczimm/competence_effort.git
+	branch = main
 [submodule "new_code/memo-sandbox"]
 	path = new_code/memo-sandbox
 	url = git@github.com:jczimm/memo-sandbox.git
