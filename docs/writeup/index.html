@@ -88,7 +88,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
   <ul class="collapse">
-  <li><a href="#power-analysis" id="toc-power-analysis" class="nav-link" data-scroll-target="#power-analysis">Power Analysis</a></li>
+  <li><a href="#power-precision-analysis" id="toc-power-precision-analysis" class="nav-link" data-scroll-target="#power-precision-analysis">Power &amp; Precision Analysis</a></li>
   <li><a href="#planned-sample" id="toc-planned-sample" class="nav-link" data-scroll-target="#planned-sample">Planned Sample</a></li>
   <li><a href="#materials" id="toc-materials" class="nav-link" data-scroll-target="#materials">Materials</a></li>
   <li><a href="#procedure" id="toc-procedure" class="nav-link" data-scroll-target="#procedure">Procedure</a></li>
@@ -197,8 +197,8 @@ Original paper: <a href="../original_paper/2023_xiang_effort.pdf">2023_xiang_eff
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
-<section id="power-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="power-analysis">Power Analysis</h3>
+<section id="power-precision-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="power-precision-analysis">Power &amp; Precision Analysis</h3>
 <div class="cell">
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
@@ -240,11 +240,13 @@ Original paper: <a href="../original_paper/2023_xiang_effort.pdf">2023_xiang_eff
 </tr>
 </tbody>
 </table>
-<p>9 subjects is completely feasible.</p>
+<p>9 participants is completely feasible. To compensate for the original study’s measured effect size being inflated (e.g., due to publication bias), 15 participants should be necessary for sufficient power for the primary effect of interest.</p>
+<p>However, for the sake of qualitatively replicating the overall pattern of estimated probabilities as scenarios feature more successful lifts (monotonic increase in probability from left to right in Figure 3C; which I’ve labeled “B” above), and that the joint effort model is the only considered model which captures both the key effect and this pattern, I find it prudent to retain the same sample size so that I may attempt to replicate the original qualitative finding with equivalent precision. (Targeting higher precision could potentially counter aforementioned effect inflation present in the original paper, but as it is unclear how to quantify the necessary precision for these qualitative analyses, targeting the original precision appears to be a sensible option.)</p>
+<p>Further, in the original study, given 50 participants, the key effect appeared quite robust, with the CI for the data from scenario “F,F;F,F” being quite far from the line LiftProbability=0 (see Figure 3C), suggesting that with 50 participants, we are nearly guaranteed to replicate this effect if it is true.</p>
 </section>
 <section id="planned-sample" class="level3">
 <h3 class="anchored" data-anchor-id="planned-sample">Planned Sample</h3>
-<p>Just as the prior study used 50 participants, given that the key effect of interest appeared robust (in Figure 3C, CI for the data from scenario “F,F;F,F” is quite far from the line LiftProbability=0), I will collect 50 participants on Prolific, following the specific self-exclusion strategy reported below.</p>
+<p>Based on my power and precision considerations, I will collect 50 participants on Prolific, following the specific self-exclusion strategy reported below.</p>
 <p>I will follow precisely the data collection strategy in the original Experiment 1, as described on p.&nbsp;1569:</p>
 <blockquote class="blockquote">
 <p>“Participants’ demographic information was not collected. Participants completed a comprehension check before they moved on to the experiment. They were not allowed to proceed until they answered all the comprehension check questions correctly. … To ensure data quality, we included two attention-check questions in the experiment. Participants who failed one attention check were warned immediately to pay closer attention. Participants who failed both attention checks were asked to leave the experiment and they were not counted among the 50 participants we recruited. A total of 10 participants failed one attention check, and we did not exclude their data in our analysis.”</p>

@@ -51,7 +51,7 @@ Original paper: [2023_xiang_effort.pdf](../original_paper/2023_xiang_effort.pdf)
 
 ## Methods
 
-### Power Analysis
+### Power & Precision Analysis
 
 ```{r}
 #| echo: false
@@ -98,11 +98,15 @@ Target Power|Necessary N|Estimated Power
 90%|8|`r pwr::pwr.t.test(n=8, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")$power * 100`%
 95%|9|`r pwr::pwr.t.test(n=9, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")$power * 100`%
 
-9 subjects is completely feasible.
+9 participants is completely feasible. To compensate for the original study's measured effect size being inflated (e.g., due to publication bias), 15 participants should be necessary for sufficient power for the primary effect of interest.
+
+However, for the sake of qualitatively replicating the overall pattern of estimated probabilities as scenarios feature more successful lifts (monotonic increase in probability from left to right in Figure 3C; which I've labeled "B" above), and that the joint effort model is the only considered model which captures both the key effect and this pattern, I find it prudent to retain the same sample size so that I may attempt to replicate the original qualitative finding with equivalent precision. (Targeting higher precision could potentially counter aforementioned effect inflation present in the original paper, but as it is unclear how to quantify the necessary precision for these qualitative analyses, targeting the original precision appears to be a sensible option.)
+
+Further, in the original study, given 50 participants, the key effect appeared quite robust, with the CI for the data from scenario "F,F;F,F" being quite far from the line LiftProbability=0 (see Figure 3C), suggesting that with 50 participants, we are nearly guaranteed to replicate this effect if it is true.
 
 ### Planned Sample
 
-Just as the prior study used 50 participants, given that the key effect of interest appeared robust (in Figure 3C, CI for the data from scenario "F,F;F,F" is quite far from the line LiftProbability=0), I will collect 50 participants on Prolific, following the specific self-exclusion strategy reported below.
+Based on my power and precision considerations, I will collect 50 participants on Prolific, following the specific self-exclusion strategy reported below.
 
 I will follow precisely the data collection strategy in the original Experiment 1, as described on p. 1569:
 
