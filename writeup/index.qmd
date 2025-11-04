@@ -80,15 +80,23 @@ cohensd <- {
 # pwr::pwr.t.test(n=6, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")
 # pwr::pwr.t.test(n=8, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")
 # pwr::pwr.t.test(n=9, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")
+
+# render_raw <- function(htest) {
+#   result <- unclass(htest) |> print() |> capture.output()
+#   result_html_inner <- paste(result, collapse = "\n") |>
+#     stringr::str_replace_all("\\$", "&dollar;") |>
+#     stringr::str_replace_all("\n+", "<br>")
+#   result_html_inner
+# }
 ```
 
 The original effect size is _d_ = `r round(cohensd$Cohens_d,2)`. To achieve 80%, 90%, or 95% power to detect that effect size, I'd need:
 
-Power|Necessary N
----|---
-80%|`r knitr::kable(unclass(pwr::pwr.t.test(n=6, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")))`
-90%|`r knitr::kable(unclass(pwr::pwr.t.test(n=8, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")))`
-95%|`r knitr::kable(unclass(pwr::pwr.t.test(n=9, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")))`
+Target Power|Necessary N|Estimated Power
+---|---|---
+80%|6|`r pwr::pwr.t.test(n=6, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")$power * 100`%
+90%|8|`r pwr::pwr.t.test(n=8, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")$power * 100`%
+95%|9|`r pwr::pwr.t.test(n=9, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")$power * 100`%
 
 9 subjects is completely feasible.
 
