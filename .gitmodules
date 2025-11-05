@@ -5,3 +5,7 @@
 [submodule "new_code/memo-sandbox"]
 	path = new_code/memo-sandbox
 	url = git@github.com:jczimm/memo-sandbox.git
+[submodule "new_code/competence_effort"]
+	path = new_code/competence_effort
+	url = git@github.com:jczimm/competence_effort.git
+	branch = psyc-201a
