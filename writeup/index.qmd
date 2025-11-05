@@ -198,19 +198,53 @@ It will also include round-level data:
 
 The participant self-exclusion criterion will be enforced: we will manually exclude any participants who failed both attention checks but did not self-exclude (i.e., exit the task and return the submission).
 
-```{r include=F}
+```{r}
+#| include: false
+#| eval: false
 ### Data Preparation
 
 #### Load Relevant Libraries and Functions
+library('tidyverse')
+library('lmerTest')
 
 #### Import data
+# dat_raw <- read all files like data/index1_{subjectId}_output.csv and bind rows # data downloaded from osf (saved by datapipe)
 
 #### Data exclusion / filtering
+# TODO based on attention checks criterion
 
 #### Prepare data for analysis - create columns etc.
+# TODO once have data, munge to generate the rows/columns I need for the analysis, which are per-round, per-agent data: 
+# - prob
+# - round
+# - scenario
+# - agent
+# - subject
+
+# For reference:
+# agent column: 1 refers to the weaker contestant, 2 refers to the stronger contestant (if applicable) based on individual lifting outcomes.
+# prob column: Participants' lift probability judgments.
 ```
 
 ### Confirmatory analysis
+
+```{r}
+#| include: false
+#| eval: false
+
+# (Adapted from original_code/competence_effort/Code/main_text/regression.R)
+## Experiment 1
+dat <- dat_clean # read.csv('./data/exp1.csv', header = T, stringsAsFactors = T)
+dat$agent <- factor(dat$agent, labels = c('A', 'B'))
+dat$round <- as.factor(dat$round)
+dat$scenario <- factor(dat$scenario, levels = c('F,F;F,F','F,F;F,L','F,L;F,L','F,F;L,L','F,L;L,L','L,L;L,L'), ordered = T)
+dat$prob[dat$round==3 & dat$agent=='B'] <- NaN # so that the probabilities are only counted once for joint lifting
+dat <- arrange(dat,subject,scenario,round,agent)
+
+# Lift probability
+t.test(dat$prob[dat$round == 3 & dat$scenario == 'F,F;F,F' & dat$agent == 'A'], mu = 0, alternative = 'two.sided')
+# filter one agent so that the probability is only counted once. Round 3 is a joint lift.
+```
 
 I found/did not find that participants rated the probability of joint success in round 3 as non-zero (_t_(49) = ..., _p_ = ...). See the black point range (data) for scenario "F,F;F,F".
 
