@@ -209,6 +209,7 @@ library('lmerTest')
 
 #### Import data
 # dat_raw <- read all files like data/index1_{subjectId}_output.csv and bind rows # data downloaded from osf (saved by datapipe)
+# e.g. data/index1_test1_output.csv
 
 #### Data exclusion / filtering
 # TODO based on attention checks criterion
@@ -224,6 +225,8 @@ library('lmerTest')
 # For reference:
 # agent column: 1 refers to the weaker contestant, 2 refers to the stronger contestant (if applicable) based on individual lifting outcomes.
 # prob column: Participants' lift probability judgments.
+
+# should be just select(subject=subjectId, round, round1_o, round2_o, probability_a, probability_b, ), filter to remove missing data, then pivot_longer from probability_a,probability_b to prob and agent. then to compute scenario, take the unique value of round1_o and round2_o and interpret each as (a,b,)x6 contests, and index within it the given round
 ```
 
 ### Confirmatory analysis
