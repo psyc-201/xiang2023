@@ -45,8 +45,9 @@ variability: not reported in paper, but can estimate from the shared data
 
 ::: {.callout-note}
 ## Links
-Repository: [https://github.com/jczimm/xiang2023](https://github.com/jczimm/xiang2023)  
-Original paper: [2023_xiang_effort.pdf](../original_paper/2023_xiang_effort.pdf) (Retrieved on Sep 30, 2025 from [velezlab.org](https://www.velezlab.org/publications#:~:text=Collaborative%20decision%20making%20is%20grounded%20in%20representations%20of%20other%20people%E2%80%99s%20competence%20and%20effort))
+Repository: [https://github.com/psyc-201/xiang2023](https://github.com/psyc-201/xiang2023)  
+Original paper: [2023_xiang_effort.pdf](../original_paper/2023_xiang_effort.pdf) (Retrieved on Sep 30, 2025 from [velezlab.org](https://www.velezlab.org/publications#:~:text=Collaborative%20decision%20making%20is%20grounded%20in%20representations%20of%20other%20people%E2%80%99s%20competence%20and%20effort))  
+Hosted experiment: [https://psyc-201.github.io/xiang2023/exp/index1.html](https://psyc-201.github.io/xiang2023/exp/index1.html)
 :::
 
 ## Methods
@@ -200,7 +201,6 @@ The participant self-exclusion criterion will be enforced: we will manually excl
 
 ```{r}
 #| include: false
-#| eval: false
 ### Data Preparation
 
 #### Load Relevant Libraries and Functions
@@ -208,32 +208,92 @@ library('tidyverse')
 library('lmerTest')
 
 #### Import data
-# dat_raw <- read all files like data/index1_{subjectId}_output.csv and bind rows # data downloaded from osf (saved by datapipe)
-# e.g. data/index1_test1_output.csv
+# read all files like data/index1_{subjectId}_output.csv, save subjectId to a column, and bind rows
+# (data downloaded from osf (saved by datapipe))
+dat_raw <- list.files(path = './data/', pattern = 'index1_.*_output.csv', full.names = T) %>%
+  map_dfr(~ read.csv(.x, header = T, stringsAsFactors = F) %>%
+            mutate(subjectId = str_extract(basename(.x), '(?<=index1_).*(?=_output.csv)')))
 
 #### Data exclusion / filtering
-# TODO based on attention checks criterion
+# based on attention checks criterion
+dat_raw <- dat_raw %>%
+  group_by(subjectId) %>%
+  mutate(failed_both_attention_checks = attention_sum[!is.na(attention_sum)] == 0) %>%
+  ungroup() %>%
+  filter(!failed_both_attention_checks)
 
 #### Prepare data for analysis - create columns etc.
-# TODO once have data, munge to generate the rows/columns I need for the analysis, which are per-round, per-agent data: 
+# Munge to generate the rows/columns I need for the analysis, which are per-round, per-agent data: 
 # - prob
 # - round
 # - scenario
 # - agent
 # - subject
-
-# For reference:
+# For reference (from original_code/competence_effort/Data/README.txt):
 # agent column: 1 refers to the weaker contestant, 2 refers to the stronger contestant (if applicable) based on individual lifting outcomes.
 # prob column: Participants' lift probability judgments.
 
-# should be just select(subject=subjectId, round, round1_o, round2_o, probability_a, probability_b, ), filter to remove missing data, then pivot_longer from probability_a,probability_b to prob and agent. then to compute scenario, take the unique value of round1_o and round2_o and interpret each as (a,b,)x6 contests, and index within it the given round
+dat_clean <- dat_raw %>%
+  filter(trial_type == "survey-html-form") %>%
+  select(subject=subjectId, contest, round, outcome_a, outcome_b, probability_a, probability_b, strength_a, strength_b, effort_a, effort_b) %>%
+  arrange(subject, contest, round) %>%
+  
+  # collapse across round Stage, like in the open data (exp1.csv)
+  group_by(subject, contest, round) %>%
+  summarise(
+    across(everything(), ~{
+      ifelse(any(!is.na(.x)), .x[!is.na(.x)], NA)
+    })
+  ) %>%
+
+  # prepare to generate scenario column, which uses letters to represent the outcomes
+  ungroup() %>%
+  mutate(
+    outcome_a = ifelse(outcome_a == 1, "L", "F"),
+    outcome_b = ifelse(outcome_b == 1, "L", "F")
+  ) %>%
+
+  # relabel agents where needed: for any contest, if the two agents don't have the same outcome in any round, the agent that lifted should be called agent b for the whole contest
+  group_by(subject, contest) %>%
+  pivot_longer(cols = c(ends_with("_a"), ends_with("_b")),
+               names_to = c(".value", "agent"),
+               names_sep = "_") %>%
+  group_by(subject, contest, round) %>%
+  mutate(
+    needs_switch =
+      length(unique(outcome)) > 1 & 
+      ((outcome == "L" & agent == "a") | (outcome == "F" & agent == "b"))
+  ) %>%
+  group_by(subject, contest) %>%
+  mutate(needs_switch = any(needs_switch)) %>%
+  ungroup() %>%
+  mutate(
+    agent = ifelse(needs_switch, ifelse(agent == "a", "b", "a"), agent)
+  ) %>%
+  select(-needs_switch) %>%
+  pivot_wider(values_from = c(outcome, probability, strength, effort), 
+              names_from = agent, 
+              names_sep = "_") %>%
+
+  # now in wide format, with the agents labeled as intended, define scenario
+  group_by(subject, contest, round) %>%
+  mutate(outcome = paste(outcome_a, outcome_b, sep=","), .after="round") %>%
+  group_by(subject, contest) %>%
+  mutate(scenario = paste(outcome[round == 1 | round == 2], collapse=";"), .after="round") %>%
+  select(-starts_with("outcome")) %>%
+
+  # get into format used in the open data (exp1.csv)
+  pivot_longer(cols = c(ends_with("_a"), ends_with("_b")),
+               names_to = c(".value", "agent"),
+               names_sep = "_") %>%
+  rename(prob = probability) %>%
+  mutate(agent = ifelse(agent == 'a', 1, 2))
 ```
 
 ### Confirmatory analysis
 
 ```{r}
 #| include: false
-#| eval: false
 
 # (Adapted from original_code/competence_effort/Code/main_text/regression.R)
 ## Experiment 1
@@ -245,15 +305,36 @@ dat$prob[dat$round==3 & dat$agent=='B'] <- NaN # so that the probabilities are o
 dat <- arrange(dat,subject,scenario,round,agent)
 
 # Lift probability
-t.test(dat$prob[dat$round == 3 & dat$scenario == 'F,F;F,F' & dat$agent == 'A'], mu = 0, alternative = 'two.sided')
+ttest_result <- t.test(dat$prob[dat$round == 3 & dat$scenario == 'F,F;F,F' & dat$agent == 'A'], mu = 0, alternative = 'two.sided')
 # filter one agent so that the probability is only counted once. Round 3 is a joint lift.
 ```
 
-I found/did not find that participants rated the probability of joint success in round 3 as non-zero (_t_(49) = ..., _p_ = ...). See the black point range (data) for scenario "F,F;F,F".
+I found/did not find that participants rated the probability of joint success in round 3 as non-zero (_t_(`r ttest_result$parameter`) = `r ttest_result$statistic`, _p_ = `r signif(ttest_result$p.value, 2)`). See the black point range (data) for scenario "F,F;F,F".
+
+```{r}
+#| include: false
+
+# adapted from original_code/competence_effort/Code/main_text/plt.R and original_code/competence_effort/Code/main_text/plot_figures.R
+dat$model <- 'data'
+fig3c_behavioral_only <- dat %>%
+  ggplot(aes_string("scenario", "prob", group = 'model', color = 'model')) +
+  stat_summary(data = dat %>% filter(round == 3 & agent == 'A'), fun.data = 'mean_cl_boot', geom = 'errorbar', width = .1) +
+  stat_summary(data = dat %>% filter(round == 3 & agent == 'A'), fun = 'mean', geom = 'point', size = 1.5) +
+  scale_color_manual(name = NULL, labels = c('Data'),
+                      values = c('#000000'),
+                      limits = c('data')) +
+  theme_bw() + 
+  theme(legend.position="none") +
+  coord_cartesian(ylim = c(0, 100)) +
+  labs(x='Round 1 and Round 2 outcome', y='Lift probability in Round 3 (%)', color=NULL)
+
+# write temporarily to file to render in qmd
+ggsave('./writeup/replication-fig3c_behavioral_only.png', plot = fig3c_behavioral_only)
+```
 
 Original (Figure 3C) | New
 ---- | ----
-![](./figure3c-legend.png)<br>![Figure 3C](./figure3c.png)<br>"Note. ... Model simulations averaged over 10 runs. Error bars indicate bootstrapped 95% confidence intervals." (p. 1571) | ...
+![](./figure3c-legend.png)<br>![Figure 3C](./figure3c.png)<br>"Note. ... Model simulations averaged over 10 runs. Error bars indicate bootstrapped 95% confidence intervals." (p. 1571) | ![](./replication-fig3c_behavioral_only.png)
 
 ### Exploratory analyses
 
