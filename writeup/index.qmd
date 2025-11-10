@@ -76,12 +76,6 @@ cohensd <- {
   effectsize::effectsize(ttest_result)
 }
 
-# pwr::pwr.t.test(n=50, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")
-
-# pwr::pwr.t.test(n=6, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")
-# pwr::pwr.t.test(n=8, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")
-# pwr::pwr.t.test(n=9, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")
-
 # render_raw <- function(htest) {
 #   result <- unclass(htest) |> print() |> capture.output()
 #   result_html_inner <- paste(result, collapse = "\n") |>
@@ -209,18 +203,29 @@ library('lmerTest')
 
 #### Import data
 # read all files like data/index1_{subjectId}_output.csv, save subjectId to a column, and bind rows
-# (data downloaded from osf (saved by datapipe))
+# (data downloaded from OSF, to which is was saved by datapipe)
+# OSF is authenticated automatically using OSF_PAT in .Renviron
+OSF_NODE_REPLICATION_PROJECT <- '89ae4'
+osfr::osf_retrieve_node(OSF_NODE_REPLICATION_PROJECT) %>%
+  osfr::osf_ls_nodes(pattern = "Prolific") %>%
+  osfr::osf_ls_files() %>%
+  osfr::osf_download(path="./data", conflicts="skip", progress=interactive()) %>%
+  invisible()
+
 dat_raw <- list.files(path = './data/', pattern = 'index1_.*_output.csv', full.names = T) %>%
   map_dfr(~ read.csv(.x, header = T, stringsAsFactors = F) %>%
             mutate(subjectId = str_extract(basename(.x), '(?<=index1_).*(?=_output.csv)')))
 
 #### Data exclusion / filtering
 # based on attention checks criterion
+# (also remove low-attention pilots used for simply testing the task)
+test_pilot_subjectIds <- c("6bt3juzg6gt3")
 dat_raw <- dat_raw %>%
   group_by(subjectId) %>%
   mutate(failed_both_attention_checks = attention_sum[!is.na(attention_sum)] == 0) %>%
   ungroup() %>%
-  filter(!failed_both_attention_checks)
+  filter(!failed_both_attention_checks) %>%
+  filter(!(subjectId %in% test_pilot_subjectIds))
 
 #### Prepare data for analysis - create columns etc.
 # Munge to generate the rows/columns I need for the analysis, which are per-round, per-agent data: 
@@ -309,7 +314,29 @@ ttest_result <- t.test(dat$prob[dat$round == 3 & dat$scenario == 'F,F;F,F' & dat
 # filter one agent so that the probability is only counted once. Round 3 is a joint lift.
 ```
 
-I found/did not find that participants rated the probability of joint success in round 3 as non-zero (_t_(`r ttest_result$parameter`) = `r ttest_result$statistic`, _p_ = `r signif(ttest_result$p.value, 2)`). See the black point range (data) for scenario "F,F;F,F".
+I found/did not find that participants rated the probability of joint success in round 3 as non-zero (_t_(`r ttest_result$parameter`) = `r ttest_result$statistic`, _p_ = `r signif(ttest_result$p.value, 2)`). See the black point range (data) for scenario "F,F;F,F" under Exploratory analyses.
+
+```{r}
+#| echo: false
+
+# dat$prob[dat$round == 3 & dat$scenario == 'F,F;F,F' & dat$agent == 'A']
+
+critical_tvalue <- qt(0.975, df=ttest_result$parameter)
+
+dat %>%
+  filter(round == 3, scenario == 'F,F;F,F', agent == 'A') %>%
+  ggplot(aes(x=prob)) +
+  geom_histogram() +
+  expand_limits(x=c(0,100)) +
+  geom_vline(xintercept=critical_tvalue, color='red') +
+  labs(y='Density', x='Lift probability in Round 3 (%)')
+```
+
+The red line shows the critical t-value for detecting a statistically significant effect.
+
+### Exploratory analyses
+
+I found/did not find that the joint effort model was the only model which qualitatively predicted both that joint success is non-zero (the result in confirmatory analysis) and that probability of joint success increases as individual success increases.
 
 ```{r}
 #| include: false
@@ -317,7 +344,8 @@ I found/did not find that participants rated the probability of joint success in
 # adapted from original_code/competence_effort/Code/main_text/plt.R and original_code/competence_effort/Code/main_text/plot_figures.R
 dat$model <- 'data'
 fig3c_behavioral_only <- dat %>%
-  ggplot(aes_string("scenario", "prob", group = 'model', color = 'model')) +
+  ggplot(aes(scenario, prob, group = model, color = model)) +
+  geom_line(aes(group=subject), linetype="dashed", alpha=.5, data = dat %>% filter(round == 3 & agent == 'A')) +
   stat_summary(data = dat %>% filter(round == 3 & agent == 'A'), fun.data = 'mean_cl_boot', geom = 'errorbar', width = .1) +
   stat_summary(data = dat %>% filter(round == 3 & agent == 'A'), fun = 'mean', geom = 'point', size = 1.5) +
   scale_color_manual(name = NULL, labels = c('Data'),
@@ -335,12 +363,6 @@ ggsave('./writeup/replication-fig3c_behavioral_only.png', plot = fig3c_behaviora
 Original (Figure 3C) | New
 ---- | ----
 ![](./figure3c-legend.png)<br>![Figure 3C](./figure3c.png)<br>"Note. ... Model simulations averaged over 10 runs. Error bars indicate bootstrapped 95% confidence intervals." (p. 1571) | ![](./replication-fig3c_behavioral_only.png)
-
-### Exploratory analyses
-
-Any follow-up analyses desired (not required). 
-
-<!-- I found/did not find that the joint effort model was the only model which qualitatively predicted both [the result in confirmatory analysis] and [the other result]. -->
 
 ## Discussion
 
