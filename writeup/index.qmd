@@ -143,7 +143,7 @@ I must note that while the _t_ test alone does not justify the paper's central c
 
 The sample will differ in that the original was from Amazon Mechanical Turk, while the new sample will be from Prolific.
 
-The only difference in setting is that the task will be hosted at `https://jczimm.com/competence_effort/index1.html` rather than `https://gershmanlab.com/experiments/yang/toc/Experiment/index1.html`.
+The only difference in setting is that the task will be hosted at `https://psyc-201.github.io/xiang2023/exp/index1.html` rather than `https://gershmanlab.com/experiments/yang/toc/Experiment/index1.html`.
 
 The only known visible differences in procedure are that "HIT" will be renamed "submission" in task instructions, and the consent form will be updated according to the details provided by the UCSD course PSYC 201A.
 
