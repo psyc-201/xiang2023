@@ -89,11 +89,13 @@ Given my understanding of course funding available, collecting 50 participants i
 
 ### Planned Sample
 
-Based on my power and precision considerations, I will collect 50 participants on Prolific, following the specific self-exclusion strategy reported below.
+Based on my power and precision considerations, I will collect 50 participants on Prolific, following the specific exclusion strategy reported below.
 
 I will follow precisely the data collection strategy in the original Experiment 1, as described on p. 1569:
 
 > "Participants’ demographic information was not collected. Participants completed a comprehension check before they moved on to the experiment. They were not allowed to proceed until they answered all the comprehension check questions correctly. ... To ensure data quality, we included two attention-check questions in the experiment. Participants who failed one attention check were warned immediately to pay closer attention. Participants who failed both attention checks were asked to leave the experiment and they were not counted among the 50 participants we recruited. A total of 10 participants failed one attention check, and we did not exclude their data in our analysis."
+
+In the original study, per the experiment code, participants who fail both attention checks are asked to return their submission (to self-exclude). Per our current IRB approval, we are not asking these participants to do so and will instead manually exclude them from our target sample and analysis.
 
 ### Materials
 
@@ -178,7 +180,7 @@ It will also include round-level data:
 - outcomes (`r1_outcome_a`/`r2_outcome_a`/`r3_outcome_a`, and `r1_outcome_b`/`r2_outcome_b`/`r3_outcome_b`)
 - probability (`r1_prob_a`/`r2_prob_a`/`r3_prob_a`, and `r1_prob_b`/`r2_prob_b`/`r3_prob_b`)
 
-The participant self-exclusion criterion will be enforced: we will manually exclude any participants who failed both attention checks but did not self-exclude (i.e., exit the task and return the submission).
+We will manually exclude any participants who failed both attention checks.
 
 ```{r}
 #| include: false
