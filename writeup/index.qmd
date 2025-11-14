@@ -40,7 +40,7 @@ variability: not reported in paper, but can estimate from the shared data
 ## Links
 Repository: [https://github.com/psyc-201/xiang2023](https://github.com/psyc-201/xiang2023)  
 Original paper: [2023_xiang_effort.pdf](../original_paper/2023_xiang_effort.pdf) (Retrieved on Sep 30, 2025 from [velezlab.org](https://www.velezlab.org/publications#:~:text=Collaborative%20decision%20making%20is%20grounded%20in%20representations%20of%20other%20people%E2%80%99s%20competence%20and%20effort))  
-Hosted experiment: [https://psyc-201.github.io/xiang2023/exp/index1.html](https://psyc-201.github.io/xiang2023/exp/index1.html)
+Hosted experiment: [https://psyc-201.github.io/xiang2023/exp/index1.html](https://psyc-201.github.io/xiang2023/exp/index1.html)  
 Hosted version of this report: [https://psyc-201.github.io/xiang2023/writeup/](https://psyc-201.github.io/xiang2023/writeup/)
 :::
 
