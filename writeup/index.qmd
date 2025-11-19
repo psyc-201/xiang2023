@@ -494,7 +494,7 @@ ggsave('./writeup/replication-fig3c.png', plot = fig3c, width=4, height=3)
 
 Original (Figure 3C) | New
 ---- | ----
-![Figure 3C](./figure3c.png)<br>![](./figure3c-legend.png){height=150px}<br><br>"Note. ... Model simulations averaged over 10 runs. Error bars indicate bootstrapped 95% confidence intervals." (p. 1571) | ![](./replication-fig3c_behavioral_only.png)<br><br>Note. Error bars indicate bootstrapped 95% confidence intervals.
+![Figure 3C](./figure3c.png)<br>![](./figure3c-legend.png){height=150px}<br><br>"Note. ... Model simulations averaged over 10 runs. Error bars indicate bootstrapped 95% confidence intervals." (p. 1571) | ![](./replication-fig3c.png)<br><br>Note. Error bars indicate bootstrapped 95% confidence intervals.
 
 <!-- ## Discussion
 
