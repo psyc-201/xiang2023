@@ -16,9 +16,9 @@ My broad research interests include modeling how individuals perceive, represent
 
 Experiment 1 involves observing contestants try to lift a heavy box in a set of _contests_ (six total), each containing three _rounds_. In each contest, there are two unique avatars playing as the _contestants_. In rounds 1 and 2, each contestant attempts to lift the box by themselves. In round 3, the contestants attempt to lift the box together. In each round, after observing each contestant succeed or fail to lift the box, the participant judges the strength of each contestant (1–10), and for each contestant that successfully lifted the box, the participant judges that contestant's allocated effort (0%–100%). At the start of round 2, the participant judges each contestant's probability of lifting the box successfully (0%–100%), prior to observing the lift attempts. At the start of round 3, the participant judges the probability that the contestants will successfully lift the box together. Further, an incentive to the contestants for lifting the box is specified in each round: in the second and third rounds, the specified reward for lifting the box is double that of the first round. Participants are also told that the heavy box had a constant weight across all contests, which effectively requires at least 5 strength points applied (e.g., on average, 100% effort for a contestant with strength 5, or 50% effort for a contestant with strength 10, etc.). Last, participants see a progressively filled-out table of all the lift outcomes during each contest, visible throughout, including when making judgments.
 
-![Example illustrations shown during instructions; note that the incentive displayed for round 1 is $10, not $20.](../original_code/competence_effort/Experiment/img/example1.png)
+![Example illustrations shown during instructions; note that the incentive displayed for round 1 is $10, not $20.](../new_code/competence_effort/Experiment/img/example1.png)
 
-![An example table for a contest, as it would appear during the probability judgment at the beginning of round 3.](../original_code/competence_effort/Experiment/img/table.png){height=350}
+![An example table for a contest, as it would appear during the probability judgment at the beginning of round 3.](../new_code/competence_effort/Experiment/img/table.png){height=350}
 
 The challenges/opportunities for my learning in this replication project will include: 1) recreating the paper's proposed (joint effort) model and two alternative (solitary/compensatory effort) models of the probability of joint success in [Memo](https://github.com/kach/memo) (based on the authors' pre-existing implementations in WebPPL), and 2) running these models over my newly collected data to attempt to replicate that the proposed model is most predictive of participants' judgments. (I will also replace the original authors' data-saving step (a php page) with [DataPipe](https://pipe.jspsych.org/).)
 
@@ -463,21 +463,47 @@ I found/did not find that the joint effort model was the only model which qualit
 
 # adapted from original_code/competence_effort/Code/main_text/plt.R and original_code/competence_effort/Code/main_text/plot_figures.R
 dat$model <- 'data'
-fig3c_behavioral_only <- dat %>%
+
+# fig3c_behavioral_only <- dat %>%
+#   ggplot(aes(scenario, prob, group = model, color = model)) +
+#   geom_line(aes(group=subject), linetype="dashed", alpha=.2, data = dat %>% filter(round == 3 & agent == 'A')) +
+#   stat_summary(data = dat %>% filter(round == 3 & agent == 'A'), fun.data = 'mean_cl_boot', geom = 'errorbar', width = .1) +
+#   stat_summary(data = dat %>% filter(round == 3 & agent == 'A'), fun = 'mean', geom = 'point', size = 1.5) +
+#   scale_color_manual(name = NULL, labels = c('Data'),
+#                       values = c('#000000'),
+#                       limits = c('data')) +
+#   theme_bw() + 
+#   theme(legend.position="none") +
+#   coord_cartesian(ylim = c(0, 100)) +
+#   labs(x='Round 1 and Round 2 outcome', y='Lift probability in Round 3 (%)', color=NULL)
+
+# # write temporarily to file to render in qmd
+# ggsave('./writeup/replication-fig3c_behavioral_only.png', plot = fig3c_behavioral_only, width=4, height=3)
+
+
+
+simulation <- read_csv("new_code/memo-sandbox/webppl vs memo/xiang2023-exp1-round3-model_fits_results.csv") |> select(model, scenario, P) |> mutate(prob = 100*P)
+simulation$scenario <- factor(simulation$scenario, levels = c('F,F;F,F','F,F;F,L','F,L;F,L','F,F;L,L','F,L;L,L','L,L;L,L'), ordered = T)
+
+fig3c <- dat %>%
   ggplot(aes(scenario, prob, group = model, color = model)) +
+  geom_line(data = simulation %>% filter(model=='compensatory')) +
+  geom_line(data = simulation %>% filter(model=='solitary')) +
+  geom_line(data = simulation %>% filter(model=='joint')) +
+
   geom_line(aes(group=subject), linetype="dashed", alpha=.2, data = dat %>% filter(round == 3 & agent == 'A')) +
   stat_summary(data = dat %>% filter(round == 3 & agent == 'A'), fun.data = 'mean_cl_boot', geom = 'errorbar', width = .1) +
   stat_summary(data = dat %>% filter(round == 3 & agent == 'A'), fun = 'mean', geom = 'point', size = 1.5) +
-  scale_color_manual(name = NULL, labels = c('Data'),
-                      values = c('#000000'),
-                      limits = c('data')) +
+  scale_color_manual(name = NULL, labels = c('Data','Joint effort model','Solitary effort model','Compensatory effort model'),
+                               values = c('#000000','#e35d5e','#004385','#05b2dc','#04a777'),
+                               limits = c('data','joint','solitary','compensatory')) +
   theme_bw() + 
   theme(legend.position="none") +
   coord_cartesian(ylim = c(0, 100)) +
   labs(x='Round 1 and Round 2 outcome', y='Lift probability in Round 3 (%)', color=NULL)
 
 # write temporarily to file to render in qmd
-ggsave('./writeup/replication-fig3c_behavioral_only.png', plot = fig3c_behavioral_only, width=4, height=3)
+ggsave('./writeup/replication-fig3c.png', plot = fig3c, width=4, height=3)
 ```
 
 Original (Figure 3C) | New

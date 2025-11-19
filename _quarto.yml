@@ -7,5 +7,5 @@ project:
     - "!original_code/"
     - "!new_code/"
   resources:
-    - "original_code/competence_effort/Experiment/img/example1.png"
-    - "original_code/competence_effort/Experiment/img/table.png"
+    - "new_code/competence_effort/Experiment/img/example1.png"
+    - "new_code/competence_effort/Experiment/img/table.png"
