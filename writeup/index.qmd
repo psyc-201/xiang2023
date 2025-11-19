@@ -133,7 +133,12 @@ The sample will differ in that the original was from Amazon Mechanical Turk, whi
 
 The only difference in setting is that the task will be hosted at `https://psyc-201.github.io/xiang2023/exp/index1.html` rather than `https://gershmanlab.com/experiments/yang/toc/Experiment/index1.html`.
 
-The only known visible differences in procedure are that "HIT" will be renamed "submission" in task instructions, and the consent form will be updated according to the details provided by the UCSD course PSYC 201A.
+The only known visible differences in procedure are:
+
+1. The consent form is updated according to the details provided by the UCSD course PSYC 201A
+2. In task instructions, "HIT" is renamed "submission"
+3. In task instructions, "Different pairs of contestants will come in to lift the box" becomes "For each contest, a new pair of contestants will come in to lift the box" (to clarify first two questions of comprehension check)
+4. No more than two attempts of the comprehension check will be allowed (per [Prolific guidelines](https://researcher-help.prolific.com/en/articles/445153-prolific-s-attention-and-comprehension-check-policy)). Accordingly, before the comprehension check, we added: "You will have two chances to complete the comprehension questions correctly before we ask you to return your submission, per Prolific guidelines."; and upon comprehension check failure, we added: "Please note that you have only X attempt(s) left."
 
 While the confirmatory analysis will be rerun using the original R code provided by the authors, for the qualitative replication attempt I will use a reimplementation of the joint effort model and the alternative models (solitary effort and compensatory effort models) in memo, which were originally written in WebPPL. I expect that reimplementation of the continuous probabilistic models in WebPPL as discrete probabilistic models in memo will produce higher estimate precision as the model predictions will be deterministic, rather than stochastic. (I will discretize the distribution at a high resolution such that there is no systematic difference in estimates.)
 
@@ -166,7 +171,7 @@ Likewise, validity is unclear. And following the same logic, I infer that the va
 
 The data collected in this experiment will include task-level data:
 
-- `subjectId`, `prolificId`
+- `subjectId`, `encryptedProlificId`
 - pre-set round outcomes (`round1_o`, `round2_o`, `round3_o`)
 - pre-set round incentives (`round1_reward`, `round2_reward`, `round3_reward`)
 - number of failed attention checks (`attention_sum`)
@@ -195,26 +200,40 @@ library('lmerTest')
 # (data downloaded from OSF, to which is was saved by datapipe)
 # OSF is authenticated automatically using OSF_PAT in .Renviron
 OSF_NODE_REPLICATION_PROJECT <- '89ae4'
-osfr::osf_retrieve_node(OSF_NODE_REPLICATION_PROJECT) %>%
+osf_data_files <- osfr::osf_retrieve_node(OSF_NODE_REPLICATION_PROJECT) %>%
   osfr::osf_ls_nodes(pattern = "Prolific") %>%
-  osfr::osf_ls_files() %>%
+  osfr::osf_ls_files(n_max=Inf)
+  
+osf_data_files %>%
   osfr::osf_download(path="./data", conflicts="skip", progress=interactive()) %>%
   invisible()
 
+filename_to_subjectId <- function(filename) str_extract(filename, '(?<=index1_).*(?=_output.csv)')
+
 dat_raw <- list.files(path = './data/', pattern = 'index1_.*_output.csv', full.names = T) %>%
   map_dfr(~ read.csv(.x, header = T, stringsAsFactors = F) %>%
-            mutate(subjectId = str_extract(basename(.x), '(?<=index1_).*(?=_output.csv)')))
+            mutate(subjectId = filename_to_subjectId(basename(.x))))
+
+dat_filemeta <- osf_data_files %>%
+  rename(datapipe_meta = meta) %>%
+  unnest_wider(datapipe_meta, names_sep=".") %>%
+  unnest_wider(datapipe_meta.attributes, names_sep=".") %>%
+  select(name, datapipe_meta.attributes.date_modified) %>%
+  mutate(subjectId = filename_to_subjectId(name)) %>%
+  select(-name)
+
+dat_raw_annotated <- dat_raw %>%
+  group_by(subjectId) %>%
+  mutate(passed_an_attention_check = all(attention_sum >= 1, na.rm=T)) %>%
+  ungroup() %>%
+  left_join(dat_filemeta, by="subjectId")
 
 #### Data exclusion / filtering
 # based on attention checks criterion
-# (also remove low-attention pilots used for simply testing the task)
-test_pilot_subjectIds <- c("6bt3juzg6gt3")
-dat_raw <- dat_raw %>%
-  group_by(subjectId) %>%
-  mutate(failed_both_attention_checks = attention_sum[!is.na(attention_sum)] == 0) %>%
-  ungroup() %>%
-  filter(!failed_both_attention_checks) %>%
-  filter(!(subjectId %in% test_pilot_subjectIds))
+# (also include participants who have a session ID, as those who don't were not real Prolific participants)
+dat_raw_filtered <- dat_raw_annotated %>%
+  filter(passed_an_attention_check) %>%
+  group_by(subjectId) %>% filter(any(!is.na(sessionId))) %>% ungroup()
 
 #### Prepare data for analysis - create columns etc.
 # Munge to generate the rows/columns I need for the analysis, which are per-round, per-agent data: 
@@ -227,7 +246,7 @@ dat_raw <- dat_raw %>%
 # agent column: 1 refers to the weaker contestant, 2 refers to the stronger contestant (if applicable) based on individual lifting outcomes.
 # prob column: Participants' lift probability judgments.
 
-dat_clean <- dat_raw %>%
+dat_clean <- dat_raw_filtered %>%
   filter(trial_type == "survey-html-form") %>%
   select(subject=subjectId, contest, round, outcome_a, outcome_b, probability_a, probability_b, strength_a, strength_b, effort_a, effort_b) %>%
   arrange(subject, contest, round) %>%
@@ -284,6 +303,117 @@ dat_clean <- dat_raw %>%
   mutate(agent = ifelse(agent == 'a', 1, 2))
 ```
 
+```{r}
+#| include: false
+#| eval: false
+# Decrypt prolific IDs to determine bonuses
+
+if (interactive()) { # safeguard to help ensure this is not output by quarto
+  decrypt_rsa <- function(col, private_key_path) {
+    private_key <- openssl::read_key(private_key_path)
+    decrypt_one <- function(enc) {
+      if (is.na(enc) || enc == "") return(NA_character_)
+      tryCatch({
+        raw_enc <- base64enc::base64decode(enc)
+        raw_dec <- openssl::rsa_decrypt(raw_enc, private_key)
+        rawToChar(raw_dec)
+      }, error = function(e) NA_character_)
+    }
+    vapply(col, decrypt_one, FUN.VALUE = character(1))
+  }
+
+  dat_raw_annotated %>%
+    select(subjectId, encryptedProlificId, bonus, passed_an_attention_check) %>%
+    group_by(subjectId) %>%
+    filter(!is.na(bonus)) %>%
+    ungroup() %>%
+    # restore any subjects in case we lost them due to the filtering
+    complete(subjectId = dat_raw_annotated$subjectId) %>%
+    complete(encryptedProlificId = dat_raw_annotated$encryptedProlificId) %>%
+    mutate(
+      prolificId = decrypt_rsa(
+        encryptedProlificId,
+        private_key_path='./new_code/competence_effort/Experiment/private.pem'
+      )
+    ) %>%
+    select(prolificId, bonus) #%>%
+    # filter(!is.na(prolificId), bonus > 0) %>%
+    # format_csv(col_names=F)
+  # NOTE: only do once per batch of data collection, since might accumulate in Prolific if bulk-bonus multiple times!
+}
+```
+
+```{r}
+#| include: false
+
+# Sanity checks
+
+# count all participants with a sessionId
+(real_participants <- dat_raw_annotated %>%
+  group_by(subjectId) %>% filter(any(!is.na(sessionId))) %>%
+  ungroup() %>% distinct(subjectId) %>%
+  nrow())
+
+# count participants included
+(filtered_participants <- dat_raw_filtered %>%
+  ungroup() %>% distinct(subjectId) %>%
+  nrow())
+(clean_participants <- dat_clean %>%
+  ungroup() %>% distinct(subject) %>%
+  nrow())
+stopifnot(clean_participants == filtered_participants)
+
+# check that contest vs scenario is uniformly distributed, and that each participant did each contest and each scenario once
+dat_clean %>%
+  filter(agent == 1, round == 3) %>%
+  ggplot(aes(x = scenario, y = contest)) +
+  geom_jitter(aes(color = subject), width=.1, height=.1)
+
+# clearer way to check that each subject did each scenario once 
+dat_clean %>%
+  filter(agent == 1, round == 3) %>%
+  ggplot(aes(x = scenario)) +
+  geom_histogram(aes(fill = subject), stat="count")
+
+# clearer way to check that each subject did each contest once
+dat_clean %>%
+  filter(agent == 1, round == 3) %>%
+  ggplot(aes(x = contest)) +
+  geom_histogram(aes(fill = subject), stat="count")
+
+# check that effort and strength plots have missing data in the right places
+
+dat_clean %>%
+  ggplot(aes(x = round, y=effort, color=subject)) +
+  geom_point() + geom_line() +
+  geom_smooth(method=lm, se=F, color="black") +
+  facet_wrap(scenario~agent)
+
+dat_clean %>%
+  ggplot(aes(x = round, y=strength, color=subject)) +
+  geom_point() + geom_line() +
+  geom_smooth(method=lm, se=F, color="black") +
+  facet_wrap(scenario~agent)
+
+dat_clean %>%
+  ggplot(aes(x = round, y=prob, color=subject)) +
+  geom_point() + geom_line() +
+  geom_smooth(method=lm, se=F, color="black") +
+  facet_wrap(scenario~agent)
+
+# review written responses
+# dat_raw %>% filter(trial_type == "survey-text") %>% select(subjectId, responses) %>% view
+
+# review comprehension checks
+dat_raw |> filter(trial_type == "survey-multi-choice") |> group_by(subjectId) |> count()
+
+dat_raw |> filter(trial_type == "survey-multi-choice") |> group_by(subjectId) |> mutate(attempts = n()) |> rowwise() |> mutate(responses = list(jsonlite::fromJSON(responses))) |> select(subjectId, responses, attempts) |> unnest_longer(responses) |>
+  group_by(subjectId, responses, attempts) |> mutate(times_answered = n()) |> ungroup() |>
+  # filter(startsWith(subjectId, "ne7k")) |>
+  # filter(attempts > 2) |>
+  ggplot(aes(x=responses, group=paste(subjectId, times_answered), fill=times_answered, color=subjectId)) + geom_histogram(stat="count") + facet_wrap(~responses_id, scales = "free") + theme(axis.text.x = element_text(angle = 20))
+```
+
 ### Confirmatory analysis
 
 ```{r}
@@ -310,7 +440,8 @@ I found/did not find that participants rated the probability of joint success in
 
 # dat$prob[dat$round == 3 & dat$scenario == 'F,F;F,F' & dat$agent == 'A']
 
-critical_tvalue <- qt(0.975, df=ttest_result$parameter)
+alpha <- .05
+critical_tvalue <- qt(1 - (alpha/2), df=ttest_result$parameter) # dividing alpha by 2 since this is a two-tailed test
 
 dat %>%
   filter(round == 3, scenario == 'F,F;F,F', agent == 'A') %>%
@@ -321,7 +452,7 @@ dat %>%
   labs(y='Density', x='Lift probability in Round 3 (%)')
 ```
 
-The red line shows the critical t-value for detecting a statistically significant effect.
+The red line shows the critical t-value for detecting a statistically significant effect with α = `r alpha`.
 
 ### Exploratory analyses
 
@@ -334,7 +465,7 @@ I found/did not find that the joint effort model was the only model which qualit
 dat$model <- 'data'
 fig3c_behavioral_only <- dat %>%
   ggplot(aes(scenario, prob, group = model, color = model)) +
-  geom_line(aes(group=subject), linetype="dashed", alpha=.5, data = dat %>% filter(round == 3 & agent == 'A')) +
+  geom_line(aes(group=subject), linetype="dashed", alpha=.2, data = dat %>% filter(round == 3 & agent == 'A')) +
   stat_summary(data = dat %>% filter(round == 3 & agent == 'A'), fun.data = 'mean_cl_boot', geom = 'errorbar', width = .1) +
   stat_summary(data = dat %>% filter(round == 3 & agent == 'A'), fun = 'mean', geom = 'point', size = 1.5) +
   scale_color_manual(name = NULL, labels = c('Data'),
