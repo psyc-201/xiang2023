@@ -230,10 +230,13 @@ dat_raw_annotated <- dat_raw %>%
 
 #### Data exclusion / filtering
 # based on attention checks criterion
-# (also include participants who have a session ID, as those who don't were not real Prolific participants)
+# (also only include participants who have a session ID, as those who don't were not real Prolific participants; and only include participants who have done a trial, otherwise they probably failed the comprehension check the maximum number of times)
 dat_raw_filtered <- dat_raw_annotated %>%
   filter(passed_an_attention_check) %>%
-  group_by(subjectId) %>% filter(any(!is.na(sessionId))) %>% ungroup()
+  group_by(subjectId) %>%
+  filter(any(!is.na(sessionId))) %>%
+  filter(any(trial_type == "survey-html-form")) %>%
+  ungroup()
 
 #### Prepare data for analysis - create columns etc.
 # Munge to generate the rows/columns I need for the analysis, which are per-round, per-agent data: 
@@ -323,7 +326,7 @@ if (interactive()) { # safeguard to help ensure this is not output by quarto
   }
 
   dat_raw_annotated %>%
-    select(subjectId, encryptedProlificId, bonus, passed_an_attention_check) %>%
+    select(subjectId, encryptedProlificId, bonus, passed_an_attention_check, datapipe_meta.attributes.date_modified) %>%
     group_by(subjectId) %>%
     filter(!is.na(bonus)) %>%
     ungroup() %>%
@@ -336,7 +339,8 @@ if (interactive()) { # safeguard to help ensure this is not output by quarto
         private_key_path='./new_code/competence_effort/Experiment/private.pem'
       )
     ) %>%
-    select(prolificId, bonus) #%>%
+    arrange(desc(datapipe_meta.attributes.date_modified)) %>%
+    select(prolificId, bonus, datapipe_meta.attributes.date_modified) #%>%
     # filter(!is.na(prolificId), bonus > 0) %>%
     # format_csv(col_names=F)
   # NOTE: only do once per batch of data collection, since might accumulate in Prolific if bulk-bonus multiple times!
@@ -464,24 +468,6 @@ I found/did not find that the joint effort model was the only model which qualit
 # adapted from original_code/competence_effort/Code/main_text/plt.R and original_code/competence_effort/Code/main_text/plot_figures.R
 dat$model <- 'data'
 
-# fig3c_behavioral_only <- dat %>%
-#   ggplot(aes(scenario, prob, group = model, color = model)) +
-#   geom_line(aes(group=subject), linetype="dashed", alpha=.2, data = dat %>% filter(round == 3 & agent == 'A')) +
-#   stat_summary(data = dat %>% filter(round == 3 & agent == 'A'), fun.data = 'mean_cl_boot', geom = 'errorbar', width = .1) +
-#   stat_summary(data = dat %>% filter(round == 3 & agent == 'A'), fun = 'mean', geom = 'point', size = 1.5) +
-#   scale_color_manual(name = NULL, labels = c('Data'),
-#                       values = c('#000000'),
-#                       limits = c('data')) +
-#   theme_bw() + 
-#   theme(legend.position="none") +
-#   coord_cartesian(ylim = c(0, 100)) +
-#   labs(x='Round 1 and Round 2 outcome', y='Lift probability in Round 3 (%)', color=NULL)
-
-# # write temporarily to file to render in qmd
-# ggsave('./writeup/replication-fig3c_behavioral_only.png', plot = fig3c_behavioral_only, width=4, height=3)
-
-
-
 simulation <- read_csv("new_code/memo-sandbox/webppl vs memo/xiang2023-exp1-round3-model_fits_results.csv") |> select(model, scenario, P) |> mutate(prob = 100*P)
 simulation$scenario <- factor(simulation$scenario, levels = c('F,F;F,F','F,F;F,L','F,L;F,L','F,F;L,L','F,L;L,L','L,L;L,L'), ordered = T)
 
@@ -508,7 +494,7 @@ ggsave('./writeup/replication-fig3c.png', plot = fig3c, width=4, height=3)
 
 Original (Figure 3C) | New
 ---- | ----
-![Figure 3C](./figure3c.png)<br>![](./figure3c-legend.png){height=150px}<br><br>"Note. ... Model simulations averaged over 10 runs. Error bars indicate bootstrapped 95% confidence intervals." (p. 1571) | ![](./replication-fig3c_behavioral_only.png)
+![Figure 3C](./figure3c.png)<br>![](./figure3c-legend.png){height=150px}<br><br>"Note. ... Model simulations averaged over 10 runs. Error bars indicate bootstrapped 95% confidence intervals." (p. 1571) | ![](./replication-fig3c_behavioral_only.png)<br><br>Note. Error bars indicate bootstrapped 95% confidence intervals.
 
 <!-- ## Discussion
 
