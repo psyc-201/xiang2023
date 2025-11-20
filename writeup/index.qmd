@@ -20,7 +20,7 @@ Experiment 1 involves observing contestants try to lift a heavy box in a set of 
 
 ![An example table for a contest, as it would appear during the probability judgment at the beginning of round 3.](../new_code/competence_effort/Experiment/img/table.png){height=350}
 
-The challenges/opportunities for my learning in this replication project will include: 1) recreating the paper's proposed (joint effort) model and two alternative (solitary/compensatory effort) models of the probability of joint success in [Memo](https://github.com/kach/memo) (based on the authors' pre-existing implementations in WebPPL), and 2) running these models over my newly collected data to attempt to replicate that the proposed model is most predictive of participants' judgments. (I will also replace the original authors' data-saving step (a php page) with [DataPipe](https://pipe.jspsych.org/).)
+The challenges/opportunities for my learning in this replication project will include: 1) recreating the paper's proposed (joint effort) model and two alternative (solitary/compensatory effort) models of the probability of joint success in [memo](https://github.com/kach/memo) (based on the authors' pre-existing implementations in WebPPL), and 2) running these models over my newly collected data to attempt to replicate that the proposed model is most predictive of participants' judgments. (I will also replace the original authors' data-saving step (a php page) with [DataPipe](https://pipe.jspsych.org/).)
 
 Specifically, I will attempt to replicate that A) when rounds 1 and 2 feature no individual success, participants still judge the probability of joint success in round 3 as non-zero. In addition to this confirmatory analysis, I will attempt to qualitatively replicate that B) participants judge higher probability of joint success as cases of individual success increases, and that the proposed model is the only model evaluated which predicts both patterns A and B. See Analysis Plan below for more details.
 
@@ -142,7 +142,7 @@ The only known visible differences in procedure are:
 
 While the confirmatory analysis will be rerun using the original R code provided by the authors, for the qualitative replication attempt I will use a reimplementation of the joint effort model and the alternative models (solitary effort and compensatory effort models) in memo, which were originally written in WebPPL. I expect that reimplementation of the continuous probabilistic models in WebPPL as discrete probabilistic models in memo will produce higher estimate precision as the model predictions will be deterministic, rather than stochastic. (I will discretize the distribution at a high resolution such that there is no systematic difference in estimates.)
 
-I do not anticipate that these differences are meaningful regarding the original paper's claims and the analyses of interest.
+I do not anticipate that these differences are meaningful regarding the original paper's claims and the analyses of interest. However, it is possible that 3 and 4 - improving comprehension-check fairness and reducing testing fatigue - may slightly improve measurement precision and reduce measurement bias, enhancing the claims of my replication.
 
 ### Reliability and Validity
 
@@ -348,6 +348,7 @@ if (interactive()) { # safeguard to help ensure this is not output by quarto
 ```
 
 ```{r}
+#| label: sanity-checks
 #| include: false
 
 # Sanity checks
@@ -473,13 +474,17 @@ simulation$scenario <- factor(simulation$scenario, levels = c('F,F;F,F','F,F;F,L
 
 fig3c <- dat %>%
   ggplot(aes(scenario, prob, group = model, color = model)) +
+
   geom_line(data = simulation %>% filter(model=='compensatory')) +
   geom_line(data = simulation %>% filter(model=='solitary')) +
   geom_line(data = simulation %>% filter(model=='joint')) +
+  geom_point(data = simulation %>% filter(model=='compensatory'), size=.8) +
+  geom_point(data = simulation %>% filter(model=='solitary'), size=.8) +
+  geom_point(data = simulation %>% filter(model=='joint'), size=.8) +
 
-  geom_line(aes(group=subject), linetype="dashed", alpha=.2, data = dat %>% filter(round == 3 & agent == 'A')) +
   stat_summary(data = dat %>% filter(round == 3 & agent == 'A'), fun.data = 'mean_cl_boot', geom = 'errorbar', width = .1) +
   stat_summary(data = dat %>% filter(round == 3 & agent == 'A'), fun = 'mean', geom = 'point', size = 1.5) +
+
   scale_color_manual(name = NULL, labels = c('Data','Joint effort model','Solitary effort model','Compensatory effort model'),
                                values = c('#000000','#e35d5e','#004385','#05b2dc','#04a777'),
                                limits = c('data','joint','solitary','compensatory')) +
@@ -490,11 +495,23 @@ fig3c <- dat %>%
 
 # write temporarily to file to render in qmd
 ggsave('./writeup/replication-fig3c.png', plot = fig3c, width=4, height=3)
+
+fig3c_w_raw_data <- fig3c +
+    geom_line(aes(group=subject), linetype="solid", linewidth=.25, alpha=.2, data = dat %>% filter(round == 3 & agent == 'A'), position=position_jitter(width=.05, seed=0)) +
+    geom_point(aes(group=subject), alpha=.2, data = dat %>% filter(round == 3 & agent == 'A'), size=.8, position=position_jitter(width=.05, seed=0))
+  
+# write temporarily to file to render in qmd
+ggsave('./writeup/replication-fig3c-withrawdata.png', plot = fig3c_w_raw_data, width=6, height=4.5)
 ```
 
-Original (Figure 3C) | New
+Original (Figure 3C) | New (Figure 3C Replication)
 ---- | ----
-![Figure 3C](./figure3c.png)<br>![](./figure3c-legend.png){height=150px}<br><br>"Note. ... Model simulations averaged over 10 runs. Error bars indicate bootstrapped 95% confidence intervals." (p. 1571) | ![](./replication-fig3c.png)<br><br>Note. Error bars indicate bootstrapped 95% confidence intervals.
+![Figure 3C](./figure3c.png)<br>![](./figure3c-legend.png){height=150px}<br><br>"Note. ... Model simulations averaged over 10 runs. Error bars indicate bootstrapped 95% confidence intervals." (p. 1571) | ![Figure 3C Replication](./replication-fig3c.png)<br><br>Note. Model simulations consider strengths from 1 to 10 (inclusive) in steps of 0.03 (determined by memory constraints). Error bars indicate bootstrapped 95% confidence intervals.
+
+::: {.callout-note collapse="true"}
+## Figure 3C Replication with Raw Data
+![Figure 3C Replication with Raw Data](./replication-fig3c-withrawdata.png)
+:::
 
 <!-- ## Discussion
 

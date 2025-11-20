@@ -156,7 +156,7 @@ ul.task-list li input[type="checkbox"] {
 <figcaption>An example table for a contest, as it would appear during the probability judgment at the beginning of round 3.</figcaption>
 </figure>
 </div>
-<p>The challenges/opportunities for my learning in this replication project will include: 1) recreating the paper’s proposed (joint effort) model and two alternative (solitary/compensatory effort) models of the probability of joint success in <a href="https://github.com/kach/memo">Memo</a> (based on the authors’ pre-existing implementations in WebPPL), and 2) running these models over my newly collected data to attempt to replicate that the proposed model is most predictive of participants’ judgments. (I will also replace the original authors’ data-saving step (a php page) with <a href="https://pipe.jspsych.org/">DataPipe</a>.)</p>
+<p>The challenges/opportunities for my learning in this replication project will include: 1) recreating the paper’s proposed (joint effort) model and two alternative (solitary/compensatory effort) models of the probability of joint success in <a href="https://github.com/kach/memo">memo</a> (based on the authors’ pre-existing implementations in WebPPL), and 2) running these models over my newly collected data to attempt to replicate that the proposed model is most predictive of participants’ judgments. (I will also replace the original authors’ data-saving step (a php page) with <a href="https://pipe.jspsych.org/">DataPipe</a>.)</p>
 <p>Specifically, I will attempt to replicate that A) when rounds 1 and 2 feature no individual success, participants still judge the probability of joint success in round 3 as non-zero. In addition to this confirmatory analysis, I will attempt to qualitatively replicate that B) participants judge higher probability of joint success as cases of individual success increases, and that the proposed model is the only model evaluated which predicts both patterns A and B. See Analysis Plan below for more details.</p>
 <!--
 the measure of interest: judged round 3 (joint success) probability ("participants believed that the lift probability for “F,F;F,F” was different from zero")
@@ -281,7 +281,7 @@ Hosted version of this report: <a href="https://psyc-201.github.io/xiang2023/wri
 <li>No more than two attempts of the comprehension check will be allowed (per <a href="https://researcher-help.prolific.com/en/articles/445153-prolific-s-attention-and-comprehension-check-policy">Prolific guidelines</a>). Accordingly, before the comprehension check, we added: “You will have two chances to complete the comprehension questions correctly before we ask you to return your submission, per Prolific guidelines.”; and upon comprehension check failure, we added: “Please note that you have only X attempt(s) left.”</li>
 </ol>
 <p>While the confirmatory analysis will be rerun using the original R code provided by the authors, for the qualitative replication attempt I will use a reimplementation of the joint effort model and the alternative models (solitary effort and compensatory effort models) in memo, which were originally written in WebPPL. I expect that reimplementation of the continuous probabilistic models in WebPPL as discrete probabilistic models in memo will produce higher estimate precision as the model predictions will be deterministic, rather than stochastic. (I will discretize the distribution at a high resolution such that there is no systematic difference in estimates.)</p>
-<p>I do not anticipate that these differences are meaningful regarding the original paper’s claims and the analyses of interest.</p>
+<p>I do not anticipate that these differences are meaningful regarding the original paper’s claims and the analyses of interest. However, it is possible that 3 and 4 - improving comprehension-check fairness and reducing testing fatigue - may slightly improve measurement precision and reduce measurement bias, enhancing the claims of my replication.</p>
 </section>
 <section id="reliability-and-validity" class="level3">
 <h3 class="anchored" data-anchor-id="reliability-and-validity">Reliability and Validity</h3>
@@ -333,7 +333,7 @@ Hosted version of this report: <a href="https://psyc-201.github.io/xiang2023/wri
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -351,16 +351,37 @@ Hosted version of this report: <a href="https://psyc-201.github.io/xiang2023/wri
 <thead>
 <tr class="header">
 <th>Original (Figure 3C)</th>
-<th>New</th>
+<th>New (Figure 3C Replication)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><img src="./figure3c.png" class="img-fluid" alt="Figure 3C"><br><img src="./figure3c-legend.png" height="150"><br><br>“Note. … Model simulations averaged over 10 runs. Error bars indicate bootstrapped 95% confidence intervals.” (p.&nbsp;1571)</td>
-<td><img src="./replication-fig3c.png" class="img-fluid"><br><br>Note. Error bars indicate bootstrapped 95% confidence intervals.</td>
+<td><img src="./replication-fig3c.png" class="img-fluid" alt="Figure 3C Replication"><br><br>Note. Model simulations consider strengths from 1 to 10 (inclusive) in steps of 0.03 (determined by memory constraints). Error bars indicate bootstrapped 95% confidence intervals.</td>
 </tr>
 </tbody>
 </table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Figure 3C Replication with Raw Data
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./replication-fig3c-withrawdata.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 3C Replication with Raw Data</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
 <!-- ## Discussion
 
 ### Summary of Replication Attempt
