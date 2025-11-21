@@ -81,7 +81,7 @@ Target Power|Necessary N|Estimated Power
 
 Collecting 9 participants is completely feasible (with each spending ~16 minutes; see Procedure). To compensate for the original study's measured effect size being inflated (e.g., due to publication bias), 15 participants should be necessary for sufficient power for the primary effect of interest, and this count is also feasible.
 
-However, for the sake of qualitatively replicating the overall pattern of estimated probabilities increasing as scenarios feature more successful individual lifts (monotonic increase in probability from left to right in Figure 3C; which I've labeled "B" above), and that the joint effort model is the only considered model which captures both the key effect and this pattern, I find it prudent to retain the same sample size so that I may attempt to replicate the original qualitative finding with comparable precision. (Targeting higher precision could potentially counter aforementioned effect inflation present in the original paper, but as it is unclear how to quantify the necessary precision for these qualitative analyses, targeting the original precision appears to be a sensible option.)
+However, for the sake of qualitatively replicating the overall pattern of estimated probabilities increasing as scenarios feature more successful individual lifts (general increase in probability from left to right in Figure 3C; which I've labeled "B" above), and that the joint effort model is the only considered model which captures both the key effect and this pattern, I find it prudent to retain the same sample size so that I may attempt to replicate the original qualitative finding with comparable precision. (Targeting higher precision could potentially counter aforementioned effect inflation present in the original paper, but as it is unclear how to quantify the necessary precision for these qualitative analyses, targeting the original precision appears to be a sensible option.)
 
 Further, in the original study, given 50 participants, the key effect appeared quite robust, with the CI for the data from scenario "F,F;F,F" being quite far from the line LiftProbability=0 (see Figure 3C), suggesting that with 50 participants, we are nearly guaranteed to replicate this effect if it is true.
 
@@ -206,13 +206,15 @@ osf_data_files <- osfr::osf_retrieve_node(OSF_NODE_REPLICATION_PROJECT) %>%
   
 osf_data_files %>%
   osfr::osf_download(path="./data", conflicts="skip", progress=interactive()) %>%
-  invisible()
+  invisible() # if sanity checks point to any data being missing (possibly due to the csvs being malformed), use conflicts="overwrite"
 
 filename_to_subjectId <- function(filename) str_extract(filename, '(?<=index1_).*(?=_output.csv)')
 
 dat_raw <- list.files(path = './data/', pattern = 'index1_.*_output.csv', full.names = T) %>%
-  map_dfr(~ read.csv(.x, header = T, stringsAsFactors = F) %>%
-            mutate(subjectId = filename_to_subjectId(basename(.x))))
+  map_dfr(~ {
+    read.csv(.x, header = T, stringsAsFactors = F) %>%
+      mutate(subjectId = filename_to_subjectId(basename(.x)))
+  })
 
 dat_filemeta <- osf_data_files %>%
   rename(datapipe_meta = meta) %>%
@@ -220,7 +222,8 @@ dat_filemeta <- osf_data_files %>%
   unnest_wider(datapipe_meta.attributes, names_sep=".") %>%
   select(name, datapipe_meta.attributes.date_modified) %>%
   mutate(subjectId = filename_to_subjectId(name)) %>%
-  select(-name)
+  select(-name) %>%
+  distinct() # in case there's any duplicates for any reason
 
 dat_raw_annotated <- dat_raw %>%
   group_by(subjectId) %>%
@@ -231,12 +234,15 @@ dat_raw_annotated <- dat_raw %>%
 #### Data exclusion / filtering
 # based on attention checks criterion
 # (also only include participants who have a session ID, as those who don't were not real Prolific participants; and only include participants who have done a trial, otherwise they probably failed the comprehension check the maximum number of times)
+# and discard pilot data
 dat_raw_filtered <- dat_raw_annotated %>%
   filter(passed_an_attention_check) %>%
   group_by(subjectId) %>%
   filter(any(!is.na(sessionId))) %>%
   filter(any(trial_type == "survey-html-form")) %>%
-  ungroup()
+  ungroup() %>%
+
+  filter(datapipe_meta.attributes.date_modified > lubridate::ymd("2025-11-20", tz="PST"))
 
 #### Prepare data for analysis - create columns etc.
 # Munge to generate the rows/columns I need for the analysis, which are per-round, per-agent data: 
@@ -339,10 +345,10 @@ if (interactive()) { # safeguard to help ensure this is not output by quarto
         private_key_path='./new_code/competence_effort/Experiment/private.pem'
       )
     ) %>%
-    arrange(desc(datapipe_meta.attributes.date_modified)) %>%
-    select(prolificId, bonus, datapipe_meta.attributes.date_modified) #%>%
-    # filter(!is.na(prolificId), bonus > 0) %>%
-    # format_csv(col_names=F)
+    filter(datapipe_meta.attributes.date_modified > lubridate::ymd("2025-11-20", tz="PST")) %>% # filter to show only post-pilot participants
+    arrange(desc(prolificId)) %>%
+    select(prolificId, bonus)
+    # filter(!is.na(prolificId), bonus > 0) %>% format_csv(col_names=F)
   # NOTE: only do once per batch of data collection, since might accumulate in Prolific if bulk-bonus multiple times!
 }
 ```
@@ -378,13 +384,13 @@ dat_clean %>%
 dat_clean %>%
   filter(agent == 1, round == 3) %>%
   ggplot(aes(x = scenario)) +
-  geom_histogram(aes(fill = subject), stat="count")
+  geom_col(aes(fill = subject), stat="count")
 
 # clearer way to check that each subject did each contest once
 dat_clean %>%
   filter(agent == 1, round == 3) %>%
   ggplot(aes(x = contest)) +
-  geom_histogram(aes(fill = subject), stat="count")
+  geom_col(aes(fill = subject), stat="count")
 
 # check that effort and strength plots have missing data in the right places
 
@@ -407,7 +413,7 @@ dat_clean %>%
   facet_wrap(scenario~agent)
 
 # review written responses
-# dat_raw %>% filter(trial_type == "survey-text") %>% select(subjectId, responses) %>% view
+dat_raw %>% filter(trial_type == "survey-text") %>% select(subjectId, responses) # %>% view
 
 # review comprehension checks
 dat_raw |> filter(trial_type == "survey-multi-choice") |> group_by(subjectId) |> count()
@@ -416,7 +422,7 @@ dat_raw |> filter(trial_type == "survey-multi-choice") |> group_by(subjectId) |>
   group_by(subjectId, responses, attempts) |> mutate(times_answered = n()) |> ungroup() |>
   # filter(startsWith(subjectId, "ne7k")) |>
   # filter(attempts > 2) |>
-  ggplot(aes(x=responses, group=paste(subjectId, times_answered), fill=times_answered, color=subjectId)) + geom_histogram(stat="count") + facet_wrap(~responses_id, scales = "free") + theme(axis.text.x = element_text(angle = 20))
+  ggplot(aes(x=responses, group=paste(subjectId, times_answered), fill=times_answered, color=subjectId)) + geom_col(stat="count") + facet_wrap(~responses_id, scales = "free") + theme(axis.text.x = element_text(angle = 20))
 ```
 
 ### Confirmatory analysis
@@ -436,9 +442,13 @@ dat <- arrange(dat,subject,scenario,round,agent)
 # Lift probability
 ttest_result <- t.test(dat$prob[dat$round == 3 & dat$scenario == 'F,F;F,F' & dat$agent == 'A'], mu = 0, alternative = 'two.sided')
 # filter one agent so that the probability is only counted once. Round 3 is a joint lift.
+
+cohensd <- effectsize::effectsize(ttest_result)
 ```
 
-I found/did not find that participants rated the probability of joint success in round 3 as non-zero (_t_(`r ttest_result$parameter`) = `r ttest_result$statistic`, _p_ = `r signif(ttest_result$p.value, 2)`). See the black point range (data) for scenario "F,F;F,F" under Exploratory analyses.
+I found that participants rated the probability of joint success in round 3 as non-zero (_t_(`r ttest_result$parameter`) = `r ttest_result$statistic`, _p_ = `r signif(ttest_result$p.value, 2)`). See the black point range (data) for scenario "F,F;F,F" under Exploratory analyses.
+
+The effect size found is _d_ = `r round(cohensd$Cohens_d,2)`.
 
 ```{r}
 #| echo: false
@@ -450,11 +460,11 @@ critical_tvalue <- qt(1 - (alpha/2), df=ttest_result$parameter) # dividing alpha
 
 dat %>%
   filter(round == 3, scenario == 'F,F;F,F', agent == 'A') %>%
-  ggplot(aes(x=prob)) +
-  geom_histogram() +
-  expand_limits(x=c(0,100)) +
-  geom_vline(xintercept=critical_tvalue, color='red') +
-  labs(y='Density', x='Lift probability in Round 3 (%)')
+  {ggplot(., aes(x=prob)) +
+    geom_histogram(bins=floor(sqrt(nrow(.)))) +
+    coord_cartesian(xlim = c(0, 100)) +
+    geom_vline(xintercept=critical_tvalue, color='red') +
+    labs(y='Density', x='Lift probability in Round 3 (%)')}
 ```
 
 The red line shows the critical t-value for detecting a statistically significant effect with α = `r alpha`.
