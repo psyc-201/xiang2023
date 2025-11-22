@@ -507,11 +507,22 @@ fig3c <- dat %>%
 ggsave('./writeup/replication-fig3c.png', plot = fig3c, width=4, height=3)
 
 fig3c_w_raw_data <- fig3c +
-    geom_line(aes(group=subject), linetype="solid", linewidth=.25, alpha=.2, data = dat %>% filter(round == 3 & agent == 'A'), position=position_jitter(width=.05, seed=0)) +
-    geom_point(aes(group=subject), alpha=.2, data = dat %>% filter(round == 3 & agent == 'A'), size=.8, position=position_jitter(width=.05, seed=0))
+  geom_line(aes(group=subject), linetype="solid", linewidth=.25, alpha=.2, data = dat %>% filter(round == 3 & agent == 'A'), position=position_jitter(width=.05, seed=0)) +
+  geom_point(aes(group=subject), alpha=.2, data = dat %>% filter(round == 3 & agent == 'A'), size=.8, position=position_jitter(width=.05, seed=0))
   
 # write temporarily to file to render in qmd
 ggsave('./writeup/replication-fig3c-withrawdata.png', plot = fig3c_w_raw_data, width=6, height=4.5)
+
+fig3c_w_safejoint <- fig3c +
+  geom_line(data = simulation %>% filter(model=='safe_joint_w_gini')) +
+  geom_point(data = simulation %>% filter(model=='safe_joint_w_gini'), size=.8) +
+  scale_color_manual(name = NULL, labels = c('Data','Joint effort model','Safe joint effort model','Solitary effort model','Compensatory effort model'),
+      values = c('#000000','#e35d5e','#a51212ff','#004385','#05b2dc','#04a777'),
+      limits = c('data','joint','safe_joint_w_gini','solitary','compensatory')) +
+  theme(legend.position="top")
+  
+# write temporarily to file to render in qmd
+ggsave('./writeup/replication-fig3c-withsafejoint.png', plot = fig3c_w_safejoint, width=6, height=4.5)
 ```
 
 Original (Figure 3C) | New (Figure 3C Replication)
@@ -521,6 +532,11 @@ Original (Figure 3C) | New (Figure 3C Replication)
 ::: {.callout-note collapse="true"}
 ## Figure 3C Replication with Raw Data
 ![Figure 3C Replication with Raw Data](./replication-fig3c-withrawdata.png)
+:::
+
+::: {.callout-note collapse="true"}
+## Figure 3C Replication with Safe Joint Model
+![Figure 3C Replication with Safe Joint Model](./replication-fig3c-withsafejoint.png)
 :::
 
 <!-- ## Discussion
