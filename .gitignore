@@ -54,5 +54,10 @@ rsconnect/
 # pixi environments
 .pixi/*
 !.pixi/config.toml
+
+
 /.quarto/
 **/*.quarto_ipynb
+/site_libs/
+
+/presentation/mathjax-config.js

@@ -1,0 +1,120 @@
+---
+title: "Thinking About Collaborators"
+subtitle: "Replication of Experiment 1 in @Xiang2023-zo"
+author:
+  - name: Jacob C. Zimmerman
+    orcid: 0000-0002-6010-8086
+    email: j2zimmerman@ucsd.edu
+    affiliations: UC San Diego
+date: last-modified
+format:
+  clean-revealjs:
+    incremental: true
+execute:
+  echo: false
+  freeze: auto
+bibliography:
+  - "references.bib"
+csl: "apa.csl"
+---
+
+## How do we judge what others could bring to the table?
+
+<!-- TODO: cite the claims; see original paper for citations -->
+
+- We observe them work, to update our beliefs! (Bayesian)
+  - We believe how _competent_ they are (cite)
+  - We believe how much _effort_ they are putting in (ToM) given their competence (cite) and how much incentive there is (cite)
+
+- We can make these inferences tractable by making some assumptions:
+  1. If they succeed, they must have some competence and have put some effort in
+  2. If they are competent enough to succeed, they will allocate the minimum effort needed given their competence
+  3. Effort is costly, so if they succeed with low incentive, they must really _desire_ the reward (i.e., reward has high utility to them)
+
+::: {.notes}
+Collaboration is key to human success. When we think about other people we could work with, we need to judge who's capable enough to be a good potential collaborator. So how do we make these judgments?
+
+Bayesian inference is a good candidate for how we adjust our beliefs given observations of the world
+:::
+
+## When working together, how do we calibrate our own effort?
+
+- Simple models:
+  - We simply think the other person won't apply any effort, so we allocate effort like we are working alone ("solitary" model)
+  - We simply think the other person will apply maximum effort, so we allocate only enough effort to help them ("compensatory" model)
+
+- Proposed model in @Xiang2023-zo:
+  - If we think they can succeed given our competences, we _jointly_ optimize our effort by _recursively_ inferring how much effort the other will allocate, and adjusting our own effort accordingly ("joint effort" model)
+  - New assumptions:
+    1. We are motivated to allocate effort fairly (cite) 
+    2. We each think the other is also thinking like us
+
+::: {.notes}
+After we infer each other's competence from observing their behavior, how do we set our own effort when collaborating with them?
+:::
+
+## @Xiang2023-zo: Lift That Box!
+
+- The original study used this task... (embed iframe of task with ?TEST in it)
+
+- Brief critiques of the design
+
+- They found... (describe only what I'm replicating; include effect size)
+
+## Replicating @Xiang2023-zo
+
+- I estimated that we needed only X participants for the main effect, but to replicate the qualitative pattern, in the absence of a good expectation, I wanted the full 50 participants
+
+- Any challenges I encountered...
+  - in the modeling step, I chose to reimplement the model in a new probabilistic programming language (memo), so I needed to validate that it had comparable results. in this process, worked through a challenge of distinguishing trivial implementation differences (e.g., going from a continuous prior to a discrete prior) from meaningful implementation discrepancies (e.g., errors in the model implementation). overcame this by changing one implementation variable at a time and measuring its impact to characterize where discrepancies came from (to qualify how they looked numerically) (e.g. webppl MCMC -> webppl enumerate -> memo enumerate)
+
+::: {.notes}
+I expected the basic effect to replicate since there's high signal to noise in the measure (high t-value and low SE), and I was 4/5 confident the qualitative pattern would replicate.
+:::
+
+## Replication Results
+
+- Show my results next to the original results
+- Report key statistic and effect size
+
+- Show exploratory results as well (separate slide)
+
+- Just as in the original study, we estimate that joint success is possible even if there is no prior evidence of success, and that joint success likelihood increases as cases of individual success increases.
+  - In conjunction, these support the joint effort model of reasoning about collaborators' competence and effort.
+
+## Discussion
+
+- Replication success was expected!
+- I observed slight differences:
+  - larger CIs
+  - a flat section of the curve (i.e. similarity between two scenarios) not seen before; could be explained by the safe joint effort model (can show the figure that includes the safe joint effort model)
+  - d value was lower than original, as should be expected
+- To test the hypotheses further, I might model within-subject variability independent from scenario condition (can show the fig3c replication with raw data)
+
+::: {.notes}
+:::
+
+## References
+
+::: {#refs}
+:::
+
+<!-- ## (Extra) The basic framework: inferences
+
+We infer a person's competence _and_ effort _simultaneously_ by internally modeling their mutual contingencies, and the influence of incentive:
+
+1. Effort turns competence into success
+  - e.g., if they succeed, they must have some competence and have put some effort in
+  - **Success means combined competence and effort is at least X**
+2. They don't put in more effort than necessary, given their competence
+  - e.g., if they are competent enough to succeed, they allocate the minimum effort needed given their competence
+  - **Success given their competence means at most Y effort**
+3. Effort is motivated by _incentive_
+  - e.g., effort is costly, so if they succeed with low incentive, they must really _desire_ the reward (i.e., reward has high utility to them)
+  - **Success means at least Z desire for the reward and the minimum W effort that this motivates**
+
+::: {.notes}
+Also:
+- (Practical assumption) Competence does not change across observations
+- (Practical assumption) Competence and effort each have a defined range (0% to 100%)
+::: -->

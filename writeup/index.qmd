@@ -375,6 +375,7 @@ if (interactive()) { # safeguard to help ensure this is not output by quarto
 stopifnot(clean_participants == filtered_participants)
 
 # check that contest vs scenario is uniformly distributed, and that each participant did each contest and each scenario once
+set.seed(1)
 dat_clean %>%
   filter(agent == 1, round == 3) %>%
   ggplot(aes(x = scenario, y = contest)) +
@@ -506,6 +507,7 @@ fig3c <- dat %>%
 # write temporarily to file to render in qmd
 ggsave('./writeup/replication-fig3c.png', plot = fig3c, width=4, height=3)
 
+set.seed(1)
 fig3c_w_raw_data <- fig3c +
   geom_line(aes(group=subject), linetype="solid", linewidth=.25, alpha=.2, data = dat %>% filter(round == 3 & agent == 'A'), position=position_jitter(width=.05, seed=0)) +
   geom_point(aes(group=subject), alpha=.2, data = dat %>% filter(round == 3 & agent == 'A'), size=.8, position=position_jitter(width=.05, seed=0))
