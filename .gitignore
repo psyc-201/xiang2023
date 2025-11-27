@@ -59,5 +59,6 @@ rsconnect/
 /.quarto/
 **/*.quarto_ipynb
 /site_libs/
+/_freeze
 
 /presentation/mathjax-config.js

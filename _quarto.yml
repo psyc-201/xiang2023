@@ -3,7 +3,8 @@ project:
   output-dir: docs/
   execute-dir: project 
   render:
-    - "*.qmd"
+    - "writeup/*.qmd"
+    - "presentation/*.qmd"
     - "!original_code/"
     - "!new_code/"
   resources:

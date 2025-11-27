@@ -48,8 +48,6 @@ jobs:
         run: cp -r new_code/competence_effort/Experiment docs/exp
       - name: Remove index.html to keep Prolific participants from finding writeup easily
         run: rm -f docs/index.html
-      - name: Copy robots.txt
-        run: cp robots.txt docs/robots.txt
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

@@ -1,18 +1,25 @@
 ---
 title: "Replication of Experiment 1 by Xiang, Vélez & Gershman (2023, JEP:G)"
-author: "Jacob C. Zimmerman (j2zimmerman@ucsd.edu)"
+author:
+  - name: Jacob C. Zimmerman
+    orcid: 0000-0002-6010-8086
+    email: j2zimmerman@ucsd.edu
+    affiliations: UC San Diego
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 format:
   html:
     toc: true
     toc_depth: 3
+bibliography:
+  - "references.bib"
+csl: "apa.csl"
 ---
 
 <!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
 
 ## Introduction
 
-My broad research interests include modeling how individuals perceive, represent, and judge potential collaborators' affordances for collaboration. Xiang, Vélez & Gershman (2023) propose and empirically validate a probabilistic model in which recursively updated inferences of competence and effort ("belief–desire–competence framework"), together with observed outcomes, jointly predict individuals' judgments of collaborators, across various cognitive tasks which are common within collaboration. In particular, in Experiment 1, their model best predicts participants' judgments about whether joint activity will succeed, compared to plausible alternative models. I am eager to attempt to replicate this finding to help establish the robustness of this model of collaborator judgment, before I may attempt to extend it in future work.
+My broad research interests include modeling how individuals perceive, represent, and judge potential collaborators' affordances for collaboration. @Xiang2023-zo propose and empirically validate a probabilistic model in which recursively updated inferences of competence and effort ("belief–desire–competence framework"), together with observed outcomes, jointly predict individuals' judgments of collaborators, across various cognitive tasks which are common within collaboration. In particular, in Experiment 1, their model best predicts participants' judgments about whether joint activity will succeed, compared to plausible alternative models. I am eager to attempt to replicate this finding to help establish the robustness of this model of collaborator judgment, before I may attempt to extend it in future work.
 
 Experiment 1 involves observing contestants try to lift a heavy box in a set of _contests_ (six total), each containing three _rounds_. In each contest, there are two unique avatars playing as the _contestants_. In rounds 1 and 2, each contestant attempts to lift the box by themselves. In round 3, the contestants attempt to lift the box together. In each round, after observing each contestant succeed or fail to lift the box, the participant judges the strength of each contestant (1–10), and for each contestant that successfully lifted the box, the participant judges that contestant's allocated effort (0%–100%). At the start of round 2, the participant judges each contestant's probability of lifting the box successfully (0%–100%), prior to observing the lift attempts. At the start of round 3, the participant judges the probability that the contestants will successfully lift the box together. Further, an incentive to the contestants for lifting the box is specified in each round: in the second and third rounds, the specified reward for lifting the box is double that of the first round. Participants are also told that the heavy box had a constant weight across all contests, which effectively requires at least 5 strength points applied (e.g., on average, 100% effort for a contestant with strength 5, or 50% effort for a contestant with strength 10, etc.). Last, participants see a progressively filled-out table of all the lift outcomes during each contest, visible throughout, including when making judgments.
 
@@ -52,9 +59,9 @@ Hosted version of this report: [https://psyc-201.github.io/xiang2023/writeup/](h
 #| echo: false
 # adapted from ./original_code/competence_effort/Code/main_text/regression.R
 
-cohensd <- {
-  library('tidyverse')
+library(tidyverse)
 
+original.dat <- local({
   dat <- read.csv('./original_code/competence_effort/Data/exp1.csv', header = T, stringsAsFactors = T)
   dat$agent <- factor(dat$agent, labels = c('A', 'B'))
   dat$round <- as.factor(dat$round)
@@ -62,22 +69,30 @@ cohensd <- {
   dat$prob[dat$round==3 & dat$agent=='B'] <- NaN # so that the probabilities are only counted once for joint lifting
   dat <- arrange(dat,subject,scenario,round,agent)
   dat$subject <- as.factor(dat$subject)
+  dat$model <- 'data'
+  dat
+})
 
-  # Lift probability
-  ttest_result <- t.test(dat$prob[dat$round == 3 & dat$scenario == 'F,F;F,F' & dat$agent == 'A'], mu = 0, alternative = 'two.sided')
-  # filter one agent so that the probability is only counted once. Round 3 is a joint lift.
+# Test lift probability
+original.ttest_result <- local({
+  t.test(
+    # filter one agent so that the probability is only counted once. Round 3 is a joint lift.
+    original.dat$prob[original.dat$round == 3 & original.dat$scenario == 'F,F;F,F' & original.dat$agent == 'A'],
+    mu = 0,
+    alternative = 'two.sided'
+  )
+})
 
-  effectsize::effectsize(ttest_result)
-}
+original.cohensd <- effectsize::effectsize(original.ttest_result)
 ```
 
-The original effect size is _d_ = `r round(cohensd$Cohens_d,2)`. <!-- d = 1.47 --> To achieve 80%, 90%, or 95% power to detect that effect size, I'd need:
+The original effect size is _d_ = `r round(original.cohensd$Cohens_d,2)`. <!-- d = 1.47 --> To achieve 80%, 90%, or 95% power to detect that effect size, I'd need:
 
 Target Power|Necessary N|Estimated Power
 ---|---|---
-80%|6|`r pwr::pwr.t.test(n=6, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")$power * 100`%
-90%|8|`r pwr::pwr.t.test(n=8, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")$power * 100`%
-95%|9|`r pwr::pwr.t.test(n=9, d=cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")$power * 100`%
+80%|6|`r pwr::pwr.t.test(n=6, d=original.cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")$power * 100`%
+90%|8|`r pwr::pwr.t.test(n=8, d=original.cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")$power * 100`%
+95%|9|`r pwr::pwr.t.test(n=9, d=original.cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")$power * 100`%
 
 Collecting 9 participants is completely feasible (with each spending ~16 minutes; see Procedure). To compensate for the original study's measured effect size being inflated (e.g., due to publication bias), 15 participants should be necessary for sufficient power for the primary effect of interest, and this count is also feasible.
 
@@ -433,23 +448,33 @@ dat_raw |> filter(trial_type == "survey-multi-choice") |> group_by(subjectId) |>
 
 # (Adapted from original_code/competence_effort/Code/main_text/regression.R)
 ## Experiment 1
-dat <- dat_clean # read.csv('./data/exp1.csv', header = T, stringsAsFactors = T)
-dat$agent <- factor(dat$agent, labels = c('A', 'B'))
-dat$round <- as.factor(dat$round)
-dat$scenario <- factor(dat$scenario, levels = c('F,F;F,F','F,F;F,L','F,L;F,L','F,F;L,L','F,L;L,L','L,L;L,L'), ordered = T)
-dat$prob[dat$round==3 & dat$agent=='B'] <- NaN # so that the probabilities are only counted once for joint lifting
-dat <- arrange(dat,subject,scenario,round,agent)
+replication.dat <- local({
+  dat <- dat_clean # read.csv('./data/exp1.csv', header = T, stringsAsFactors = T)
+  dat$agent <- factor(dat$agent, labels = c('A', 'B'))
+  dat$round <- as.factor(dat$round)
+  dat$scenario <- factor(dat$scenario, levels = c('F,F;F,F','F,F;F,L','F,L;F,L','F,F;L,L','F,L;L,L','L,L;L,L'), ordered = T)
+  dat$prob[dat$round==3 & dat$agent=='B'] <- NaN # so that the probabilities are only counted once for joint lifting
+  dat <- arrange(dat,subject,scenario,round,agent)
+  dat$model <- 'data'
+  dat
+})
 
 # Lift probability
-ttest_result <- t.test(dat$prob[dat$round == 3 & dat$scenario == 'F,F;F,F' & dat$agent == 'A'], mu = 0, alternative = 'two.sided')
-# filter one agent so that the probability is only counted once. Round 3 is a joint lift.
+replication.ttest_result <- local({
+  t.test(
+    # filter one agent so that the probability is only counted once. Round 3 is a joint lift.
+    replication.dat$prob[replication.dat$round == 3 & replication.dat$scenario == 'F,F;F,F' & replication.dat$agent == 'A'],
+    mu = 0,
+    alternative = 'two.sided'
+  )
+})
 
-cohensd <- effectsize::effectsize(ttest_result)
+replication.cohensd <- effectsize::effectsize(replication.ttest_result)
 ```
 
-I found that participants rated the probability of joint success in round 3 as non-zero (_t_(`r ttest_result$parameter`) = `r ttest_result$statistic`, _p_ = `r signif(ttest_result$p.value, 2)`). See the black point range (data) for scenario "F,F;F,F" under Exploratory analyses.
+I found that participants rated the probability of joint success in round 3 as non-zero (_t_(`r replication.ttest_result$parameter`) = `r replication.ttest_result$statistic`, _p_ = `r signif(replication.ttest_result$p.value, 2)`). See the black point range (data) for scenario "F,F;F,F" under Exploratory analyses.
 
-The effect size found is _d_ = `r round(cohensd$Cohens_d,2)`.
+The effect size found is _d_ = `r round(replication.cohensd$Cohens_d,2)`.
 
 ```{r}
 #| echo: false
@@ -457,8 +482,9 @@ The effect size found is _d_ = `r round(cohensd$Cohens_d,2)`.
 # dat$prob[dat$round == 3 & dat$scenario == 'F,F;F,F' & dat$agent == 'A']
 
 alpha <- .05
-critical_tvalue <- qt(1 - (alpha/2), df=ttest_result$parameter) # dividing alpha by 2 since this is a two-tailed test
+critical_tvalue <- qt(1 - (alpha/2), df=replication.ttest_result$parameter) # dividing alpha by 2 since this is a two-tailed test
 
+dat <- replication.dat
 dat %>%
   filter(round == 3, scenario == 'F,F;F,F', agent == 'A') %>%
   {ggplot(., aes(x=prob)) +
@@ -478,8 +504,6 @@ I found/did not find that the joint effort model was the only model which qualit
 #| include: false
 
 # adapted from original_code/competence_effort/Code/main_text/plt.R and original_code/competence_effort/Code/main_text/plot_figures.R
-dat$model <- 'data'
-
 simulation <- read_csv("new_code/memo-sandbox/webppl vs memo/xiang2023-exp1-round3-model_fits_results.csv") |> select(model, scenario, P) |> mutate(prob = 100*P)
 simulation$scenario <- factor(simulation$scenario, levels = c('F,F;F,F','F,F;F,L','F,L;F,L','F,F;L,L','F,L;L,L','L,L;L,L'), ordered = T)
 
@@ -552,3 +576,14 @@ Open the discussion section with a paragraph summarizing the primary result from
 Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt.  None of these need to be long.
 
 -->
+
+```{r}
+#| label: exports
+#| include: false
+save(list = ls(pattern="(original|replication)\\..*"), file = "./writeup/results/.RData", envir = .GlobalEnv)
+```
+
+## References
+
+::: {#refs}
+:::
