@@ -86,7 +86,7 @@ original.ttest_result <- local({
 original.cohensd <- effectsize::effectsize(original.ttest_result)
 ```
 
-The original effect size is _d_ = `r round(original.cohensd$Cohens_d,2)`. <!-- d = 1.47 --> To achieve 80%, 90%, or 95% power to detect that effect size, I'd need:
+The original effect size is _d_ = `r papaja::apa_num(original.cohensd$Cohens_d)`. <!-- d = 1.47 --> To achieve 80%, 90%, or 95% power to detect that effect size, I'd need:
 
 Target Power|Necessary N|Estimated Power
 ---|---|---
@@ -472,9 +472,9 @@ replication.ttest_result <- local({
 replication.cohensd <- effectsize::effectsize(replication.ttest_result)
 ```
 
-I found that participants rated the probability of joint success in round 3 as non-zero (_t_(`r replication.ttest_result$parameter`) = `r replication.ttest_result$statistic`, _p_ = `r signif(replication.ttest_result$p.value, 2)`). See the black point range (data) for scenario "F,F;F,F" under Exploratory analyses.
+I found that participants rated the probability of joint success in round 3 as non-zero (`r papaja::apa_print(replication.ttest_result)$full_result`). See the black point range (data) for scenario "F,F;F,F" under Exploratory analyses.
 
-The effect size found is _d_ = `r round(replication.cohensd$Cohens_d,2)`.
+The effect size found is _d_ = `r papaja::apa_num(replication.cohensd$Cohens_d)`.
 
 ```{r}
 #| echo: false

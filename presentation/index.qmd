@@ -95,7 +95,7 @@ fig3c_behavioralonly <- original.dat %>%
 ggsave('./presentation/fig3c_behavioral_only.png', plot = fig3c_behavioralonly, width=4, height=3)
 ```
 
-- Ps thought that collaborators could achieve a task jointly even if they have previously failed the task individually (_t_(`r original.ttest_result$parameter`) = `r original.ttest_result$statistic`, _p_ = `r signif(original.ttest_result$p.value, 2)`; **_d_ = `r round(original.cohensd$Cohens_d,2)`**)
+- Ps thought that collaborators could achieve a task jointly even if they have previously failed the task individually (`r papaja::apa_print(original.ttest_result)$statistic`; $d = `r papaja::apa_num(original.cohensd$Cohens_d)`$)
 - Ps thought that collaborators' chance of jointly achieving the task gradually increased as collaborators succeeded more individually (i.e., that collaborators thought about each other's effort and tried to distribute effort fairly)  
   ![](./fig3c_behavioral_only.png){height=200}
 - Their proposed "joint effort" model was the only one that explained both effects  
@@ -108,7 +108,7 @@ can note that there's a green dot as well showing maximal model, but it's not re
 
 ## Replicating @Xiang2023-zo
 
-- I estimated that we needed only 9 participants (as this would give us `r pwr::pwr.t.test(n=9, d=original.cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")$power * 100`% power for the main effect)
+- I estimated that we needed only 9 participants (as this would give us `r papaja::apa_num(pwr::pwr.t.test(n=9, d=original.cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")$power * 100)`% power for the main effect)
 - However, to replicate the qualitative pattern, in the absence of a good expectation, I wanted the full 50 participants
 
 ## Replicating @Xiang2023-zo: Statistics and Modeling
@@ -151,13 +151,13 @@ ggsave('./presentation/replication-fig3c_behavioral_only.png', plot = replicatio
 Original | **Replication**
 ---- | ----
 ![Figure 3C (Behavioral Only)](./fig3c_behavioral_only.png)<br><br>"Note. ... Error bars indicate bootstrapped 95% confidence intervals." (p. 1571) | ![Figure 3C Replication (Behavioral Only)](./replication-fig3c_behavioral_only.png)<br><br>Note. Error bars indicate bootstrapped 95% confidence intervals.
-Collaborators could achieve a task jointly even if they have previously failed the task individually (_t_(`r original.ttest_result$parameter`) = `r original.ttest_result$statistic`, _p_ = `r signif(original.ttest_result$p.value, 2)`; **_d_ = `r round(original.cohensd$Cohens_d,2)`**) | **Replicated!** (_t_(`r replication.ttest_result$parameter`) = `r replication.ttest_result$statistic`, _p_ = `r signif(replication.ttest_result$p.value, 2)`; **_d_ = `r round(replication.cohensd$Cohens_d,2)`**)
+Collaborators could achieve a task jointly even if they have previously failed the task individually (`r papaja::apa_print(original.ttest_result)$statistic`; $d = `r papaja::apa_num(original.cohensd$Cohens_d)`$) | **Replicated!** (`r papaja::apa_print(replication.ttest_result)$statistic`; $d = `r papaja::apa_num(replication.cohensd$Cohens_d)`$)
 
 - Replicated: joint success is possible even if there is no prior evidence of success
 
 ## Replication Results
 
-<!-- TODO: style better; include legend in plots themselves --> 
+<!-- TODO: style this slide and the previous slide better to fit all content (make plots smaller?); include legend in plots themselves --> 
 
 Original | **Replication**
 ---- | ----

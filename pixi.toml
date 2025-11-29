@@ -6,6 +6,9 @@ platforms = ["osx-arm64"]
 version = "0.1.0"
 
 [tasks]
+install_non_conda = "Rscript -e \"remotes::install_github('crsh/papaja@v0.1.4')\""
+preview = "quarto preview"
+render = "quarto render"
 
 [dependencies]
 r-base = ">=4.5.1,<4.6"
@@ -20,3 +23,4 @@ r-hmisc = ">=5.2_4,<6"
 r-osfr = ">=0.2.9,<0.3"
 r-httpgd = ">=2.0.4,<3"
 r-openssl = ">=2.3.4,<3"
+r-remotes = ">=2.5.0,<3"

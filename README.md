@@ -2,7 +2,11 @@
 
 Made from template: https://github.com/psyc-201/replication_template
 
-Can quickly render report using `pixi shell` then `quarto render` or `quarto preview`
+- Set up using `pixi install` then `pixi setup`
+- Can then preview report using `pixi run preview`
+- Can then render report using `pixi run render`
+
+Note: To fetch data from OSF, need to set OSF_PAT (e.g. using an .Renviron file)
 
 ## More information about the collected data
 

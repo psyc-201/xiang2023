@@ -32,28 +32,29 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # adapted from https://stackoverflow.com/a/60227822
-      - name: Check out specific code submodule
+      # Finish the build
+
+      - name: Check out specific code submodule (new_code/competence_effort)
         shell: bash
+        # adapted from https://stackoverflow.com/a/60227822
         run: |
           git config --global url."https://github.com/".insteadOf "git@github.com:"
           auth_header="$(git config --local --get http.https://github.com/.extraheader)"
           git submodule sync -- new_code/competence_effort
           git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force -- new_code/competence_effort
+      - name: Copy Experiment Code
+        run: cp -r new_code/competence_effort/Experiment _output/exp
+      - name: Remove index.html to keep Prolific participants from finding writeup (or presentation) easily
+        run: rm -f _output/index.html
+
+      # Deploy
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      
-      - name: Copy Experiment Code
-        run: cp -r new_code/competence_effort/Experiment docs/exp
-      - name: Remove index.html to keep Prolific participants from finding writeup easily
-        run: rm -f docs/index.html
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: 'docs/'
+          path: '_output/'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
