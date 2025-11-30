@@ -18,7 +18,7 @@
     "href": "presentation/index.html#xiang2023-zo-lift-that-box",
     "title": "Thinking About Collaborators",
     "section": "Xiang et al. (2023): Lift That Box!",
-    "text": "Xiang et al. (2023): Lift That Box!\n\nXiang et al. (2023) used a game-like task to collect participants’ judgments of competence, effort, and likelihood of success, to test the “joint effort” model \n\n\nThe original study used this task which looks like… (demo… mention joint and individual activity)"
+    "text": "Xiang et al. (2023): Lift That Box!\n\nXiang et al. (2023) used a game-like task to collect participants’ judgments of competence, effort, and likelihood of success, to see how well the “joint effort” model predicted them \n\n\nThe original study used this task which looks like… (demo… mention joint and individual activity)"
   },
   {
     "objectID": "presentation/index.html#xiang2023-zo-lift-that-box-1",
@@ -32,7 +32,7 @@
     "href": "presentation/index.html#xiang2023-zo-result",
     "title": "Thinking About Collaborators",
     "section": "Xiang et al. (2023): Result",
-    "text": "Xiang et al. (2023): Result\n\nParticipants thought that collaborators can succeed together even if they have failed alone (\\(t(49) = 10.42\\), \\(p &lt; .001\\); \\(d = 1.47\\))\nThey also thought that collaborators’ chance of succeeding together gradually increased as they succeeded more alone (i.e., that collaborators thought about each other’s effort and tried to distribute effort fairly)\n\nAuthors’ proposed “joint effort” model was the only one that explained both above effects\n\n\n\ncan note that there’s a green dot as well showing maximal model, but it’s not relevant to us - it’s another alternative model that didn’t give predictions for most scenarios"
+    "text": "Xiang et al. (2023): Result\n\nParticipants thought that collaborators can succeed together even if they have failed alone (\\(t(49) = 10.42\\), \\(p &lt; .001\\); \\(d = 1.47\\))\nThey also thought that collaborators’ chance of succeeding together increased with more individual successes (i.e., that collaborators inferred each other’s effort from prior attempts) and this was gradual (i.e., collaborators tried to distribute effort fairly)\nOnly the proposed “joint effort” model predicted both:\n\n\n\ncan note that there’s a green dot as well showing maximal model, but it’s not relevant to us - it’s another alternative model that didn’t give predictions for most scenarios"
   },
   {
     "objectID": "presentation/index.html#replicating-xiang2023-zo",
@@ -46,28 +46,28 @@
     "href": "presentation/index.html#replicating-xiang2023-zo-statistics-and-modeling",
     "title": "Thinking About Collaborators",
     "section": "Replicating Xiang et al. (2023): Statistics and Modeling",
-    "text": "Replicating Xiang et al. (2023): Statistics and Modeling\n\nI expected the basic effect to replicate\nFor the computational model, I chose to reimplement the model in a new probabilistic programming language (memo) for performance and extensibility advantages (for future work)\n\nNeeded to validate that new model had comparable results\nWorked through distinguishing trivial implementation differences (e.g., going from a continuous prior to a discrete prior) from meaningful implementation discrepancies (e.g., errors in the model implementation)\nOvercame this by changing one implementation variable at a time and measuring its impact to characterize where discrepancies came from (to qualify how they looked numerically)\n\n\n\nI expected the basic effect to replicate since there’s high signal to noise in the measure (high t-value and low SE), and I was 4/5 confident the qualitative pattern would replicate.\n(how I changed one variable at a time in modeling: webppl MCMC -&gt; webppl enumerate -&gt; memo enumerate)"
+    "text": "Replicating Xiang et al. (2023): Statistics and Modeling\n\n\nI expected the basic effect to replicate\nFor the computational model, I chose to reimplement the model in a new probabilistic programming language (memo) for performance and extensibility advantages (for future work)\n\nNeeded to validate that new model had comparable results\nWorked through distinguishing trivial implementation differences (e.g., going from a continuous prior to a discrete prior) from meaningful implementation discrepancies (e.g., errors in the model implementation)\nOvercame this by changing one implementation variable at a time and measuring its impact to characterize where discrepancies came from (to qualify how they looked numerically)\n\n\n\nI expected the basic effect to replicate since there’s high signal to noise in the measure (high t-value and low SE), and I was 4/5 confident the qualitative pattern would replicate.\n(how I changed one variable at a time in modeling: webppl MCMC -&gt; webppl enumerate -&gt; memo enumerate)"
+  },
+  {
+    "objectID": "presentation/index.html#replication-results-confirmatory",
+    "href": "presentation/index.html#replication-results-confirmatory",
+    "title": "Thinking About Collaborators",
+    "section": "Replication Results: Confirmatory",
+    "text": "Replication Results: Confirmatory\n\n\n\n\n\nFigure 3C (Behavioral Only). Error bars indicate bootstrapped 95% CIs.\n\n\n\nCollaborators can succeed together even if they have failed alone (\\(t(49) = 10.42\\), \\(p &lt; .001\\); \\(d = 1.47\\))\n\n\n\n\n\nReplication (Behavioral Only). Error bars indicate bootstrapped 95% CIs.\n\n\n\nReplicated! (\\(t(49) = 9.26\\), \\(p &lt; .001\\); \\(d = 1.31\\))"
+  },
+  {
+    "objectID": "presentation/index.html#replication-results-exploratory",
+    "href": "presentation/index.html#replication-results-exploratory",
+    "title": "Thinking About Collaborators",
+    "section": "Replication Results: Exploratory",
+    "text": "Replication Results: Exploratory\n\n\n\n\n\nFigure 3C. Model simulations averaged across 10 iterations. Error bars indicate bootstrapped 95% CIs.\n\n\nCollaborators’ chance of succeeding together gradually increased with more individual successes\n\n\n\n\nReplication. Model simulations consider strengths from 1 to 10 (inclusive) in steps of 0.03. Error bars indicate bootstrapped 95% CIs.\n\n\nReplicated!"
   },
   {
     "objectID": "presentation/index.html#replication-results",
     "href": "presentation/index.html#replication-results",
     "title": "Thinking About Collaborators",
     "section": "Replication Results",
-    "text": "Replication Results\n\n\n\n\n\nFigure 3C (Behavioral Only). Error bars indicate bootstrapped 95% CIs.\n\n\n\nCollaborators can succeed together even if they have failed alone (\\(t(49) = 10.42\\), \\(p &lt; .001\\); \\(d = 1.47\\))\n\n\n\n\n\nReplication (Behavioral Only). Error bars indicate bootstrapped 95% CIs.\n\n\n\nReplicated! (\\(t(49) = 9.26\\), \\(p &lt; .001\\); \\(d = 1.31\\))"
-  },
-  {
-    "objectID": "presentation/index.html#replication-results-1",
-    "href": "presentation/index.html#replication-results-1",
-    "title": "Thinking About Collaborators",
-    "section": "Replication Results",
-    "text": "Replication Results\n\n\n\n\n\nFigure 3C. Model simulations averaged across 10 iterations. Error bars indicate bootstrapped 95% CIs.\n\n\nCollaborators’ chance of succeeding together gradually increased as they succeeded more alone\n\n\n\n\nReplication. Model simulations consider strengths from 1 to 10 (inclusive) in steps of 0.03. Error bars indicate bootstrapped 95% CIs.\n\n\nReplicated!"
-  },
-  {
-    "objectID": "presentation/index.html#replication-results-2",
-    "href": "presentation/index.html#replication-results-2",
-    "title": "Thinking About Collaborators",
-    "section": "Replication Results",
-    "text": "Replication Results\n\nReplicated: joint success is possible even if there is no prior evidence of individual success, AND joint success likelihood increases as cases of individual success increases\n\nIn conjunction, these results support the joint-effort model of reasoning about collaborators’ effort"
+    "text": "Replication Results\n\nReplicated: joint success is possible even if there is no prior evidence of individual success, AND joint success likelihood increases as cases of individual success increases\n\nIn conjunction, these results support the “joint effort” model of reasoning about collaborators’ effort"
   },
   {
     "objectID": "presentation/index.html#discussion",
@@ -81,7 +81,7 @@
     "href": "presentation/index.html#discussion-1",
     "title": "Thinking About Collaborators",
     "section": "Discussion",
-    "text": "Discussion\n\nTo test the hypotheses further, I might model within-subject variability independent from scenario condition\n\n![Figure 3C Replication with participant-level data.]\n\nMaybe the greater variance in the data (driving the larger CI values) is due to this heterogeneity that might not have been present in the original data"
+    "text": "Discussion\n\nTo validate the “joint effort” model further, I will quantify the model fits (and confirm with new data), modeling within-participant variability independently from scenario condition\n\n\n\n\n\nFigure 3C Replication with participant-level data.\n\n\n\n\nWithin-participant variability can be seen as amplified, diminished, or biased probability judgments across scenarios that could be attributed to the participant rather than to the scenarios; we see that there could be a lot of this variability by looking at the heterogeneity in the underlying data\nOne way I might quantify the model fits with both within-participant variability and between-scenario variability is to estimate the likelihood of each participant’s data under each model then summarizing across participants to estimate the likelihood of each model\nMaybe the greater variance in the data (driving the larger CI values) is due to this heterogeneity that might not have been present in the original data"
   },
   {
     "objectID": "presentation/index.html#references",
