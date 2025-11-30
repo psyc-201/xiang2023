@@ -3,10 +3,13 @@ project:
   output-dir: _output/
   execute-dir: project 
   render:
-    - "writeup/*.qmd"
+    - "writeup/*.qmd" # put first so that renders first; presentation depends on some outputs from writeup
     - "presentation/*.qmd"
     - "!original_code/"
     - "!new_code/"
   resources:
     - "new_code/competence_effort/Experiment/img/example1.png"
     - "new_code/competence_effort/Experiment/img/table.png"
+
+execute: 
+  freeze: auto

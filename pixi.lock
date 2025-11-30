@@ -147,6 +147,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-gargle-1.6.0-r45h785f33e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-gbrd-0.4.12-r45hc72bb7e_2.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-generics-0.1.4-r45hc72bb7e_1.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/r-ggh4x-0.3.1-r45hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-ggplot2-4.0.0-r45h785f33e_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/r-glue-1.8.0-r45h6168396_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-googledrive-2.1.2-r45hc72bb7e_1.conda
@@ -1951,6 +1952,23 @@ packages:
   license_family: MIT
   size: 88225
   timestamp: 1757455977192
+- conda: https://conda.anaconda.org/conda-forge/noarch/r-ggh4x-0.3.1-r45hc72bb7e_1.conda
+  sha256: 1226300e7bd8bafa5f31de0614de80ef8f929af7d9631cd1e617d7d8986cb1e3
+  md5: 6791b802b5264569f29b24b9d4bf211a
+  depends:
+  - r-base >=4.5,<4.6.0a0
+  - r-cli
+  - r-ggplot2 >=3.5.2
+  - r-gtable
+  - r-lifecycle
+  - r-rlang >=1.1.0
+  - r-s7
+  - r-scales
+  - r-vctrs >=0.5.0
+  license: MIT
+  license_family: MIT
+  size: 1833824
+  timestamp: 1757835608024
 - conda: https://conda.anaconda.org/conda-forge/noarch/r-ggplot2-4.0.0-r45h785f33e_0.conda
   sha256: 17d87d3c0b91e4704ab73b1a0b3a206579ea03082ca226e63d36631972a082f2
   md5: 78e3fd01080b24fe6ef14167cf9d533f
