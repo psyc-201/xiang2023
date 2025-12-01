@@ -15,8 +15,8 @@ execute:
   echo: false
   freeze: auto
 bibliography:
-  - "references.bib"
-csl: "apa.csl"
+  - "../references.bib"
+csl: "../apa.csl"
 ---
 
 ```{r}
@@ -25,56 +25,80 @@ library(tidyverse)
 attach("./writeup/results/.RData")
 ```
 
-## How do we judge what others could bring to the table?
+## Collaboration is fundamental
+
+- Fundamental to human success is how we've evolved to effectively collaborate with one another [@Tomasello2005]
+- Requires judgments of what potential collaborators could bring to the table, and judging how they will calibrate their effort during collaboration
+- How complicated is all this?
+
+::: {.notes}
+Collaboration is fundamental
+
+Fundamental to human success is how we've evolved to effectively collaborate with one another [@Tomasello2005]. There are many cognitive processes involved for being able to collaborate effectively.
+
+For example, we judge how good others might be as potential collaborators in order to make decisions about who to work with. We then calibrate our own effort accordingly.
+
+But as usual, evolution prefers the simplest solution to problems: so how complicated is our solution?
+:::
+
+## We judge what others could bring to the table
 
 - We observe them work, to update our beliefs! (Bayesian inference) [@Premack_Woodruff_1978]
   - Belief: how _competent_ they are [@Jara-Ettinger2015]
   - Belief: how much _effort_ they are putting in, given their competence and how much incentive there is [@Jara-Ettinger2016]
 
-- We make assumptions [@Jara-Ettinger2016]:
-  1. If they succeed, they must have at least _some_ competence and have put _some_ effort in
-  2. If they are competent enough to succeed, they will allocate the minimum effort needed given their competence
-  3. Effort is costly, so if they succeed with low incentive, they must really _desire_ the reward (i.e., reward has high utility to them)
-
 ::: {.notes}
-Collaboration is key to human success [@Tomasello2005]. When we think about other people we could work with, we need to judge who's capable enough to be a good potential collaborator. So how do we make these judgments?
+We need to consider how we judge what others could bring to the table
 
-We observe them work to update our beliefs; Bayesian inference is a good candidate for how we adjust our beliefs given observations of the world
+Well, we observe them working to update our beliefs about them; Bayesian inference is a good candidate for how we adjust our beliefs given observations of the world
 
-Note: while we also infer the difficulty of the task @Xiang2023-zo is seeking to integrate the independent role of perceived competence.
+Some of our beliefs are about how competent they are
 
-We can make these inferences tractable by making some assumptions... (next slide)
+and how much effort they are putting in
+
+::: {.callout-tip}
+While we also infer the difficulty of the task @Xiang2023-zo is seeking to integrate the independent role of perceived competence.
+:::
 :::
 
-## When working together, how do we calibrate our own effort?
+## We judge what others could bring to the table, and how they _calibrate effort_
 
-- Simple models:
-  - _Social compensation_: we simply think the other person won't apply any effort, so we allocate effort like we are working alone [@Williams1991-sv] ("solitary" model)
+- Simple solutions for calibrating effort:
+  - _Social compensation_: we simply think the other person won't apply any effort, so we allocate effort like we were working alone [@Williams1991-sv] ("solitary" model)
   - _Social loafing_: we simply think the other person will apply maximum effort, so we allocate only enough effort to help them [@Karau_Williams_1993; @Latane1979] ("compensatory" model)
 
 - Proposed model in @Xiang2023-zo:
-  - _Jointly optimize effort_: we infer how much effort the other will allocate and how much they think _we_ will allocate, and we adjust our own effort accordingly, while trying to be fair ("joint effort" model)
+  - _Jointly optimize effort_: we infer how much effort the other will allocate and how much they think _we_ will allocate, and we adjust our own effort accordingly, while also trying to be fair ("joint effort" model)
 
 ::: {.notes}
-After we infer each other's competence from observing their behavior, how do we set our own effort when collaborating with them?
+After we infer each other's competence and effort from observing their behavior, how do we set our own effort when collaborating with them?
+
+There are a couple simple solutions that evolution could have chosen -> &lt;read slide&gt;
+
+The authors propose a more complicated model -> &lt;read slide&gt;
+
+::: {.callout-tip}
+We make some assumptions to make the inferences in the proposed model tractable [@Jara-Ettinger2016]:
+  1. If they succeed, they must have at least _some_ competence and have put _some_ effort in
+  2. If they are competent enough to succeed, they will allocate the minimum effort needed given their competence
+  3. Effort is costly, so if they succeed with low incentive, they must really _desire_ the reward (i.e., reward has high utility to them)
+:::
 :::
 
 ## @Xiang2023-zo: Lift That Box!
 
-- @Xiang2023-zo used a game-like task to collect participants' judgments of competence, effort, and likelihood of success, to see how well the "joint effort" model predicted them
-  <iframe src="https://psyc-201.github.io/xiang2023/exp/index1.html?TEST" width=100% style="height: 15em"></iframe>
+- @Xiang2023-zo used a game-like task to collect participants' judgments of competence, effort, and likelihood of success of virtual collaborators, in order to see how well the "joint effort" model predicted these judgments
+  <iframe src="https://psyc-201.github.io/xiang2023/exp/index1.html?TEST" style="zoom: .75; width: 133%; height: 20em"></iframe>
 
 ::: {.notes}
-The original study used this task which looks like... (demo... mention joint and individual activity)
+The authors then sought to validate their more complicated model
+
+&lt;Read slide. Then demo the task and point out the rounds 1-2 are individual, and round 3 is joint activity&gt;
+
+So they had many different results, but let's take a look at the key ones I was interested in replicating
 :::
 
-## @Xiang2023-zo: Lift That Box!
-
-- Some critiques:
-  - The task is not very naturalistic (limits ecological validity)
-  - The participant isn't a collaborator themselves (limits construct validity)
-
-## @Xiang2023-zo: Result
+## @Xiang2023-zo: Results
 
 ```{r}
 #| include: false
@@ -102,35 +126,52 @@ fig3c_behavioralonly <- original.dat %>%
 ggsave('./presentation/fig3c_behavioral_only.png', plot = fig3c_behavioralonly, width=4, height=3)
 ```
 
-- Participants thought that collaborators can succeed together even if they have failed alone (`r papaja::apa_print(original.ttest_result)$statistic`; $d = `r papaja::apa_num(original.cohensd$Cohens_d)`$)
-- They also thought that collaborators' chance of succeeding together increased with more individual successes (i.e., that collaborators inferred each other's effort from prior attempts) and this was gradual (i.e., collaborators tried to distribute effort fairly)
-- **Only the proposed "joint effort" model predicted both:**  
-  ![](../writeup/original-fig3c.png){height=250}
+1. Participants thought that collaborators can succeed together even if they had always failed alone (`r papaja::apa_print(original.ttest_result)$statistic`; $d = `r papaja::apa_num(original.cohensd$Cohens_d)`$)
+2. Participants also thought **collaborators' chance of succeeding together increased with more individual successes** (i.e., collaborators inferred each other's competence and effort from prior attempts), and that it was **gradual** (i.e., collaborators tried to distribute effort fairly)
+3. **Only the proposed "joint effort" model predicted both:**
 
-::: {.notes}
-can note that there's a green dot as well showing maximal model, but it's not relevant to us - it's another alternative model that didn't give predictions for most scenarios
+::: {.fragment style="font-size: 60%; text-align: center"}
+![(Preview) Notice `F,F;F,F`, the left-to-right trend, and that the red line fits the best.](../writeup/original-fig3c.png){height=250 style="--r-block-margin: 0"}
 :::
 
-## Replicating @Xiang2023-zo
+::: {.notes}
+&lt;Read slide&gt;
+
+evidence suggests that their model is worth the complexity!
+:::
+
+## Replicating @Xiang2023-zo: Power
 
 - I estimated that we needed only 9 participants (as this would give us `r papaja::apa_num(pwr::pwr.t.test(n=9, d=original.cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")$power * 100)`% power for the main effect)
-- However, to replicate the qualitative pattern, in the absence of a good expectation, I wanted the full 50 participants
-
-## Replicating @Xiang2023-zo: Statistics and Modeling
-
-<!-- TODO: cite memo -->
-
-- I expected the basic effect to replicate
-
-- For the computational model, I chose to reimplement the model in a new probabilistic programming language (memo) for performance and extensibility advantages (for future work) 
-  - Needed to validate that new model had comparable results
-  - Worked through distinguishing trivial implementation differences (e.g., going from a continuous prior to a discrete prior) from meaningful implementation discrepancies (e.g., errors in the model implementation)
-  - Overcame this by changing one implementation variable at a time and measuring its impact to characterize where discrepancies came from (to qualify how they looked numerically)
+- However, to replicate the qualitative pattern, in the absence of a good expectation of how many participants were necessary for this, I chose to collect the full 50 participants
+  - As a side-effect, this will also enable future exploratory analysis of the dataset, which I'll briefly describe later
 
 ::: {.notes}
-I expected the basic effect to replicate since there's high signal to noise in the measure (high t-value and low SE), and I was 4/5 confident the qualitative pattern would replicate.
+&lt;Read slide&gt;
+:::
 
-(how I changed one variable at a time in modeling: webppl MCMC -> webppl enumerate -> memo enumerate)
+## Replicating @Xiang2023-zo: Modeling
+
+<!-- - I expected the basic effect to replicate due the very large effect size
+- 80% confident the qualitative pattern would replicate -->
+
+- For the computational model, I chose to reimplement the model in `memo`, a new probabilistic programming language [@chandra2025memo] for performance and extensibility advantages (for future work) 
+  - Needed to validate that new model had comparable results
+  - Worked through distinguishing trivial implementation differences from implementation mistakes
+  - Accomplished this by changing one implementation variable at a time and measuring its impact to characterize where discrepancies came from
+
+::: {.notes}
+I expected the basic effect to replicate since there's high signal to noise in the measure (high t-value and low SE),
+
+and I was 4/5 confident the qualitative pattern would replicate.
+
+&lt;Read slide&gt;
+
+::: {.callout-tip}
+Worked through distinguishing trivial implementation differences (e.g., going from a continuous prior to a discrete prior) from meaningful implementation discrepancies (e.g., errors in the model implementation)
+
+How I changed one variable at a time in modeling: webppl MCMC -> webppl enumerate -> memo enumerate
+:::
 :::
 
 ## Replication Results: Confirmatory
@@ -164,7 +205,7 @@ ggsave('./presentation/replication-fig3c_behavioral_only.png', plot = replicatio
 :::: {.columns}
 
 ::: {.column .fragment}
-![Figure 3C (Behavioral Only). Error bars indicate bootstrapped 95% CIs.](./fig3c_behavioral_only.png)
+![Figure 3C (Behavioral Only). Error bars show bootstrapped 95% CIs.](./fig3c_behavioral_only.png)
 
 ::: {.fragment}
 Collaborators can succeed together even if they have failed alone (`r papaja::apa_print(original.ttest_result)$statistic`; $d = `r papaja::apa_num(original.cohensd$Cohens_d)`$)
@@ -172,7 +213,7 @@ Collaborators can succeed together even if they have failed alone (`r papaja::ap
 :::
 
 ::: {.column .fragment}
-![Replication (Behavioral Only). Error bars indicate bootstrapped 95% CIs.](./replication-fig3c_behavioral_only.png)
+![Replication (Behavioral Only). Error bars show bootstrapped 95% CIs.](./replication-fig3c_behavioral_only.png)
 
 ::: {.fragment}
 **Replicated!** (`r papaja::apa_print(replication.ttest_result)$statistic`; $d = `r papaja::apa_num(replication.cohensd$Cohens_d)`$)
@@ -181,59 +222,100 @@ Collaborators can succeed together even if they have failed alone (`r papaja::ap
 
 ::::
 
+::: {.notes}
+&lt;Read slide, explaining plots&gt;
+:::
+
 ## Replication Results: Exploratory
 
 :::: {.columns}
 
 ::: {.column .fragment}
-![Figure 3C. Model simulations averaged across 10 iterations. Error bars indicate bootstrapped 95% CIs.](../writeup/original-fig3c.png)
+![Figure 3C. Model simulations averaged across 10 iterations. Error bars show bootstrapped 95% CIs.](../writeup/original-fig3c.png)
 
-Collaborators' chance of succeeding together gradually increased with more individual successes
+Collaborators' chance of succeeding together gradually increased with more indiv success, validating joint model
 :::
 
 ::: {.column .fragment}
-![Replication. Model simulations consider strengths from 1 to 10 (inclusive) in steps of 0.03. Error bars indicate bootstrapped 95% CIs.](../writeup/replication-fig3c.png)
+![Replication. Model simulations use strengths in steps of .03. Error bars show bootstrapped 95% CIs.](../writeup/replication-fig3c.png)
 
 **Replicated!**
 :::
 
 ::::
 
-## Replication Results
+::: {.notes}
+&lt;Read slide, explaining plots&gt;
+:::
 
-- Replicated: joint success is possible even if there is no prior evidence of individual success, AND joint success likelihood increases as cases of individual success increases
+<!-- ## Replication Results
+
+- Replicated: joint success is possible even if there is no prior evidence of individual success, AND joint success likelihood gradually increases as cases of individual success increases
   - In conjunction, these results **support the "joint effort" model of reasoning about collaborators' effort**
 
-<!-- TODO:
-massage the language (incl. editing speaker notes to be one line per keypress), and to try to make the conclusion clearer - could make the language here mirror the language in the introduction 
--->
+::: {.notes}
+&lt;Read slide&gt;
+
+::: -->
 
 ## Discussion
 
 - Replication success was expected due to large effect size and clear pattern
 - I observed slight differences:
   - larger CIs
-  - a flat section of the curve (i.e. similarity between two scenarios) not seen before; could be explained by the safe joint effort model (can show the figure that includes the safe joint effort model)
+  - a flat section of the curve (i.e. similarity between two scenarios) not seen before
   - Effect size (_d_) was lower than original, as should be expected
 
 ::: {.notes}
-Maybe the larger CIs are due to more variance than in the original?
+&lt;Read slide&gt;
+
+::: {.callout-tip}
+Flat part could be explained by the safe joint effort model (can show the figure that includes the safe joint effort model)
 :::
 
-## Discussion
+:::
 
-- To validate the "joint effort" model further, I will quantify the model fits (and confirm with new data), modeling within-participant variability independently from scenario condition
+## Discussion: Next Steps
+
+- To validate the "joint effort" model further, I will quantify the model fits (and confirm with new data), modeling within-participant variability independently from variability due to scenario (outcomes of rounds 1 and 2)
 
 ::: {.fragment}
 ![Figure 3C Replication with participant-level data.](../writeup/replication-fig3c-withrawdata.png){height=430}
 :::
 
 ::: {.notes}
+Now some next steps...
+
+&lt;Read slide&gt;
+
+Details:
+
 Within-participant variability can be seen as amplified, diminished, or biased probability judgments across scenarios that could be attributed to the participant rather than to the scenarios; we see that there could be a lot of this variability by looking at the heterogeneity in the underlying data
 
-One way I might quantify the model fits with both within-participant variability and between-scenario variability is to estimate the likelihood of each participant's data under each model then summarizing across participants to estimate the likelihood of each model
+One way I might quantify the model fits with both types of variability is to estimate the likelihood of each participant's data under each model then summarizing across participants to estimate the likelihood of each model
 
-Maybe the greater variance in the data (driving the larger CI values) is due to this heterogeneity that might not have been present in the original data
+Maybe the greater variance in the data (driving the larger CIs) is due to this heterogeneity that might not have been present in the original data. or just due to publication bias/effect inflation
+:::
+
+## Discussion: Task
+
+- Some limitations:
+  - The task is not very naturalistic (limits ecological validity)
+  - The participant isn't a collaborator themselves (limits construct validity)
+- Future steps:
+  - Rich textual vignettes that paint a fuller scene than just stick figures before and after they attempt to lift boxes
+  - Include the participant as a collaborator, e.g., with their own incentive related to the virtual collaborators' outcome
+
+::: {.notes}
+Last,
+
+I want to acknowledge describe some limitations of the task -> &lt;read slide&gt;
+:::
+
+## Thank you!
+
+::: {style="text-align: center; font-size: 300%"}
+Questions?
 :::
 
 ## References

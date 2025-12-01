@@ -11,8 +11,8 @@ format:
     toc: true
     toc_depth: 3
 bibliography:
-  - "references.bib"
-csl: "apa.csl"
+  - "../references.bib"
+csl: "../apa.csl"
 ---
 
 <!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
@@ -27,7 +27,7 @@ Experiment 1 involves observing contestants try to lift a heavy box in a set of 
 
 ![An example table for a contest, as it would appear during the probability judgment at the beginning of round 3.](../new_code/competence_effort/Experiment/img/table.png){height=350}
 
-The challenges/opportunities for my learning in this replication project will include: 1) recreating the paper's proposed (joint effort) model and two alternative (solitary/compensatory effort) models of the probability of joint success in [memo](https://github.com/kach/memo) (based on the authors' pre-existing implementations in WebPPL), and 2) running these models over my newly collected data to attempt to replicate that the proposed model is most predictive of participants' judgments. (I will also replace the original authors' data-saving step (a php page) with [DataPipe](https://pipe.jspsych.org/).)
+The challenges/opportunities for my learning in this replication project will include: 1) recreating the paper's proposed (joint effort) model and two alternative (solitary/compensatory effort) models of the probability of joint success in [memo](https://github.com/kach/memo) [@chandra2025memo] (based on the authors' pre-existing implementations in WebPPL), and 2) running these models over my newly collected data to attempt to replicate that the proposed model is most predictive of participants' judgments. (I will also replace the original authors' data-saving step (a php page) with [DataPipe](https://pipe.jspsych.org/).)
 
 Specifically, I will attempt to replicate that A) when rounds 1 and 2 feature no individual success, participants still judge the probability of joint success in round 3 as non-zero. In addition to this confirmatory analysis, I will attempt to qualitatively replicate that B) participants judge higher probability of joint success as cases of individual success increases, and that the proposed model is the only model evaluated which predicts both patterns A and B. See Analysis Plan below for more details.
 
