@@ -7,9 +7,12 @@ author:
     email: j2zimmerman@ucsd.edu
     affiliations: UC San Diego
 date: last-modified
+filters:
+  - style-speaker-note
 format:
   clean-revealjs:
     incremental: true
+    speaker_notes_style: "_extensions/stefanocoretta/tachyonsextra/tachyonsextra.css"
 tbl-cap-location: bottom
 execute:
   echo: false
@@ -25,30 +28,30 @@ library(tidyverse)
 attach("./writeup/results/.RData")
 ```
 
-## Collaboration is fundamental
+## Collaboration is fundamental to humans
 
-- Fundamental to human success is how we've evolved to effectively collaborate with one another [@Tomasello2005]
-- Requires judgments of what potential collaborators could bring to the table, and judging how they will calibrate their effort during collaboration
-- How complicated is all this?
+- Fundamental to human success is how we've evolved to collaborate effectively [@Tomasello2005]
+- Collaboration requires judgments of what potential collaborators could bring to the table, and how much effort they will allocate
+- How complex are these judgments?
 
 ::: {.notes}
-Collaboration is fundamental
+Collaboration is fundamental to humans
 
-Fundamental to human success is how we've evolved to effectively collaborate with one another [@Tomasello2005]. There are many cognitive processes involved for being able to collaborate effectively.
+Fundamental to human success is how we've evolved to collaborate effectively. There are many cognitive processes involved in this.
 
-For example, we judge how good others might be as potential collaborators in order to make decisions about who to work with. We then calibrate our own effort accordingly.
+For example, in order to make decisions about who to work with, we make judgments of what potential collaborators could bring to the table, and how much effort they will allocate
 
-But as usual, evolution prefers the simplest solution to problems: so how complicated is our solution?
+As usual, evolution prefers the simplest solution to problems: so how complex is our solution?
 :::
 
-## We judge what others could bring to the table
+## How do we judge what others could bring to the table?
 
-- We observe them work, to update our beliefs! (Bayesian inference) [@Premack_Woodruff_1978]
+- We observe them work, to update our beliefs about them (Bayesian inference) [@Premack_Woodruff_1978]
   - Belief: how _competent_ they are [@Jara-Ettinger2015]
   - Belief: how much _effort_ they are putting in, given their competence and how much incentive there is [@Jara-Ettinger2016]
 
 ::: {.notes}
-We need to consider how we judge what others could bring to the table
+So how do we judge what others could bring to the table?
 
 Well, we observe them working to update our beliefs about them; Bayesian inference is a good candidate for how we adjust our beliefs given observations of the world
 
@@ -56,32 +59,49 @@ Some of our beliefs are about how competent they are
 
 and how much effort they are putting in
 
-::: {.callout-tip}
-While we also infer the difficulty of the task @Xiang2023-zo is seeking to integrate the independent role of perceived competence.
+::: {.box-tip}
+While we also infer the difficulty of the task, @Xiang2023-zo is seeking to integrate the independent role of perceived competence.
 :::
 :::
 
-## We judge what others could bring to the table, and how they _calibrate effort_
+## How do we judge what others could bring to the table, and _how much effort they will allocate_?
 
-- Simple solutions for calibrating effort:
-  - _Social compensation_: we simply think the other person won't apply any effort, so we allocate effort like we were working alone [@Williams1991-sv] ("solitary" model)
-  - _Social loafing_: we simply think the other person will apply maximum effort, so we allocate only enough effort to help them [@Karau_Williams_1993; @Latane1979] ("compensatory" model)
+- Simple models of effort allocation: we could think that...
+  - _Social compensation_: people assume others won't apply any effort, so they allocate effort as though they were working alone [@Williams1991-sv] ("solitary" model)
+  - _Social loafing_: people assume others will apply maximum effort, so they allocate only enough effort to help them [@Karau_Williams_1993; @Latane1979] ("compensatory" model)
 
-- Proposed model in @Xiang2023-zo:
-  - _Jointly optimize effort_: we infer how much effort the other will allocate and how much they think _we_ will allocate, and we adjust our own effort accordingly, while also trying to be fair ("joint effort" model)
+- @Xiang2023-zo propose a more complex model: we think that...
+  - _Jointly optimize effort_: people infer how much effort others will allocate and _how much the others think they will allocate_, and then calibrate their effort accordingly -- seeking to optimize their _combined effort_ ("joint effort" model)
 
 ::: {.notes}
-After we infer each other's competence and effort from observing their behavior, how do we set our own effort when collaborating with them?
+After we infer each other's competence and effort from observing their behavior, how do we judge how they much effort they will allocate?
 
-There are a couple simple solutions that evolution could have chosen -> &lt;read slide&gt;
+There are a couple simple solutions that evolution could have chosen for how we calibrate our own effort -> &lt;read slide&gt;
 
-The authors propose a more complicated model -> &lt;read slide&gt;
-
-::: {.callout-tip}
+::: {.box-tip}
 We make some assumptions to make the inferences in the proposed model tractable [@Jara-Ettinger2016]:
   1. If they succeed, they must have at least _some_ competence and have put _some_ effort in
   2. If they are competent enough to succeed, they will allocate the minimum effort needed given their competence
   3. Effort is costly, so if they succeed with low incentive, they must really _desire_ the reward (i.e., reward has high utility to them)
+  4. They discount unequal effort allocation (i.e., they care somewhat about fairness)
+  5. (Practical assumption) Competence does not change across observations
+  6. (Practical assumption) Competence and effort each have a defined range (0% to 100%)
+:::
+
+::: {.box-tip}
+### Illustrating the basic framework of inferences
+
+We infer a person's competence _and_ effort _simultaneously_ by internally modeling their mutual contingencies, and the influence of incentive:
+
+1. Effort turns competence into success
+  - e.g., if they succeed, they must have some competence and have put some effort in
+  - **Success means combined competence and effort is at least X**
+2. They don't put in more effort than necessary, given their competence
+  - e.g., if they are competent enough to succeed, they allocate the minimum effort needed given their competence
+  - **Success given their competence means at most Y effort**
+3. Effort is motivated by _incentive_
+  - e.g., effort is costly, so if they succeed with low incentive, they must really _desire_ the reward (i.e., reward has high utility to them)
+  - **Success means at least Z desire for the reward and the minimum W effort that this motivates**
 :::
 :::
 
@@ -91,7 +111,7 @@ We make some assumptions to make the inferences in the proposed model tractable 
   <iframe src="https://psyc-201.github.io/xiang2023/exp/index1.html?TEST" style="zoom: .75; width: 133%; height: 20em"></iframe>
 
 ::: {.notes}
-The authors then sought to validate their more complicated model
+The authors then sought to validate their more complex model
 
 &lt;Read slide. Then demo the task and point out the rounds 1-2 are individual, and round 3 is joint activity&gt;
 
@@ -127,7 +147,7 @@ ggsave('./presentation/fig3c_behavioral_only.png', plot = fig3c_behavioralonly, 
 ```
 
 1. Participants thought that collaborators can succeed together even if they had always failed alone (`r papaja::apa_print(original.ttest_result)$statistic`; $d = `r papaja::apa_num(original.cohensd$Cohens_d)`$)
-2. Participants also thought **collaborators' chance of succeeding together increased with more individual successes** (i.e., collaborators inferred each other's competence and effort from prior attempts), and that it was **gradual** (i.e., collaborators tried to distribute effort fairly)
+2. Participants also thought that **collaborators' chance of succeeding together increased with more individual successes** (i.e., collaborators inferred each other's competence and effort from prior attempts)
 3. **Only the proposed "joint effort" model predicted both:**
 
 ::: {.fragment style="font-size: 60%; text-align: center"}
@@ -137,7 +157,11 @@ ggsave('./presentation/fig3c_behavioral_only.png', plot = fig3c_behavioralonly, 
 ::: {.notes}
 &lt;Read slide&gt;
 
-evidence suggests that their model is worth the complexity!
+This evidence suggests that their model is worth the complexity!
+
+::: {.box-tip}
+Also, they found that the increase was **gradual** (i.e., collaborators tried to distribute effort fairly)
+:::
 :::
 
 ## Replicating @Xiang2023-zo: Power
@@ -167,7 +191,7 @@ and I was 4/5 confident the qualitative pattern would replicate.
 
 &lt;Read slide&gt;
 
-::: {.callout-tip}
+::: {.box-tip}
 Worked through distinguishing trivial implementation differences (e.g., going from a continuous prior to a discrete prior) from meaningful implementation discrepancies (e.g., errors in the model implementation)
 
 How I changed one variable at a time in modeling: webppl MCMC -> webppl enumerate -> memo enumerate
@@ -233,7 +257,7 @@ Collaborators can succeed together even if they have failed alone (`r papaja::ap
 ::: {.column .fragment}
 ![Figure 3C. Model simulations averaged across 10 iterations. Error bars show bootstrapped 95% CIs.](../writeup/original-fig3c.png)
 
-Collaborators' chance of succeeding together gradually increased with more indiv success, validating joint model
+Collaborators' chance of succeeding together increased with more individual success, validating joint model
 :::
 
 ::: {.column .fragment}
@@ -246,30 +270,22 @@ Collaborators' chance of succeeding together gradually increased with more indiv
 
 ::: {.notes}
 &lt;Read slide, explaining plots&gt;
+
+In sum, they replcicated that joint success is possible even if there is no prior evidence of individual success, AND joint success likelihood increases as cases of individual success increases. In conjunction, these results support the "joint effort" model of reasoning about collaborators' effort
 :::
-
-<!-- ## Replication Results
-
-- Replicated: joint success is possible even if there is no prior evidence of individual success, AND joint success likelihood gradually increases as cases of individual success increases
-  - In conjunction, these results **support the "joint effort" model of reasoning about collaborators' effort**
-
-::: {.notes}
-&lt;Read slide&gt;
-
-::: -->
 
 ## Discussion
 
 - Replication success was expected due to large effect size and clear pattern
 - I observed slight differences:
   - larger CIs
-  - a flat section of the curve (i.e. similarity between two scenarios) not seen before
+  - a flat section of the curve (i.e., similarity between two scenarios) not seen before
   - Effect size (_d_) was lower than original, as should be expected
 
 ::: {.notes}
 &lt;Read slide&gt;
 
-::: {.callout-tip}
+::: {.box-tip}
 Flat part could be explained by the safe joint effort model (can show the figure that includes the safe joint effort model)
 :::
 
@@ -288,13 +304,15 @@ Now some next steps...
 
 &lt;Read slide&gt;
 
-Details:
+We can see that there may be variance or even heterogeneity across participants that could be modeled; I'd like to estimate model fits, explicitly modeling for the between-participants variability, using model-likelihood measures for each participant then aggregating across participants.
 
-Within-participant variability can be seen as amplified, diminished, or biased probability judgments across scenarios that could be attributed to the participant rather than to the scenarios; we see that there could be a lot of this variability by looking at the heterogeneity in the underlying data
+Also, Maybe the greater variance in the data (driving the larger CIs) is due to this heterogeneity that might not have been present in the original data. Or it could just be due to publication bias/effect inflation.
 
-One way I might quantify the model fits with both types of variability is to estimate the likelihood of each participant's data under each model then summarizing across participants to estimate the likelihood of each model
+::: {.box-tip}
+Participant-level variability can be seen as amplified, diminished, or biased probability judgments across scenarios that could be attributed to the participant rather than to the scenarios; we see that there could be a lot of this variability by looking at the underlying participant-level data.
 
-Maybe the greater variance in the data (driving the larger CIs) is due to this heterogeneity that might not have been present in the original data. or just due to publication bias/effect inflation
+One way I might quantify the model fits with both types of variability is to estimate the likelihood of each participant's data under each model then summarizing across participants to estimate the likelihood of each model.
+:::
 :::
 
 ## Discussion: Task
@@ -322,23 +340,3 @@ Questions?
 
 ::: {#refs}
 :::
-
-<!-- ## (Extra) The basic framework: inferences
-
-We infer a person's competence _and_ effort _simultaneously_ by internally modeling their mutual contingencies, and the influence of incentive:
-
-1. Effort turns competence into success
-  - e.g., if they succeed, they must have some competence and have put some effort in
-  - **Success means combined competence and effort is at least X**
-2. They don't put in more effort than necessary, given their competence
-  - e.g., if they are competent enough to succeed, they allocate the minimum effort needed given their competence
-  - **Success given their competence means at most Y effort**
-3. Effort is motivated by _incentive_
-  - e.g., effort is costly, so if they succeed with low incentive, they must really _desire_ the reward (i.e., reward has high utility to them)
-  - **Success means at least Z desire for the reward and the minimum W effort that this motivates**
-
-::: {.notes}
-Also:
-- (Practical assumption) Competence does not change across observations
-- (Practical assumption) Competence and effort each have a defined range (0% to 100%)
-::: -->
