@@ -60,7 +60,7 @@
     "href": "presentation/index.html#replication-results-exploratory",
     "title": "Thinking About Collaborators",
     "section": "Replication Results: Exploratory",
-    "text": "Replication Results: Exploratory\n\n\n\n\n\nFigure 3C. Model simulations averaged across 10 iterations. Error bars show bootstrapped 95% CIs.\n\n\nCollaborators’ chance of succeeding together increased with more individual success, validating joint model\n\n\n\n\nReplication. Model simulations use strengths in steps of .03. Error bars show bootstrapped 95% CIs.\n\n\nReplicated!\n\n\n&lt;Read slide, explaining plots&gt;\nIn sum, they replcicated that joint success is possible even if there is no prior evidence of individual success, AND joint success likelihood increases as cases of individual success increases. In conjunction, these results support the joint effort model of reasoning about collaborators’ effort"
+    "text": "Replication Results: Exploratory\n\n\n\n\n\nFigure 3C. Model simulations averaged across 10 iterations. Error bars show bootstrapped 95% CIs.\n\n\nCollaborators’ chance of succeeding together increased with more individual success, validating joint effort model\n\n\n\n\nReplication. Model simulations use strengths in steps of .03. Error bars show bootstrapped 95% CIs.\n\n\nReplicated!\n\n\n&lt;Read slide, explaining plots&gt;\nIn sum, they replcicated that joint success is possible even if there is no prior evidence of individual success, AND joint success likelihood increases as cases of individual success increases. In conjunction, these results support the joint effort model of reasoning about collaborators’ effort"
   },
   {
     "objectID": "presentation/index.html#discussion",

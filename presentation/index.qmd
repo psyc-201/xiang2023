@@ -152,7 +152,7 @@ ggsave('./presentation/fig3c_behavioral_only.png', plot = fig3c_behavioralonly, 
 3. **Only the proposed [joint effort model]{color="red"} predicted both:**
 
 ::: {.fragment style="font-size: 60%; text-align: center"}
-![(Preview) Notice `F,F;F,F`, left-to-right trend, and [joint effort model]{color="red"} fits the best.](../writeup/original-fig3c.png){height=250 style="--r-block-margin: 0"}
+![(Preview) Notice `F,F;F,F`, the left-to-right trend, and that [joint effort]{color="red"} fits the best.](../writeup/original-fig3c.png){height=250 style="--r-block-margin: 0"}
 :::
 
 ::: {.notes}
