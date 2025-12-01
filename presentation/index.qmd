@@ -8,6 +8,7 @@ author:
     affiliations: UC San Diego
 date: last-modified
 filters:
+  - highlight-text
   - style-speaker-note
 format:
   clean-revealjs:
@@ -67,16 +68,18 @@ While we also infer the difficulty of the task, @Xiang2023-zo is seeking to inte
 ## How do we judge what others could bring to the table, and _how much effort they will allocate_?
 
 - Simple models of effort allocation: we could think that...
-  - _Social compensation_: people assume others won't apply any effort, so they allocate effort as though they were working alone [@Williams1991-sv] ("solitary" model)
-  - _Social loafing_: people assume others will apply maximum effort, so they allocate only enough effort to help them [@Karau_Williams_1993; @Latane1979] ("compensatory" model)
+  - _Social compensation_: people assume others won't apply any effort, so they allocate effort as though they were working alone [@Williams1991-sv] ([solitary model]{color="navy"})
+  - _Social loafing_: people assume others will apply maximum effort, so they allocate only enough effort to help them [@Karau_Williams_1993; @Latane1979] ([compensatory model]{color="blue"})
 
 - @Xiang2023-zo propose a more complex model: we think that...
-  - _Jointly optimize effort_: people infer how much effort others will allocate and _how much the others think they will allocate_, and then calibrate their effort accordingly -- seeking to optimize their _combined effort_ ("joint effort" model)
+  - _Jointly optimize effort_: people infer how much effort others will allocate and _how much the others think they will allocate_, and then calibrate their effort accordingly -- seeking to optimize their _combined effort_ ([joint effort model]{color="red"})
 
 ::: {.notes}
 After we infer each other's competence and effort from observing their behavior, how do we judge how they much effort they will allocate?
 
 There are a couple simple solutions that evolution could have chosen for how we calibrate our own effort -> &lt;read slide&gt;
+
+"Optimize combined effort" means calibrate the combined effort to be enough to achieve the task (and for effort also not to be unfairly allocated)
 
 ::: {.box-tip}
 We make some assumptions to make the inferences in the proposed model tractable [@Jara-Ettinger2016]:
@@ -86,10 +89,8 @@ We make some assumptions to make the inferences in the proposed model tractable 
   4. They discount unequal effort allocation (i.e., they care somewhat about fairness)
   5. (Practical assumption) Competence does not change across observations
   6. (Practical assumption) Competence and effort each have a defined range (0% to 100%)
-:::
 
-::: {.box-tip}
-### Illustrating the basic framework of inferences
+**Illustrating the basic framework of inferences:**
 
 We infer a person's competence _and_ effort _simultaneously_ by internally modeling their mutual contingencies, and the influence of incentive:
 
@@ -107,7 +108,7 @@ We infer a person's competence _and_ effort _simultaneously_ by internally model
 
 ## @Xiang2023-zo: Lift That Box!
 
-- @Xiang2023-zo used a game-like task to collect participants' judgments of competence, effort, and likelihood of success of virtual collaborators, in order to see how well the "joint effort" model predicted these judgments
+- @Xiang2023-zo used a game-like task to collect participants' judgments of competence, effort, and likelihood of success of virtual collaborators, in order to see how well the [joint effort model]{color="red"} predicted these judgments
   <iframe src="https://psyc-201.github.io/xiang2023/exp/index1.html?TEST" style="zoom: .75; width: 133%; height: 20em"></iframe>
 
 ::: {.notes}
@@ -148,10 +149,10 @@ ggsave('./presentation/fig3c_behavioral_only.png', plot = fig3c_behavioralonly, 
 
 1. Participants thought that collaborators can succeed together even if they had always failed alone (`r papaja::apa_print(original.ttest_result)$statistic`; $d = `r papaja::apa_num(original.cohensd$Cohens_d)`$)
 2. Participants also thought that **collaborators' chance of succeeding together increased with more individual successes** (i.e., collaborators inferred each other's competence and effort from prior attempts)
-3. **Only the proposed "joint effort" model predicted both:**
+3. **Only the proposed [joint effort model]{color="red"} predicted both:**
 
 ::: {.fragment style="font-size: 60%; text-align: center"}
-![(Preview) Notice `F,F;F,F`, the left-to-right trend, and that the red line fits the best.](../writeup/original-fig3c.png){height=250 style="--r-block-margin: 0"}
+![(Preview) Notice `F,F;F,F`, left-to-right trend, and [joint effort model]{color="red"} fits the best.](../writeup/original-fig3c.png){height=250 style="--r-block-margin: 0"}
 :::
 
 ::: {.notes}
@@ -182,7 +183,7 @@ Also, they found that the increase was **gradual** (i.e., collaborators tried to
 - For the computational model, I chose to reimplement the model in `memo`, a new probabilistic programming language [@chandra2025memo] for performance and extensibility advantages (for future work) 
   - Needed to validate that new model had comparable results
   - Worked through distinguishing trivial implementation differences from implementation mistakes
-  - Accomplished this by changing one implementation variable at a time and measuring its impact to characterize where discrepancies came from
+  - Accomplished this by changing one implementation variable at a time and measuring its impact to determine where discrepancies came from
 
 ::: {.notes}
 I expected the basic effect to replicate since there's high signal to noise in the measure (high t-value and low SE),
@@ -257,7 +258,7 @@ Collaborators can succeed together even if they have failed alone (`r papaja::ap
 ::: {.column .fragment}
 ![Figure 3C. Model simulations averaged across 10 iterations. Error bars show bootstrapped 95% CIs.](../writeup/original-fig3c.png)
 
-Collaborators' chance of succeeding together increased with more individual success, validating joint model
+Collaborators' chance of succeeding together increased with more individual success, validating [joint effort model]{color="red"}
 :::
 
 ::: {.column .fragment}
@@ -271,15 +272,15 @@ Collaborators' chance of succeeding together increased with more individual succ
 ::: {.notes}
 &lt;Read slide, explaining plots&gt;
 
-In sum, they replcicated that joint success is possible even if there is no prior evidence of individual success, AND joint success likelihood increases as cases of individual success increases. In conjunction, these results support the "joint effort" model of reasoning about collaborators' effort
+In sum, they replcicated that joint success is possible even if there is no prior evidence of individual success, AND joint success likelihood increases as cases of individual success increases. In conjunction, these results support the [joint effort model]{color="red"} of reasoning about collaborators' effort
 :::
 
 ## Discussion
 
 - Replication success was expected due to large effect size and clear pattern
 - I observed slight differences:
-  - larger CIs
-  - a flat section of the curve (i.e., similarity between two scenarios) not seen before
+  - Larger CIs
+  - Flat section of the curve (i.e., similarity between two scenarios) not seen before
   - Effect size (_d_) was lower than original, as should be expected
 
 ::: {.notes}
@@ -293,7 +294,7 @@ Flat part could be explained by the safe joint effort model (can show the figure
 
 ## Discussion: Next Steps
 
-- To validate the "joint effort" model further, I will quantify the model fits (and confirm with new data), modeling within-participant variability independently from variability due to scenario (outcomes of rounds 1 and 2)
+- To validate the [joint effort model]{color="red"} further, I will quantify the model fits (and confirm with new data), modeling within-participant variability independently from variability due to scenario (outcomes of rounds 1 and 2)
 
 ::: {.fragment}
 ![Figure 3C Replication with participant-level data.](../writeup/replication-fig3c-withrawdata.png){height=430}
