@@ -2,7 +2,7 @@
 
 Made from template: https://github.com/psyc-201/replication_template
 
-> [!INFO]
+> [!NOTE]
 > For more information:
 >
 > - See associated OSF component, including pre-registration: https://osf.io/89ae4/
@@ -29,7 +29,7 @@ Made from template: https://github.com/psyc-201/replication_template
 Note that some columns are only specified for some levels of Stage
 
 | Column | Description |
-| ==== | ==== |
+| --- | --- |
 | rt | Reaction time in ms |
 | url | Url of the experiment |
 | trial\_type | JsPsych trial type |
@@ -55,15 +55,15 @@ Note that some columns are only specified for some levels of Stage
 | stage | Round stage as number |
 | contest | Contest index |
 | round | Round index |
-| strength\_`a|b` | Participant's estimated strength for contestant `a|b` |
-| effort\_`a|b` | Participant's estimated effort for contestant `a|b` |
-| outcome\_`a|b` | Actual outcome for contestant `a|b` |
+| strength\_`a/b` | Participant's estimated strength for contestant `a/b` |
+| effort\_`a/b` | Participant's estimated effort for contestant `a/b` |
+| outcome\_`a/b` | Actual outcome for contestant `a/b` |
 | reward | Current round reward |
-| r`N`\_strength\_`a|b` | Participant's round-`N` estimated strength for contestant `a|b` |
-| r`N`\_effort\_`a|b` | Participant's round-`N` estimated effort for contestant `a|b` |
-| r`N`\_outcome\_`a|b` | Actual outcome in round-`N` for contestant `a|b` |
-| probability\_`a|b` | Participant's estimated lift probability for contestant `a|b` |
-| r`N`\_prob\_`a|b` | Participant's estimated lift probability for contestant `a|b` at round `N` (2 or 3) |
+| r`N`\_strength\_`a/b` | Participant's round-`N` estimated strength for contestant `a/b` |
+| r`N`\_effort\_`a/b` | Participant's round-`N` estimated effort for contestant `a/b` |
+| r`N`\_outcome\_`a/b` | Actual outcome in round-`N` for contestant `a/b` |
+| probability\_`a/b` | Participant's estimated lift probability for contestant `a/b` |
+| r`N`\_prob\_`a/b` | Participant's estimated lift probability for contestant `a/b` at round `N` (2 or 3) |
 | attention\_check | Whether passed the attention check (1 = passed, 0 = failed) |
 | count | Unclear; related to attention checks |
 | screen | Unclear; seems to be a fullscreen enter event, but it's at the end of the study |
