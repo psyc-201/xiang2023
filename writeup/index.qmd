@@ -46,9 +46,11 @@ variability: not reported in paper, but can estimate from the shared data
 ::: {.callout-note}
 ## Links
 Repository: [https://github.com/psyc-201/xiang2023](https://github.com/psyc-201/xiang2023)  
+OSF Component with Preregistration: [https://osf.io/89ae4/](https://osf.io/89ae4/)  
 Original paper: [2023_xiang_effort.pdf](../original_paper/2023_xiang_effort.pdf) (Retrieved on Sep 30, 2025 from [velezlab.org](https://www.velezlab.org/publications#:~:text=Collaborative%20decision%20making%20is%20grounded%20in%20representations%20of%20other%20people%E2%80%99s%20competence%20and%20effort))  
 Hosted experiment: [https://psyc-201.github.io/xiang2023/exp/index1.html](https://psyc-201.github.io/xiang2023/exp/index1.html)  
-Hosted version of this report: [https://psyc-201.github.io/xiang2023/writeup/](https://psyc-201.github.io/xiang2023/writeup/)
+Hosted version of this report: [https://psyc-201.github.io/xiang2023/writeup/](https://psyc-201.github.io/xiang2023/writeup/)  
+Presentation accompanying this report: [https://psyc-201.github.io/xiang2023/presentation/](https://psyc-201.github.io/xiang2023/presentation/)
 :::
 
 ## Methods
@@ -207,44 +209,74 @@ We will manually exclude any participants who failed both attention checks.
 ### Data Preparation
 
 #### Load Relevant Libraries and Functions
-library('tidyverse')
-library('lmerTest')
+library(tidyverse)
+library(lmerTest)
 
 #### Import data
-# read all files like data/index1_{subjectId}_output.csv, save subjectId to a column, and bind rows
-# (data downloaded from OSF, to which is was saved by datapipe)
-# OSF is authenticated automatically using OSF_PAT in .Renviron
-OSF_NODE_REPLICATION_PROJECT <- '89ae4'
-osf_data_files <- osfr::osf_retrieve_node(OSF_NODE_REPLICATION_PROJECT) %>%
-  osfr::osf_ls_nodes(pattern = "Prolific") %>%
-  osfr::osf_ls_files(n_max=Inf)
-  
-osf_data_files %>%
-  osfr::osf_download(path="./data", conflicts="skip", progress=interactive()) %>%
-  invisible() # if sanity checks point to any data being missing (possibly due to the csvs being malformed), use conflicts="overwrite"
 
-filename_to_subjectId <- function(filename) str_extract(filename, '(?<=index1_).*(?=_output.csv)')
+filename_to_subjectId <- function(filename) str_extract(filename, '(?<=index1_).*(?=_output(-anon)?\\.csv)')
 
-dat_raw <- list.files(path = './data/', pattern = 'index1_.*_output.csv', full.names = T) %>%
+if (str_equal(Sys.getenv('OSF_PAT'), '')) {
+  warning("OSF_PAT not found in .Renviron; cannot download data from OSF. Continuing, assuming that anonymized data is already accessible")
+} else {
+  message("Retrieving data on OSF...")
+  # (data downloaded from OSF, to which is was saved by datapipe)
+  # OSF is authenticated automatically using OSF_PAT in .Renviron
+  OSF_NODE_REPLICATION_PROJECT <- '89ae4'
+  osf_data_files <- osfr::osf_retrieve_node(OSF_NODE_REPLICATION_PROJECT) %>%
+    osfr::osf_ls_nodes(pattern = "Prolific") %>%
+    osfr::osf_ls_files(n_max=Inf)
+
+  message("Downloading any new data...")
+  osf_data_files %>%
+    osfr::osf_download(path="./data", conflicts="skip", progress=interactive()) %>%
+    invisible() # if sanity checks point to any data being missing (possibly due to the csvs being malformed), use conflicts="overwrite"
+
+  message("Extracting metadata...")
+  dat_filemeta <- osf_data_files %>%
+    rename(datapipe_meta = meta) %>%
+    unnest_wider(datapipe_meta, names_sep=".") %>%
+    unnest_wider(datapipe_meta.attributes, names_sep=".") %>%
+    select(name, datapipe_meta.attributes.date_modified) %>%
+    mutate(subjectId = filename_to_subjectId(name)) %>%
+    select(-name) %>%
+    distinct() # in case there's any duplicates for any reason
+
+  message("Saving anonymous data...")
+  warning("**Assuming data contents are already anonymous! (i.e., all prolificIDs are still encrypted and the written responses contain no identifying information). If they're not anonymous, you should anonymize them now.")
+  local({
+    # Read the data now, add in the used metadata, and resave it with new filenames tagging them as anonymous
+    pattern_match_original_raw_data <- 'index1_(.*)_output.csv'
+    original_filenames <- list.files(path = './data', pattern = pattern_match_original_raw_data, full.names = T)
+    dat_raw_anonymized <- original_filenames %>%
+      map(~ {
+        read.csv(.x, header = T, stringsAsFactors = F) %>%
+          mutate(subjectId = filename_to_subjectId(basename(.x))) %>%
+          left_join(dat_filemeta, by="subjectId")
+      })
+    
+    pattern_name_anonymized_raw_data <- 'index1_\\1_output-anon.csv'
+    new_filenames <- stringr::str_replace(original_filenames, pattern_match_original_raw_data, pattern_name_anonymized_raw_data)
+    walk2(dat_raw_anonymized, new_filenames, ~ {
+      write.csv(.x %>% select(-subjectId), file = .y, row.names = F)
+    })
+  })
+  message("Saved anonymous data!")
+}
+
+# read all files, save subjectId to a column, and bind rows
+pattern_match_anonymized_raw_data <- 'index1_.*_output-anon.csv'
+
+dat_raw <- list.files(path = './data', pattern = pattern_match_anonymized_raw_data, full.names = T) %>%
   map_dfr(~ {
     read.csv(.x, header = T, stringsAsFactors = F) %>%
       mutate(subjectId = filename_to_subjectId(basename(.x)))
   })
 
-dat_filemeta <- osf_data_files %>%
-  rename(datapipe_meta = meta) %>%
-  unnest_wider(datapipe_meta, names_sep=".") %>%
-  unnest_wider(datapipe_meta.attributes, names_sep=".") %>%
-  select(name, datapipe_meta.attributes.date_modified) %>%
-  mutate(subjectId = filename_to_subjectId(name)) %>%
-  select(-name) %>%
-  distinct() # in case there's any duplicates for any reason
-
 dat_raw_annotated <- dat_raw %>%
   group_by(subjectId) %>%
   mutate(passed_an_attention_check = all(attention_sum >= 1, na.rm=T)) %>%
-  ungroup() %>%
-  left_join(dat_filemeta, by="subjectId")
+  ungroup()
 
 #### Data exclusion / filtering
 # based on attention checks criterion
@@ -333,38 +365,46 @@ dat_clean <- dat_raw_filtered %>%
 # Decrypt prolific IDs to determine bonuses
 
 if (interactive()) { # safeguard to help ensure this is not output by quarto
-  decrypt_rsa <- function(col, private_key_path) {
-    private_key <- openssl::read_key(private_key_path)
-    decrypt_one <- function(enc) {
-      if (is.na(enc) || enc == "") return(NA_character_)
-      tryCatch({
-        raw_enc <- base64enc::base64decode(enc)
-        raw_dec <- openssl::rsa_decrypt(raw_enc, private_key)
-        rawToChar(raw_dec)
-      }, error = function(e) NA_character_)
+  private_key_path <- './new_code/competence_effort/Experiment/private.pem'
+  if (!file.exists(private_key_path)) {
+    warning("Private key file not found at specified path. Cannot decrypt Prolific IDs without it.")
+  } else {
+    decrypt_rsa <- function(col, private_key_path) {
+      private_key <- openssl::read_key(private_key_path)
+      decrypt_one <- function(enc) {
+        if (is.na(enc) || enc == "") return(NA_character_)
+        tryCatch({
+          raw_enc <- base64enc::base64decode(enc)
+          raw_dec <- openssl::rsa_decrypt(raw_enc, private_key)
+          rawToChar(raw_dec)
+        }, error = function(e) NA_character_)
+      }
+      vapply(col, decrypt_one, FUN.VALUE = character(1))
     }
-    vapply(col, decrypt_one, FUN.VALUE = character(1))
-  }
 
-  dat_raw_annotated %>%
-    select(subjectId, encryptedProlificId, bonus, passed_an_attention_check, datapipe_meta.attributes.date_modified) %>%
-    group_by(subjectId) %>%
-    filter(!is.na(bonus)) %>%
-    ungroup() %>%
-    # restore any subjects in case we lost them due to the filtering
-    complete(subjectId = dat_raw_annotated$subjectId) %>%
-    complete(encryptedProlificId = dat_raw_annotated$encryptedProlificId) %>%
-    mutate(
-      prolificId = decrypt_rsa(
-        encryptedProlificId,
-        private_key_path='./new_code/competence_effort/Experiment/private.pem'
-      )
-    ) %>%
-    filter(datapipe_meta.attributes.date_modified > lubridate::ymd("2025-11-20", tz="PST")) %>% # filter to show only post-pilot participants
-    arrange(desc(prolificId)) %>%
-    select(prolificId, bonus)
-    # filter(!is.na(prolificId), bonus > 0) %>% format_csv(col_names=F)
-  # NOTE: only do once per batch of data collection, since might accumulate in Prolific if bulk-bonus multiple times!
+    dat_raw_annotated %>%
+      select(subjectId, encryptedProlificId, bonus, passed_an_attention_check, datapipe_meta.attributes.date_modified) %>%
+      group_by(subjectId) %>%
+      filter(!is.na(bonus)) %>%
+      ungroup() %>%
+      # restore any subjects in case we lost them due to the filtering
+      complete(subjectId = dat_raw_annotated$subjectId) %>%
+      complete(encryptedProlificId = dat_raw_annotated$encryptedProlificId) %>%
+      mutate(
+        prolificId = decrypt_rsa(
+          encryptedProlificId,
+          private_key_path=private_key_path
+        )
+      ) %>%
+      # filter to show only post-pilot participants
+      filter(datapipe_meta.attributes.date_modified > lubridate::ymd("2025-11-20", tz="PST")) %>%  
+      arrange(desc(prolificId)) %>%
+      select(prolificId, bonus)
+      
+      # filter(!is.na(prolificId), bonus > 0) %>% format_csv(col_names=F)
+    
+    # NOTE: only do one bulk-bonus per batch of data collection, since might accumulate in Prolific if bulk-bonus multiple times!
+  }
 }
 ```
 
