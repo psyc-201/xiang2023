@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jacob C. Zimmerman">
-<meta name="dcterms.date" content="2025-12-02">
+<meta name="dcterms.date" content="2025-12-10">
 
 <title>Replication of Experiment 1 by Xiang, Vélez &amp; Gershman (2023, JEP:G)</title>
 <style>
@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 /* CSS for citations */
 div.csl-bib-body { }
@@ -89,6 +124,18 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<link href="../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="../site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="../site_libs/datatables-binding-0.34.0/datatables.js"></script>
+<script src="../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="../site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="../site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="../site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="../site_libs/dt-ext-responsive-1.13.6/css/responsive.dataTables.min.css" rel="stylesheet">
+<script src="../site_libs/dt-ext-responsive-1.13.6/js/dataTables.responsive.min.js"></script>
+<link href="../site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+<script src="../site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -144,12 +191,18 @@ window.Quarto = {
   <li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan">Analysis Plan</a></li>
   <li><a href="#differences-from-original-study" id="toc-differences-from-original-study" class="nav-link" data-scroll-target="#differences-from-original-study">Differences from Original Study</a></li>
   <li><a href="#reliability-and-validity" id="toc-reliability-and-validity" class="nav-link" data-scroll-target="#reliability-and-validity">Reliability and Validity</a></li>
+  <li><a href="#methods-addendum-post-data-collection" id="toc-methods-addendum-post-data-collection" class="nav-link" data-scroll-target="#methods-addendum-post-data-collection">Methods Addendum (Post Data Collection)</a></li>
   </ul></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
   <ul class="collapse">
   <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">Data preparation</a></li>
   <li><a href="#confirmatory-analysis" id="toc-confirmatory-analysis" class="nav-link" data-scroll-target="#confirmatory-analysis">Confirmatory analysis</a></li>
   <li><a href="#exploratory-analyses" id="toc-exploratory-analyses" class="nav-link" data-scroll-target="#exploratory-analyses">Exploratory analyses</a></li>
+  </ul></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a>
+  <ul class="collapse">
+  <li><a href="#summary-of-replication-attempt" id="toc-summary-of-replication-attempt" class="nav-link" data-scroll-target="#summary-of-replication-attempt">Summary of Replication Attempt</a></li>
+  <li><a href="#commentary" id="toc-commentary" class="nav-link" data-scroll-target="#commentary">Commentary</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -184,7 +237,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 2, 2025</p>
+      <p class="date">December 10, 2025</p>
     </div>
   </div>
   
@@ -199,7 +252,7 @@ window.Quarto = {
 <!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>My broad research interests include modeling how individuals perceive, represent, and judge potential collaborators’ affordances for collaboration. <span class="citation" data-cites="Xiang2023-zo">Xiang et al. (<a href="#ref-Xiang2023-zo" role="doc-biblioref">2023</a>)</span> propose and empirically validate a probabilistic model in which recursively updated inferences of competence and effort (“belief–desire–competence framework”), together with observed outcomes, jointly predict individuals’ judgments of collaborators, across various cognitive tasks which are common within collaboration. In particular, in Experiment 1, their model best predicts participants’ judgments about whether joint activity will succeed, compared to plausible alternative models. I am eager to attempt to replicate this finding to help establish the robustness of this model of collaborator judgment, before I may attempt to extend it in future work.</p>
+<p>How do individuals perceive, represent, and judge potential collaborators’ affordances for collaboration? <span class="citation" data-cites="Xiang2023-zo">Xiang et al. (<a href="#ref-Xiang2023-zo" role="doc-biblioref">2023</a>)</span> propose and empirically validate a probabilistic model in which recursively updated inferences of competence and effort (“belief–desire–competence framework”), together with observed outcomes, jointly predict individuals’ judgments of collaborators, across various cognitive tasks which are common within collaboration. In particular, in Experiment 1, their model best predicts participants’ judgments about whether joint activity will succeed, compared to plausible alternative models. I sought to replicate this finding to help establish the robustness of this model of collaborator judgment, before I might extend it in future work.</p>
 <p>Experiment 1 involves observing contestants try to lift a heavy box in a set of <em>contests</em> (six total), each containing three <em>rounds</em>. In each contest, there are two unique avatars playing as the <em>contestants</em>. In rounds 1 and 2, each contestant attempts to lift the box by themselves. In round 3, the contestants attempt to lift the box together. In each round, after observing each contestant succeed or fail to lift the box, the participant judges the strength of each contestant (1–10), and for each contestant that successfully lifted the box, the participant judges that contestant’s allocated effort (0%–100%). At the start of round 2, the participant judges each contestant’s probability of lifting the box successfully (0%–100%), prior to observing the lift attempts. At the start of round 3, the participant judges the probability that the contestants will successfully lift the box together. Further, an incentive to the contestants for lifting the box is specified in each round: in the second and third rounds, the specified reward for lifting the box is double that of the first round. Participants are also told that the heavy box had a constant weight across all contests, which effectively requires at least 5 strength points applied (e.g., on average, 100% effort for a contestant with strength 5, or 50% effort for a contestant with strength 10, etc.). Last, participants see a progressively filled-out table of all the lift outcomes during each contest, visible throughout, including when making judgments.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -213,8 +266,7 @@ window.Quarto = {
 <figcaption>An example table for a contest, as it would appear during the probability judgment at the beginning of round 3.</figcaption>
 </figure>
 </div>
-<p>The challenges/opportunities for my learning in this replication project will include: 1) recreating the paper’s proposed (joint effort) model and two alternative (solitary/compensatory effort) models of the probability of joint success in <a href="https://github.com/kach/memo">memo</a> <span class="citation" data-cites="chandra2025memo">(<a href="#ref-chandra2025memo" role="doc-biblioref">Chandra et al., 2025</a>)</span> (based on the authors’ pre-existing implementations in WebPPL), and 2) running these models over my newly collected data to attempt to replicate that the proposed model is most predictive of participants’ judgments. (I will also replace the original authors’ data-saving step (a php page) with <a href="https://pipe.jspsych.org/">DataPipe</a>.)</p>
-<p>Specifically, I will attempt to replicate that A) when rounds 1 and 2 feature no individual success, participants still judge the probability of joint success in round 3 as non-zero. In addition to this confirmatory analysis, I will attempt to qualitatively replicate that B) participants judge higher probability of joint success as cases of individual success increases, and that the proposed model is the only model evaluated which predicts both patterns A and B. See Analysis Plan below for more details.</p>
+<p>I sought to replicate that A) when rounds 1 and 2 feature no individual success, participants still judge the probability of joint success in round 3 as non-zero. In addition to this confirmatory analysis, I sought to qualitatively replicate that B) participants judge higher probability of joint success as cases of individual success increases, and that the proposed model is the only model evaluated which predicts both patterns A and B. See Analysis Plan below for more details.</p>
 <!--
 the measure of interest: judged round 3 (joint success) probability ("participants believed that the lift probability for “F,F;F,F” was different from zero")
 
@@ -250,20 +302,38 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 <section id="power-precision-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="power-precision-analysis">Power &amp; Precision Analysis</h3>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.1     ✔ stringr   1.6.0
-✔ ggplot2   4.0.0     ✔ tibble    3.3.0
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.2.0     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># adapted from ./original_code/competence_effort/Code/main_text/regression.R</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(tidyverse))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>original.dat <span class="ot">&lt;-</span> <span class="fu">local</span>({</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'./original_code/competence_effort/Data/exp1.csv'</span>, <span class="at">header =</span> T, <span class="at">stringsAsFactors =</span> T)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  dat<span class="sc">$</span>agent <span class="ot">&lt;-</span> <span class="fu">factor</span>(dat<span class="sc">$</span>agent, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'A'</span>, <span class="st">'B'</span>))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  dat<span class="sc">$</span>round <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dat<span class="sc">$</span>round)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  dat<span class="sc">$</span>scenario <span class="ot">&lt;-</span> <span class="fu">factor</span>(dat<span class="sc">$</span>scenario, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">'F,F;F,F'</span>,<span class="st">'F,F;F,L'</span>,<span class="st">'F,L;F,L'</span>,<span class="st">'F,F;L,L'</span>,<span class="st">'F,L;L,L'</span>,<span class="st">'L,L;L,L'</span>), <span class="at">ordered =</span> T)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  dat<span class="sc">$</span>prob[dat<span class="sc">$</span>round<span class="sc">==</span><span class="dv">3</span> <span class="sc">&amp;</span> dat<span class="sc">$</span>agent<span class="sc">==</span><span class="st">'B'</span>] <span class="ot">&lt;-</span> <span class="cn">NaN</span> <span class="co"># so that the probabilities are only counted once for joint lifting</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  dat <span class="ot">&lt;-</span> <span class="fu">arrange</span>(dat,subject,scenario,round,agent)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  dat<span class="sc">$</span>subject <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dat<span class="sc">$</span>subject)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  dat<span class="sc">$</span>model <span class="ot">&lt;-</span> <span class="st">'data'</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  dat</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Test lift probability</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>original.ttest_result <span class="ot">&lt;-</span> <span class="fu">local</span>({</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t.test</span>(</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># filter one agent so that the probability is only counted once. Round 3 is a joint lift.</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    original.dat<span class="sc">$</span>prob[original.dat<span class="sc">$</span>round <span class="sc">==</span> <span class="dv">3</span> <span class="sc">&amp;</span> original.dat<span class="sc">$</span>scenario <span class="sc">==</span> <span class="st">'F,F;F,F'</span> <span class="sc">&amp;</span> original.dat<span class="sc">$</span>agent <span class="sc">==</span> <span class="st">'A'</span>],</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu =</span> <span class="dv">0</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">'two.sided'</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>original.cohensd <span class="ot">&lt;-</span> effectsize<span class="sc">::</span><span class="fu">effectsize</span>(original.ttest_result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
-</div>
-<p>The original effect size is <em>d</em> = 1.47. <!-- d = 1.47 --> To achieve 80%, 90%, or 95% power to detect that effect size, I’d need:</p>
+<p>The original effect size is <em>d</em> = 1.47. <!-- d = 1.47 --> To achieve 80%, 90%, or 95% power to detect that effect size, I needed:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -290,88 +360,91 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 </tr>
 </tbody>
 </table>
-<p>Collecting 9 participants is completely feasible (with each spending ~16 minutes; see Procedure). To compensate for the original study’s measured effect size being inflated (e.g., due to publication bias), 15 participants should be necessary for sufficient power for the primary effect of interest, and this count is also feasible.</p>
-<p>However, for the sake of qualitatively replicating the overall pattern of estimated probabilities increasing as scenarios feature more successful individual lifts (general increase in probability from left to right in Figure 3C; which I’ve labeled “B” above), and that the joint effort model is the only considered model which captures both the key effect and this pattern, I find it prudent to retain the same sample size so that I may attempt to replicate the original qualitative finding with comparable precision. (Targeting higher precision could potentially counter aforementioned effect inflation present in the original paper, but as it is unclear how to quantify the necessary precision for these qualitative analyses, targeting the original precision appears to be a sensible option.)</p>
-<p>Further, in the original study, given 50 participants, the key effect appeared quite robust, with the CI for the data from scenario “F,F;F,F” being quite far from the line LiftProbability=0 (see Figure 3C), suggesting that with 50 participants, we are nearly guaranteed to replicate this effect if it is true.</p>
-<p>Given my understanding of course funding available, collecting 50 participants is feasible.</p>
+<p>Collecting 9 participants was completely feasible (with each spending ~16 minutes; see Procedure). To compensate for the original study’s measured effect size being inflated (e.g., due to publication bias), 15 participants would be necessary for sufficient power for the primary effect of interest, and this count was also feasible.</p>
+<p>However, for the sake of qualitatively replicating the overall pattern of estimated probabilities increasing as scenarios feature more successful individual lifts (general increase in probability from left to right in Figure 3C; which I’ve labeled “B” above), and that the joint effort model is the only considered model which captures both the key effect and this pattern, I found it prudent to retain the same sample size so that I might attempt to replicate the original qualitative finding with comparable precision. (Targeting higher precision could potentially counter aforementioned effect inflation present in the original paper, but as it is unclear how to quantify the necessary precision for these qualitative analyses, targeting the original precision appears to be a sensible option.)</p>
+<p>Further, in the original study, given 50 participants, the key effect appeared quite robust, with the CI for the data from scenario “F,F;F,F” being quite far from the line LiftProbability=0 (see Figure 3C), suggesting that with 50 participants, I was nearly guaranteed to replicate this effect if it is true.</p>
+<p>Given my understanding of course funding available, collecting 50 participants was feasible.</p>
 </section>
 <section id="planned-sample" class="level3">
 <h3 class="anchored" data-anchor-id="planned-sample">Planned Sample</h3>
-<p>Based on my power and precision considerations, I will collect 50 participants on Prolific (from the U.S., per the original authors’ private note), following the specific exclusion strategy reported below.</p>
-<p>I will follow precisely the data collection strategy in the original Experiment 1, as described on p.&nbsp;1569:</p>
+<p>Based on my power and precision considerations, I planned to collect 50 participants on Prolific (from the U.S., per the original authors’ private note), following the specific exclusion strategy reported below.</p>
+<p>I followed precisely the data collection strategy in the original Experiment 1, as described on p.&nbsp;1569:</p>
 <blockquote class="blockquote">
 <p>“Participants’ demographic information was not collected. Participants completed a comprehension check before they moved on to the experiment. They were not allowed to proceed until they answered all the comprehension check questions correctly. … To ensure data quality, we included two attention-check questions in the experiment. Participants who failed one attention check were warned immediately to pay closer attention. Participants who failed both attention checks were asked to leave the experiment and they were not counted among the 50 participants we recruited. A total of 10 participants failed one attention check, and we did not exclude their data in our analysis.”</p>
 </blockquote>
-<p>In the original study, per the experiment code, participants who fail both attention checks are asked to return their submission (to self-exclude). Per our current IRB approval, we are not asking these participants to do so and will instead manually exclude them from our target sample and analysis.</p>
+<p>In the original study, per the experiment code, participants who fail both attention checks are asked to return their submission (to self-exclude). Per our current IRB approval, we did not ask these participants to do so and would instead manually exclude them from our target sample and analysis.</p>
 </section>
 <section id="materials" class="level3">
 <h3 class="anchored" data-anchor-id="materials">Materials</h3>
-<p>I will follow precisely the original Experiment 1. The materials for the experiment are available at <a href="https://github.com/jczimm/competence_effort/tree/23ad2edd00fa68e8d401e6dff8a86da8020982fe">https://github.com/jczimm/competence_effort</a>. This repository is a clone of the authors’ <a href="https://github.com/yyyxiang/competence_effort/tree/ea2059499fa4398484d45184113ca2f7607545e5">own code repository</a> for the paper, with the experimental task code copied from the authors’ hosted version linked in their <code>README.md</code> file.</p>
+<p>I followed precisely the original Experiment 1. The materials for the experiment are available at <a href="https://github.com/jczimm/competence_effort/tree/23ad2edd00fa68e8d401e6dff8a86da8020982fe">https://github.com/jczimm/competence_effort</a>. This repository is a clone of the authors’ <a href="https://github.com/yyyxiang/competence_effort/tree/ea2059499fa4398484d45184113ca2f7607545e5">own code repository</a> for the paper, with the experimental task code copied from the authors’ hosted version linked in their <code>README.md</code> file.</p>
 <p>See Procedure below for more details and a figure from the paper visualizing the task.</p>
 </section>
 <section id="procedure" class="level3">
 <h3 class="anchored" data-anchor-id="procedure">Procedure</h3>
-<p>I will follow precisely the original Experiment 1, as described on pp.&nbsp;1569-1570:</p>
+<p>I would follow precisely the original Experiment 1, as described on pp.&nbsp;1569-1570:</p>
 <blockquote class="blockquote">
 <p>“… participants provided informed consent prior to the experiment. … Participants observed six contests between different pairs of contestants (see Table 2 for a description of the contests; the order was randomized). In each contest, the contestants were given three attempts to lift a box, corresponding to three rounds. In the first two rounds, the contestants tried lifting the box themselves. The reward for lifting the box was $10 in Round 1 and $20 in Round 2. In the third round of each contest, the two contestants tried to lift thebox together for a reward of $20 each. Participants first saw the lift outcome of Round 1 and made strength judgments (1–10; 1 means extremely weak and 10 means extremely strong) and effort judgments (0%–100%) for each contestant. For Rounds 2 and 3, they predicted the probability of the contestants lifting the box (0%–100%) before seeing the outcome, then observed the actual outcome and made strength and effort judgments. Note that participants made effort judgments only when the outcome was Lift. Participants were informed that the weight of the box was always the same and equivalent to a strength of 5 (i.e., an average contestant with strength 5 exerting all of their efforts would be able to lift the box). Participants also saw a table of all the previous outcomes when making their guesses. Figure 2 shows an illustration of the task.” <img src="./table2.png" height="350" alt="Table 2"> <img src="./figure2.png" class="img-fluid" alt="Figure 2"></p>
 </blockquote>
 <p>To summarise: there are six contests, each with three rounds, and multiple judgments during each round.</p>
 <p>According to the consent form in the <a href="https://gershmanlab.com/experiments/yang/toc/Experiment/index1.html">original experiment</a>, the study is estimated to take 15 minutes. Accordingly, adhering to Prolific’s recommended rate of compensation ($12/hr), base compensation will be $3.</p>
-<p>For determining bonus compensation, I will follow precisely the original scheme as described on p.&nbsp;1569:</p>
+<p>For determining bonus compensation, I followed precisely the original scheme as described on p.&nbsp;1569:</p>
 <blockquote class="blockquote">
 <p>“Participants received … a potential bonus payment of up to $1. The amount of bonus they received was equal to the probability they put on the realized lift outcome on a randomly picked round.”</p>
 </blockquote>
 </section>
 <section id="analysis-plan" class="level3">
 <h3 class="anchored" data-anchor-id="analysis-plan">Analysis Plan</h3>
-<p>I will conduct a one-sample <em>t</em> test on the participants’ reported round-3 lift probability for scenario “F,F;F,F” (i.e., each contestant failed to lift the box in both rounds 2 and 3), with the null hypothesis that the true lift probability is zero. See Planned Sample for the data exclusion rule.</p>
-<p>In addition to this confirmatory analysis, I will attempt to replicate the qualitative pattern that participants judge higher probability of joint success as cases of individual success increases. I will also reimplement their proposed model (joint effort) and alternative models (solitary effort and compensatory effort) in memo (see Differences from Original Study) and attempt to replicate that the proposed model is the only model evaluated which predicts both the qualitative pattern and the other result (that participants estimate round-3 lift probability as non-zero after two rounds of failures). See original paper’s Figure 3C and accompanying explanation, pp.&nbsp;1570-1571; I will recreate that figure and attempt to replicate that explanation on my own data. Further, I will also estimate and statistically test the difference in the probability judgments plotted in Figure 3C between the original data and my new data.</p>
+<p>I conducted a <strong>one-sample <em>t</em> test on the participants’ reported round-3 lift probability for scenario “F,F;F,F”</strong> (i.e., each contestant failed to lift the box in both rounds 2 and 3), with the null hypothesis that the true lift probability is zero. See Planned Sample for the data exclusion rule.</p>
+<p>In addition to this confirmatory analysis, I would attempt to replicate the qualitative pattern that participants judge higher probability of joint success as cases of individual success increases. I would also reimplement their proposed model (joint effort) and alternative models (solitary effort and compensatory effort) in <a href="https://github.com/kach/memo">memo</a> <span class="citation" data-cites="chandra2025memo">(<a href="#ref-chandra2025memo" role="doc-biblioref">Chandra et al., 2025</a>)</span> (see Differences from Original Study) and attempt to replicate that the proposed model is the only model evaluated which predicts both the qualitative pattern and the other result (that participants estimate round-3 lift probability as non-zero after two rounds of failures). See original paper’s Figure 3C and accompanying explanation, pp.&nbsp;1570-1571; I would recreate that figure and attempt to replicate that explanation on my own data. Further, I would also estimate and statistically test the difference in the probability judgments plotted in Figure 3C between the original data and my new data.</p>
 <p>I must note that while the <em>t</em> test alone does not justify the paper’s central claim that the joint effort model is qualitatively predictive, in the absence one such statistical test, this <em>t</em> test is a good alternative: this test demonstrates one of two key behavioral effects (p.&nbsp;1570) which the model was qualitatively evaluated to predict. (In other words, I should attempt to replicate this behavioral effect before I could try to qualitatively replicate that the joint effort model is the only considered model which can predict it.)</p>
 </section>
 <section id="differences-from-original-study" class="level3">
 <h3 class="anchored" data-anchor-id="differences-from-original-study">Differences from Original Study</h3>
-<p>The sample will differ in that the original was from Amazon Mechanical Turk, while the new sample will be from Prolific. Accordingly, base compensation will be $3 instead of $2.</p>
-<p>The only difference in setting is that the task will be hosted at <code>https://psyc-201.github.io/xiang2023/exp/index1.html</code> rather than <code>https://gershmanlab.com/experiments/yang/toc/Experiment/index1.html</code>.</p>
+<p>The sample differed in that the original was from Amazon Mechanical Turk, while the new sample is from Prolific. Accordingly, base compensation was be $3 instead of $2.</p>
+<p>The only difference in setting is that the task was hosted at <code>https://psyc-201.github.io/xiang2023/exp/index1.html</code> rather than <code>https://gershmanlab.com/experiments/yang/toc/Experiment/index1.html</code>. Accordingly, I also replaced the original authors’ data-saving step (a php page) with <a href="https://pipe.jspsych.org/">DataPipe</a>.</p>
 <p>The only known visible differences in procedure are:</p>
 <ol type="1">
 <li>The consent form is updated according to the details provided by the UCSD course PSYC 201A</li>
 <li>In task instructions, “HIT” is renamed “submission”</li>
 <li>In task instructions, “Different pairs of contestants will come in to lift the box” becomes “For each contest, a new pair of contestants will come in to lift the box” (to clarify first two questions of comprehension check)</li>
-<li>No more than two attempts of the comprehension check will be allowed (per <a href="https://researcher-help.prolific.com/en/articles/445153-prolific-s-attention-and-comprehension-check-policy">Prolific guidelines</a>). Accordingly, before the comprehension check, we added: “You will have two chances to complete the comprehension questions correctly before we ask you to return your submission, per Prolific guidelines.”; and upon comprehension check failure, we added: “Please note that you have only X attempt(s) left.”</li>
+<li>See <a href="#sec-method-changes" class="quarto-xref">Section&nbsp;2.8.2</a> for an additional change</li>
 </ol>
-<p>While the confirmatory analysis will be rerun using the original R code provided by the authors, for the qualitative replication attempt I will use a reimplementation of the joint effort model and the alternative models (solitary effort and compensatory effort models) in memo, which were originally written in WebPPL. I expect that reimplementation of the continuous probabilistic models in WebPPL as discrete probabilistic models in memo will produce higher estimate precision as the model predictions will be deterministic, rather than stochastic. (I will discretize the distribution at a high resolution such that there is no systematic difference in estimates.)</p>
-<p>I do not anticipate that these differences are meaningful regarding the original paper’s claims and the analyses of interest. However, it is possible that 3 and 4 - improving comprehension-check fairness and reducing testing fatigue - may slightly improve measurement precision and reduce measurement bias, enhancing the claims of my replication.</p>
+<p>While the confirmatory analysis was rerun using the original R code provided by the authors, for the qualitative replication I used a reimplementation of the joint effort model and the alternative models (solitary effort and compensatory effort models) in <a href="https://github.com/kach/memo">memo</a> <span class="citation" data-cites="chandra2025memo">(<a href="#ref-chandra2025memo" role="doc-biblioref">Chandra et al., 2025</a>)</span>, based on the authors’ original implementations in WebPPL. I expected that reimplementation of the continuous probabilistic models in WebPPL as discrete probabilistic models in memo would produce higher estimate precision as the model predictions will be deterministic, rather than stochastic. (I also discretized the distribution at a high resolution such that there was no meaningful systematic difference in estimates.)</p>
+<p>I did not anticipate that these differences are meaningful regarding the original paper’s claims and the analyses of interest. However, it is possible that 3 and 4 - improving comprehension-check fairness and reducing testing fatigue - may slightly improve measurement precision and reduce measurement bias, enhancing the claims of my replication.</p>
 </section>
 <section id="reliability-and-validity" class="level3">
 <h3 class="anchored" data-anchor-id="reliability-and-validity">Reliability and Validity</h3>
 <p>The key measure is the participant’s report of the probability of the contestants successfully lifting the box in round 3. For this measure, the latent construct of interest is the participant’s <em>internal</em> estimate of lift probability.</p>
 <p>The reliability of this measure is unclear, given a lack of referenced evidence of the reliability of an explicit probability judgment. However, in the current model of the participant’s judgment as Bayesian inference, I infer that the reliability is negatively correlated with the noisiness of the participant’s internal translation from implicit posterior distribution (over lift probability) to explicit report; in other words, this measure can be no more reliable than the reliability of participants’ own estimation of the expected value of their internal posterior distribution. As there may also be individual differences in the noisiness of this translation process reliability could be reduced by this.</p>
 <p>Likewise, validity is unclear. And following the same logic, I infer that the validity may vary across participants, given that there could be individual differences in the accuracy of participations’ estimation of the expected value of their internal posterior distribution.</p>
-<!-- 
-
-### Methods Addendum (Post Data Collection)
-
-#### Actual Sample
-  Sample size, demographics, data exclusions based on rules spelled out in analysis plan
-
-#### Differences from pre-data collection methods plan
-  Any differences from what was described as the original plan, or “none”.
-
--->
+</section>
+<section id="methods-addendum-post-data-collection" class="level3">
+<h3 class="anchored" data-anchor-id="methods-addendum-post-data-collection">Methods Addendum (Post Data Collection)</h3>
+<section id="actual-sample" class="level4">
+<h4 class="anchored" data-anchor-id="actual-sample">Actual Sample</h4>
+<p>We collected data from 50 participants.</p>
+<p>On Prolific there were 51 participants collected, not 50, since one returned the study but was also approved (since they returned the study, it opened up the slot again). However, we only have 50 participants’ data, since one participant’s data (prolificId starting with 5c6) wasn’t recorded – I think they didn’t press “Next” at the very end of the study, which is necessary to save the data. (In any future iterations, saving should happen before the completion code is given.)</p>
+<p>Demographic information was not collected. By design of the experiment, participants who failed the comprehension check twice were excluded (see below). Following the planned data exclusion rule, 0 <!-- excluded_for_2inattention --> participants were excluded for failing both attention checks. A total of 10 <!-- kept_despite_1inattention --> participants failed one attention check, and we did not exclude their data in our analysis.</p>
+</section>
+<section id="sec-method-changes" class="level4">
+<h4 class="anchored" data-anchor-id="sec-method-changes">Differences from pre-data collection methods plan</h4>
+<p>After piloting, to align with <a href="https://researcher-help.prolific.com/en/articles/445153-prolific-s-attention-and-comprehension-check-policy">Prolific’s guidelines</a>, I modified the task such that no more than two attempts of the comprehension check were allowed. Participants who failed the comprehension check twice were asked to return the submission. Accordingly, before the comprehension check, I added: “You will have two chances to complete the comprehension questions correctly before we ask you to return your submission, per Prolific guidelines.”; and upon comprehension check failure, I added: “Please note that you have only X attempt(s) left.”</p>
+<p>Unless marked otherwise, all results used only the sample collected after this change was made.</p>
+</section>
 </section>
 </section>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
 <section id="data-preparation" class="level3">
 <h3 class="anchored" data-anchor-id="data-preparation">Data preparation</h3>
-<p>The data collected in this experiment will include task-level data:</p>
+<p>The data collected in this experiment included task-level data:</p>
 <ul>
 <li><code>subjectId</code>, <code>encryptedProlificId</code></li>
 <li>pre-set round outcomes (<code>round1_o</code>, <code>round2_o</code>, <code>round3_o</code>)</li>
 <li>pre-set round incentives (<code>round1_reward</code>, <code>round2_reward</code>, <code>round3_reward</code>)</li>
 <li>number of failed attention checks (<code>attention_sum</code>)</li>
 </ul>
-<p>It will also include round-level data:</p>
+<p>They also included round-level data:</p>
 <ul>
 <li>contest index (<code>contest</code>)</li>
 <li>round index (<code>round</code>)</li>
@@ -380,13 +453,615 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 <li>outcomes (<code>r1_outcome_a</code>/<code>r2_outcome_a</code>/<code>r3_outcome_a</code>, and <code>r1_outcome_b</code>/<code>r2_outcome_b</code>/<code>r3_outcome_b</code>)</li>
 <li>probability (<code>r1_prob_a</code>/<code>r2_prob_a</code>/<code>r3_prob_a</code>, and <code>r1_prob_b</code>/<code>r2_prob_b</code>/<code>r3_prob_b</code>)</li>
 </ul>
-<p>We will manually exclude any participants who failed both attention checks.</p>
+<p>I would manually exclude any participants who failed both attention checks.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Data Preparation</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="do">#### Load Relevant Libraries and Functions</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(tidyverse))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>Dt <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">options=</span><span class="fu">list</span>(<span class="at">autoWidth=</span><span class="cn">TRUE</span>)) DT<span class="sc">::</span><span class="fu">datatable</span>(data, <span class="at">extensions =</span> <span class="fu">c</span>(<span class="st">'Responsive'</span>), <span class="at">rownames =</span> <span class="cn">FALSE</span>, <span class="at">options =</span> options) </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="do">#### Import data</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>filename_to_subjectId <span class="ot">&lt;-</span> <span class="cf">function</span>(filename) <span class="fu">str_extract</span>(filename, <span class="st">'(?&lt;=index1_).*(?=_output(-anon)?</span><span class="sc">\\</span><span class="st">.csv)'</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">str_equal</span>(<span class="fu">Sys.getenv</span>(<span class="st">'OSF_PAT'</span>), <span class="st">''</span>)) {</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">warning</span>(<span class="st">"OSF_PAT not found in .Renviron; cannot download data from OSF. Continuing, assuming that anonymized data is already accessible"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">"Retrieving data on OSF..."</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># (data downloaded from OSF, to which is was saved by datapipe)</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># OSF is authenticated automatically using OSF_PAT in .Renviron</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  OSF_NODE_REPLICATION_PROJECT <span class="ot">&lt;-</span> <span class="st">'89ae4'</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  osf_data_files <span class="ot">&lt;-</span> osfr<span class="sc">::</span><span class="fu">osf_retrieve_node</span>(OSF_NODE_REPLICATION_PROJECT) <span class="sc">%&gt;%</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    osfr<span class="sc">::</span><span class="fu">osf_ls_nodes</span>(<span class="at">pattern =</span> <span class="st">"Prolific"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    osfr<span class="sc">::</span><span class="fu">osf_ls_files</span>(<span class="at">n_max=</span><span class="cn">Inf</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">"Downloading any new data..."</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  osf_data_files <span class="sc">%&gt;%</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    osfr<span class="sc">::</span><span class="fu">osf_download</span>(<span class="at">path=</span><span class="st">"./data"</span>, <span class="at">conflicts=</span><span class="st">"skip"</span>, <span class="at">progress=</span><span class="fu">interactive</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">invisible</span>() <span class="co"># if sanity checks point to any data being missing (possibly due to the csvs being malformed), use conflicts="overwrite"</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">"Extracting metadata..."</span>)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  dat_filemeta <span class="ot">&lt;-</span> osf_data_files <span class="sc">%&gt;%</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">datapipe_meta =</span> meta) <span class="sc">%&gt;%</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unnest_wider</span>(datapipe_meta, <span class="at">names_sep=</span><span class="st">"."</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unnest_wider</span>(datapipe_meta.attributes, <span class="at">names_sep=</span><span class="st">"."</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(name, datapipe_meta.attributes.date_modified) <span class="sc">%&gt;%</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">subjectId =</span> <span class="fu">filename_to_subjectId</span>(name)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>name) <span class="sc">%&gt;%</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>() <span class="co"># in case there's any duplicates for any reason</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">"Saving anonymous data..."</span>)</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">warning</span>(<span class="st">"**Assuming data contents are already anonymous! (i.e., all prolificIDs are still encrypted and the written responses contain no identifying information). If they're not anonymous, you should anonymize them now."</span>)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">local</span>({</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Read the data now, add in the used metadata, and resave it with new filenames tagging them as anonymous</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    pattern_match_original_raw_data <span class="ot">&lt;-</span> <span class="st">'index1_(.*)_output.csv'</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    original_filenames <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">'./data'</span>, <span class="at">pattern =</span> pattern_match_original_raw_data, <span class="at">full.names =</span> T)</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    dat_raw_anonymized <span class="ot">&lt;-</span> original_filenames <span class="sc">%&gt;%</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>      <span class="fu">map</span>(<span class="sc">~</span> {</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        <span class="fu">read.csv</span>(.x, <span class="at">header =</span> T, <span class="at">stringsAsFactors =</span> F) <span class="sc">%&gt;%</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>          <span class="fu">mutate</span>(<span class="at">subjectId =</span> <span class="fu">filename_to_subjectId</span>(<span class="fu">basename</span>(.x))) <span class="sc">%&gt;%</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>          <span class="fu">left_join</span>(dat_filemeta, <span class="at">by=</span><span class="st">"subjectId"</span>)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>      })</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    pattern_name_anonymized_raw_data <span class="ot">&lt;-</span> <span class="st">'index1_</span><span class="sc">\\</span><span class="st">1_output-anon.csv'</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    new_filenames <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_replace</span>(original_filenames, pattern_match_original_raw_data, pattern_name_anonymized_raw_data)</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">walk2</span>(dat_raw_anonymized, new_filenames, <span class="sc">~</span> {</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>      <span class="fu">write.csv</span>(.x <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>subjectId), <span class="at">file =</span> .y, <span class="at">row.names =</span> F)</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">"Saved anonymous data!"</span>)</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="co"># read all files, save subjectId to a column, and bind rows</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>pattern_match_anonymized_raw_data <span class="ot">&lt;-</span> <span class="st">'index1_.*_output-anon.csv'</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>dat_raw <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">'./data'</span>, <span class="at">pattern =</span> pattern_match_anonymized_raw_data, <span class="at">full.names =</span> T) <span class="sc">%&gt;%</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dfr</span>(<span class="sc">~</span> {</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>    <span class="fu">read.csv</span>(.x, <span class="at">header =</span> T, <span class="at">stringsAsFactors =</span> F) <span class="sc">%&gt;%</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">subjectId =</span> <span class="fu">filename_to_subjectId</span>(<span class="fu">basename</span>(.x)))</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>dat_raw_annotated <span class="ot">&lt;-</span> dat_raw <span class="sc">%&gt;%</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(subjectId) <span class="sc">%&gt;%</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">passed_an_attention_check =</span> <span class="fu">all</span>(attention_sum <span class="sc">&gt;=</span> <span class="dv">1</span>, <span class="at">na.rm=</span>T)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">collection_phase =</span> <span class="fu">ifelse</span>(datapipe_meta.attributes.date_modified <span class="sc">&gt;</span> lubridate<span class="sc">::</span><span class="fu">ymd</span>(<span class="st">"2025-11-20"</span>, <span class="at">tz=</span><span class="st">"PST"</span>), <span class="st">"main"</span>, <span class="st">"pilot"</span>), <span class="at">collection_phase=</span><span class="fu">ifelse</span>(<span class="fu">is.na</span>(collection_phase), <span class="st">"pilot"</span>, collection_phase), <span class="at">collection_phase=</span><span class="fu">factor</span>(collection_phase, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"pilot"</span>, <span class="st">"main"</span>)))</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="do">#### Data exclusion / filtering</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="co"># based on attention checks criterion</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="co"># (also only include participants who have a session ID, as those who don't were not real Prolific participants; and only include participants who have done a trial, otherwise they have failed the comprehension check the maximum number of times)</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a><span class="co"># and discard pilot data</span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>dat_raw_filtered <span class="ot">&lt;-</span> dat_raw_annotated <span class="sc">%&gt;%</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(passed_an_attention_check) <span class="sc">%&gt;%</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(subjectId) <span class="sc">%&gt;%</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">any</span>(<span class="sc">!</span><span class="fu">is.na</span>(sessionId))) <span class="sc">%&gt;%</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">any</span>(trial_type <span class="sc">==</span> <span class="st">"survey-html-form"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(collection_phase <span class="sc">==</span> <span class="st">"main"</span>)</span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a><span class="do">#### Prepare data for analysis - create columns etc.</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a><span class="co"># Munge to generate the rows/columns I need for the analysis, which are per-round, per-agent data: </span></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="co"># - prob</span></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a><span class="co"># - round</span></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a><span class="co"># - scenario</span></span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a><span class="co"># - agent</span></span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a><span class="co"># - subject</span></span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a><span class="co"># For reference (from original_code/competence_effort/Data/README.txt):</span></span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a><span class="co"># agent column: 1 refers to the weaker contestant, 2 refers to the stronger contestant (if applicable) based on individual lifting outcomes.</span></span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a><span class="co"># prob column: Participants' lift probability judgments.</span></span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>dat_clean <span class="ot">&lt;-</span> dat_raw_filtered <span class="sc">%&gt;%</span></span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(trial_type <span class="sc">==</span> <span class="st">"survey-html-form"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">subject=</span>subjectId, contest, round, outcome_a, outcome_b, probability_a, probability_b, strength_a, strength_b, effort_a, effort_b) <span class="sc">%&gt;%</span></span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(subject, contest, round) <span class="sc">%&gt;%</span></span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>  <span class="co"># collapse across round Stage, like in the open data (exp1.csv)</span></span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(subject, contest, round) <span class="sc">%&gt;%</span></span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span>{</span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ifelse</span>(<span class="fu">any</span>(<span class="sc">!</span><span class="fu">is.na</span>(.x)), .x[<span class="sc">!</span><span class="fu">is.na</span>(.x)], <span class="cn">NA</span>)</span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a>  <span class="co"># prepare to generate scenario column, which uses letters to represent the outcomes</span></span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a>    <span class="at">outcome_a =</span> <span class="fu">ifelse</span>(outcome_a <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"L"</span>, <span class="st">"F"</span>),</span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a>    <span class="at">outcome_b =</span> <span class="fu">ifelse</span>(outcome_b <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"L"</span>, <span class="st">"F"</span>)</span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a>  <span class="co"># relabel agents where needed: for any contest, if the two agents don't have the same outcome in any round, the agent that lifted should be called agent b for the whole contest</span></span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(subject, contest) <span class="sc">%&gt;%</span></span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="fu">ends_with</span>(<span class="st">"_a"</span>), <span class="fu">ends_with</span>(<span class="st">"_b"</span>)),</span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">".value"</span>, <span class="st">"agent"</span>),</span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_sep =</span> <span class="st">"_"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(subject, contest, round) <span class="sc">%&gt;%</span></span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a>    <span class="at">needs_switch =</span></span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a>      <span class="fu">length</span>(<span class="fu">unique</span>(outcome)) <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">&amp;</span> </span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a>      ((outcome <span class="sc">==</span> <span class="st">"L"</span> <span class="sc">&amp;</span> agent <span class="sc">==</span> <span class="st">"a"</span>) <span class="sc">|</span> (outcome <span class="sc">==</span> <span class="st">"F"</span> <span class="sc">&amp;</span> agent <span class="sc">==</span> <span class="st">"b"</span>))</span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(subject, contest) <span class="sc">%&gt;%</span></span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">needs_switch =</span> <span class="fu">any</span>(needs_switch)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a>    <span class="at">agent =</span> <span class="fu">ifelse</span>(needs_switch, <span class="fu">ifelse</span>(agent <span class="sc">==</span> <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"a"</span>), agent)</span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>needs_switch) <span class="sc">%&gt;%</span></span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">values_from =</span> <span class="fu">c</span>(outcome, probability, strength, effort), </span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a>              <span class="at">names_from =</span> agent, </span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a>              <span class="at">names_sep =</span> <span class="st">"_"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a>  <span class="co"># now in wide format, with the agents labeled as intended, define scenario</span></span>
+<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(subject, contest, round) <span class="sc">%&gt;%</span></span>
+<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">outcome =</span> <span class="fu">paste</span>(outcome_a, outcome_b, <span class="at">sep=</span><span class="st">","</span>), <span class="at">.after=</span><span class="st">"round"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(subject, contest) <span class="sc">%&gt;%</span></span>
+<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">scenario =</span> <span class="fu">paste</span>(outcome[round <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> round <span class="sc">==</span> <span class="dv">2</span>], <span class="at">collapse=</span><span class="st">";"</span>), <span class="at">.after=</span><span class="st">"round"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">starts_with</span>(<span class="st">"outcome"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get into format used in the open data (exp1.csv)</span></span>
+<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="fu">ends_with</span>(<span class="st">"_a"</span>), <span class="fu">ends_with</span>(<span class="st">"_b"</span>)),</span>
+<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">".value"</span>, <span class="st">"agent"</span>),</span>
+<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_sep =</span> <span class="st">"_"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">prob =</span> probability) <span class="sc">%&gt;%</span></span>
+<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agent =</span> <span class="fu">ifelse</span>(agent <span class="sc">==</span> <span class="st">'a'</span>, <span class="dv">1</span>, <span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Decrypt prolific IDs to determine bonuses</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">interactive</span>()) { <span class="co"># safeguard to help ensure this is not output by quarto</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  private_key_path <span class="ot">&lt;-</span> <span class="st">'./new_code/competence_effort/Experiment/private.pem'</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(private_key_path)) {</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">warning</span>(<span class="st">"Private key file not found at specified path. Cannot decrypt Prolific IDs without it."</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    decrypt_rsa <span class="ot">&lt;-</span> <span class="cf">function</span>(col, private_key_path) {</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>      private_key <span class="ot">&lt;-</span> openssl<span class="sc">::</span><span class="fu">read_key</span>(private_key_path)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>      decrypt_one <span class="ot">&lt;-</span> <span class="cf">function</span>(enc) {</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (<span class="fu">is.na</span>(enc) <span class="sc">||</span> enc <span class="sc">==</span> <span class="st">""</span>) <span class="fu">return</span>(<span class="cn">NA_character_</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">tryCatch</span>({</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>          raw_enc <span class="ot">&lt;-</span> base64enc<span class="sc">::</span><span class="fu">base64decode</span>(enc)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>          raw_dec <span class="ot">&lt;-</span> openssl<span class="sc">::</span><span class="fu">rsa_decrypt</span>(raw_enc, private_key)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>          <span class="fu">rawToChar</span>(raw_dec)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        }, <span class="at">error =</span> <span class="cf">function</span>(e) <span class="cn">NA_character_</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">vapply</span>(col, decrypt_one, <span class="at">FUN.VALUE =</span> <span class="fu">character</span>(<span class="dv">1</span>))</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    dat_raw_annotated <span class="sc">%&gt;%</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(subjectId, encryptedProlificId, bonus, passed_an_attention_check, datapipe_meta.attributes.date_modified) <span class="sc">%&gt;%</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(subjectId) <span class="sc">%&gt;%</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bonus)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>      <span class="co"># restore any subjects in case we lost them due to the filtering</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>      <span class="fu">complete</span>(<span class="at">subjectId =</span> dat_raw_annotated<span class="sc">$</span>subjectId) <span class="sc">%&gt;%</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>      <span class="fu">complete</span>(<span class="at">encryptedProlificId =</span> dat_raw_annotated<span class="sc">$</span>encryptedProlificId) <span class="sc">%&gt;%</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">prolificId =</span> <span class="fu">decrypt_rsa</span>(</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>          encryptedProlificId,</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>          <span class="at">private_key_path=</span>private_key_path</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">%&gt;%</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>      <span class="co"># filter to show only post-pilot participants</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(collection_phase <span class="sc">==</span> <span class="st">"main"</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>      <span class="fu">arrange</span>(<span class="fu">desc</span>(prolificId)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(prolificId, bonus)</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>      <span class="co"># filter(!is.na(prolificId), bonus &gt; 0) %&gt;% format_csv(col_names=F)</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># </span><span class="al">NOTE</span><span class="co">: only do one bulk-bonus per batch of data collection, since might accumulate in Prolific if bulk-bonus multiple times!</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Sanity Checks
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sanity checks</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"count all participants with a sessionId"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>count all participants with a sessionId</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(real_participants <span class="ot">&lt;-</span> dat_raw_annotated <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(subjectId) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">any</span>(<span class="sc">!</span><span class="fu">is.na</span>(sessionId))) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(subjectId) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 97</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"count participants included"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>count participants included</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(filtered_participants <span class="ot">&lt;-</span> dat_raw_filtered <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(subjectId) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>(clean_participants <span class="ot">&lt;-</span> dat_clean <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(subject) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(clean_participants <span class="sc">==</span> filtered_participants)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"count participants excluded due to failing both attention checks"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>count participants excluded due to failing both attention checks</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>(excluded_for_2inattention <span class="ot">&lt;-</span> dat_raw_annotated <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>passed_an_attention_check) <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(subjectId) <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">any</span>(<span class="sc">!</span><span class="fu">is.na</span>(sessionId))) <span class="sc">%&gt;%</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">any</span>(trial_type <span class="sc">==</span> <span class="st">"survey-html-form"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(subjectId) <span class="sc">%&gt;%</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"count participants kept because only failed one attention check"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>count participants kept because only failed one attention check</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(kept_despite_1inattention <span class="ot">&lt;-</span> dat_raw_filtered <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(subjectId) <span class="sc">%&gt;%</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">all</span>(attention_sum <span class="sc">&lt;</span> <span class="dv">2</span>, <span class="at">na.rm=</span>T)) <span class="sc">%&gt;%</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(subjectId) <span class="sc">%&gt;%</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"check that contest vs scenario is uniformly distributed, and that each participant did each contest and each scenario once"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>check that contest vs scenario is uniformly distributed, and that each participant did each contest and each scenario once</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>dat_clean <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(agent <span class="sc">==</span> <span class="dv">1</span>, round <span class="sc">==</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> scenario, <span class="at">y =</span> contest)) <span class="sc">+</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">color =</span> subject), <span class="at">width=</span>.<span class="dv">1</span>, <span class="at">height=</span>.<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/sanity-checks-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"clearer way to check that each subject did each scenario once"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>clearer way to check that each subject did each scenario once</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>dat_clean <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(agent <span class="sc">==</span> <span class="dv">1</span>, round <span class="sc">==</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> scenario)) <span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> subject), <span class="at">stat=</span><span class="st">"count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/sanity-checks-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"clearer way to check that each subject did each contest once"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>clearer way to check that each subject did each contest once</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>dat_clean <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(agent <span class="sc">==</span> <span class="dv">1</span>, round <span class="sc">==</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> contest)) <span class="sc">+</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> subject), <span class="at">stat=</span><span class="st">"count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/sanity-checks-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"check that effort and strength plots have missing data in the right places"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>check that effort and strength plots have missing data in the right places</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>dat_clean <span class="sc">%&gt;%</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> round, <span class="at">y=</span>effort, <span class="at">color=</span>subject)) <span class="sc">+</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, <span class="at">se=</span>F, <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(scenario<span class="sc">~</span>agent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 800 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 800 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 500 rows containing missing values or values outside the scale range
+(`geom_line()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/sanity-checks-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>dat_clean <span class="sc">%&gt;%</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> round, <span class="at">y=</span>strength, <span class="at">color=</span>subject)) <span class="sc">+</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, <span class="at">se=</span>F, <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(scenario<span class="sc">~</span>agent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/sanity-checks-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>dat_clean <span class="sc">%&gt;%</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> round, <span class="at">y=</span>prob, <span class="at">color=</span>subject)) <span class="sc">+</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, <span class="at">se=</span>F, <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(scenario<span class="sc">~</span>agent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 600 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 600 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 50 rows containing missing values or values outside the scale range
+(`geom_line()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/sanity-checks-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"review written responses"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>review written responses</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>dat_raw_annotated <span class="sc">|&gt;</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(trial_type <span class="sc">==</span> <span class="st">"survey-text"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(subjectId, internal_node_id, responses, collection_phase) <span class="sc">|&gt;</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>(subjectId) <span class="sc">|&gt;</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">responses =</span> jsonlite<span class="sc">::</span><span class="fu">fromJSON</span>(responses)<span class="sc">$</span>Q0) <span class="sc">|&gt;</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(subjectId) <span class="sc">|&gt;</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">question =</span> <span class="fu">ifelse</span>(internal_node_id <span class="sc">==</span> <span class="fu">min</span>(internal_node_id), <span class="st">"DescribeTask"</span>, <span class="st">"Feedback"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>internal_node_id) <span class="sc">|&gt;</span></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="st">"question"</span>, <span class="at">values_from =</span> <span class="st">"responses"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Dt</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-a680a1fcd62a0dd1ba32" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-a680a1fcd62a0dd1ba32">{"x":{"filter":"none","vertical":false,"extensions":["Responsive"],"data":[["01peesrn9r6a","04r76uv3op0r","08lhrxeokx2m","0s4t8h8zv7dv","0w8e158xe58k","16l7yulw6sr2","27wbau6g83q7","2sj5xf22z1wk","30xp0532kx86","3re9jfcsf0r6","447we5zygs1e","4k8ecy8rd6ak","4q283knzudh0","50fb87vc0wfe","519qrhe6zfak","5lhu2mn4z7fn","6bt3juzg6gt3","6e78muckero8","6eg2fdhxg25z","6oa6f8zyoc3d","6ykfphr4vw9n","7t9xoo20ty7w","7ytg5hjrcahy","88c2zvvcwppv","895paftvvoj3","9yx4py82bqtf","a17omtspm1w0","cg52uwv51joh","cu32ucuaja5a","dlpuerf38089","f70elqbtgf1y","fcmmba5devel","gb3tkrvv7n8o","gdqcaemovh1a","j5rtg97h9phc","jcbna7g0c720","jgy00axv8lvz","jk6377961ye8","jta3wkruuw3h","jz75c7vddxqh","k5n25olehymx","kfu0gvrg1o0w","kkogy6tzxsnf","kty5eoyx2xk2","kxzj2mc6y1az","lmn5xavl1jul","mm467972dqax","msjhzztbpp45","ne7kvd68ezq7","nxtswuksmto1","ovkkltdlhlhf","pd8j0z1zwuhl","pw4fa9axqzer","py6t7hjwbxmz","rnpvr6ycgo2o","v3g5hrw0846k","vba451q8csbp","wg6mfpqowbc9","wgd1cuvcs7j3","wvjpnclrg799","x5ph3prhdcna","xr3ywj5zajm7","xzup83qzymb2","ynatc4ohtcll","yuwq5pleqcfb","zxnbgxzvp133"],["main","main","pilot","main","main","pilot","main","pilot","main","main","main","pilot","main","main","main","main","pilot","main","main","main","main","main","main","main","main","main","main","main","main","pilot","pilot","main","main","main","main","main","main","main","main","main","main","main","pilot","pilot","main","main","main","main","pilot","pilot","main","main","main","main","main","pilot","main","main","pilot","main","pilot","pilot","main","main","main","pilot"],["I have been estimating strength and motivation of contestants and applying percentages to their likelihood of lifting the box and applying a number from 1-10 for their strength.","The task I completed involved estimating different values such as the effort that two contestants would have made to lift a box in the round, and other questions involved estimating/guessing how much effort they put into lifting and the probability of them lifting per round.","Box heavy. Participants strong or are they, and they want money or do they.","Guess the strength of contestants and the percentage they had of lifting the box - first independently then together.","I judged if contestants would be able to lift a box.  I also judged how strong they were and how much effort they gave.","Rate how strong person is and how likely they are to lift the box.","I predicted the strength of new contestants in each round and their probability of lifting the boxes. The boxes weighed the same through each round and the contestants changed as well as their strengths. ","It was a game show called lift the box. I had to make an estimate of the percentage that the box would be lifted and how much effort each contestant used during the attempt.","I had to predict how strong and how much effort was put into lifting a box. I made predictions based of their previous efforts.","Guess how strong the contestants are and how likely they are to lift a box","You look at both contestants and their results and guess what their strength might be based on the results, and how much effort they may have given the task. You also rate how likely they can pull off a team lift.","guessing whether contestants can lift the box individually vs cooperatively ","I had to guess how strong each contestant was and how likely it was that they would lift a heavy box alone and together.","I guessed how likely each contestant could lift the box, watched what actually happened, and then updated my ideas about their strength and effort for each round.","Estimating the strength and determination of contestants' abilities to lift boxes based on patterns presented.","guessing if they will pass or fail on lifting the box in 3 rounds","blah","I evaluated multiple rounds of the game show Lift That Box! by estimating each contestant’s strength and effort based on their success or failure, and predicted the likelihood of them lifting the box individually and together. I also completed attention checks where required.","judging how much strength and effort contestants exhibit in lifting boxes","I rated the probability of each contestant lifting boxes.","I was to estimate the likelihood of the contestants being able to lift the boxes. I would also be asked to estimate the strength of the contestants and the amount of effort they likely put in to lifting the boxes.","I completed five contests, each involving a pair of contestants attempting to lift a box of constant weight 5 units across three rounds with increasing financial incentives, culminating in a joint lift for a shared prize","Two people compete in 3 rounds to lift a box, with the third round being them lifting a box together","I was to guess the probability of two contestant lifting the box. ","I was basically observing the results of six different contests, analyzing how the contestants' strength and motivation affected their success in lifting the box. My job was to estimate their true strength and the effort they used, and then predict the outcome of the final team lifting round for each contest.","There are two contestants that have to lift a box in three rounds and you have to predict how strong the contestants are and what's the probability of them lifting the box for each round, including the final round where they both lift together. ","I have been trying to determine the possibility of someone lifting a box for award.","I played a game where I watched a series of contents composed of rounds. Each round featured 2 people who were attempting to lift a box for cash. I was shown their previous attempts at the box lift and whether it was a fail/success for each person, and then had to estimate their strength on a scale and predict the likelihood of the success/failure of their next lift(s).","Predicting which contestants would be able to lift the box and making predictions if they would be able to lift them together","I made predictions about if they would lift the box and also predictions about their strength.","You are deciding on whether 2 people will lift a box separately and together.  You have to say how strong you think they are and the percentage chance they will lift the box.","I rated how weak or strong I thought each contestant was. Then I rated the likelihood of each contestant lifting the box for round 2 and 3. I also rated how much effort I thought each contestant put in to lifting the box.","I had to guess the likelihood of participants lifting a box in a fake gameshow, and also things like what I thought their strength and effort levels were.","I made guesses on whether or not 2 people could individually lift their boxes based off their strength and how much money was in the box. And then whether both the people can lift the box together or not.","There is a box contest where participants spend 2 rounds trying to solo lift a box and one round lifting it together. I estimated likelihood of them successfully lifting the box and estimated their individual strength. ","Two contestants were lifting boxes of a fixed weight. After seeing their performance (lift/fail) I had to predict their strenghts and chances of future sucsess.","I was tasked with estimating the strength of a couple of contestants. I was also tasked with predicting the odds that they would lift containers valued at different amounts.","I had to guess if two people could lift a box and give the odds of their chances to lift it and how much effort they put into it.","The task I just finished was guessing whether or not contestants could lift the boxes by themselves, then together at the end.","I was playing a game where I was guessing the strength of various contestants and the effort they put in."," Judging the strength of each contestant on a 1-10 scale based on results after round 1. We also judge probabilities of success in round 2 and probability of success in round 3 when both contestants lifted the box at the same time. ","I had to rate the strength of each contestant and the probability they would be able to lift the box independently and as a pair.","I had to guess whether each player would lift the box along with other metrics related to it.","to guess the strength of each character. to guess the percentage of effort they used to lift the box.","I had to determine the strength of 2 contestants. I also had to determine how much effort they were using to lift the boxes.","I had to calculate the probability that the contestants would life a box by themselves and together.  I also had to estimate their strength.","I was given two people and had to guess their strength level and the chance of them lifting the box. There were 3 rounds and I was shown the result after the first two then I had to predict the chance of them lifting the box together for the final round.","I had to pick how strong i thought each contest one A and B from 1-10 and then rate the % i thought they would lift or fail to lift the box each round","I guessed the strength of each contestant. I guessed the percentage of effort they put into lifting the box and the probability of lifting the box. ","I assessed multiple contestants’ strength, effort, and lifting success across multiple rounds and then filled in the estimates probabilities of them lifting the item based on their performance.","It was a game where I predicted whether contestants would lift a box, judged their strength and effort, and answered a few attention check questions.","I had to guess the probability that two contestants would be able to lift a box, both as individuals and as a team. I also had to guess their strength and effort they put in.","Observe contestants try to lift boxes. Predict their success and estimate their strength and effort","I have been guessing  how strong the two figures  are and if they will be able and want to lift the box. I also had to guess that, in the last round, if they will lift the box together.","The task that I just completed was a task where I had to guess how strong the contestants were that I was presented with and I also had to predict how likely I thought the contestants were to lift boxes. ","guess the strength of each based on whether they lifted successfully in round 1 and then their effort.  predict round 2 and then guess strength and effort, predict round 3 success","I did a task where I attempted to predict lifting outcomes based on certain factors.","make predictions on how likely they are to lift a weight","It had to do with guessing if they are able to lift.","I had to determine what each of the two players were capable of lifting average was 5 and if they would actually exert themselves based on the award offered. ","I was weighing how much strength and effort each contestant had for lifting the boxes.","I have been making guesses as to how strong the contestants are. I have chosen on a scale of 1-10 their perceived strength and assigned a percentage to their effort at lifting the box.","I had to rate how strong or weak I perceived contestants in a box lifting game and their percent likelihood of lifting the box along with their effort level.","A contest where to contestants lift a box.   THere are three rounds and preditions are made on strength and probability of success","The task was to rate the stength and effort of two contestants who were on gameshow that involved lifting a box for money.","I made guesses on strength level of contestants based on boxes they could lift and based on the prize amount of the boxes they could lift"],["","","","","","none","Thank you","Everything worked great. Thank you!","This was a fun study to try to predict the outcomes.","I feel like a piece of information was missing that made it hard to determine the contestants strength","","","","","","","","","none","","I thought the information was quite clear. I appreciate the opportunity to help with this study.","","","","","","","","none","","","This was a fun game!","","Felt like a long survey for the base pay.","","","","Everything worked fine and was understandable.","","","no comments","N/A","","n/a","","","Maybe provide a playable demo before the actual game to better understand the instructions","Jesus Loves You","a progress bar and percentage might be helpful. ","","It was fun! ! !","","","","","not totally sure if I should have assumed that 2 guys of strength 5 at 50% is same as 1 at strngth 5 and 100% is correct reasoning","N/A","","","","","I think it went very well, except that I apparently missed an attention check by being TOO focused on the percentages :( but I think the explanations and everything were clear and detailed and I had no issues in understanding the task.","","","","none"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>subjectId<\/th>\n      <th>collection_phase<\/th>\n      <th>DescribeTask<\/th>\n      <th>Feedback<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"autoWidth":true,"columnDefs":[{"name":"subjectId","targets":0},{"name":"collection_phase","targets":1},{"name":"DescribeTask","targets":2},{"name":"Feedback","targets":3}],"order":[],"orderClasses":false,"responsive":true}},"evals":[],"jsHooks":[]}</script>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"review comprehension checks"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>review comprehension checks</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>dat_raw_annotated <span class="sc">|&gt;</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(trial_type <span class="sc">==</span> <span class="st">"survey-multi-choice"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(collection_phase, subjectId) <span class="sc">|&gt;</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">checks =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(collection_phase, checks) <span class="sc">|&gt;</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'collection_phase'. You can override using
+the `.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 3
+# Groups:   collection_phase, checks [7]
+  collection_phase checks     n
+  &lt;fct&gt;             &lt;int&gt; &lt;int&gt;
+1 pilot                 1     8
+2 pilot                 2    10
+3 pilot                 3     2
+4 pilot                 5     1
+5 pilot                 9     2
+6 main                  1    23
+7 main                  2    58</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>dat_raw_annotated <span class="sc">|&gt;</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(trial_type <span class="sc">==</span> <span class="st">"survey-multi-choice"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(subjectId) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">attempts =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">responses =</span> <span class="fu">list</span>(jsonlite<span class="sc">::</span><span class="fu">fromJSON</span>(responses))) <span class="sc">|&gt;</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(subjectId, responses, attempts, collection_phase) <span class="sc">|&gt;</span> <span class="fu">unnest_longer</span>(responses) <span class="sc">|&gt;</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(subjectId, responses, attempts) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">times_answered =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>responses, <span class="at">group=</span><span class="fu">paste</span>(times_answered, subjectId), <span class="at">fill=</span><span class="fu">as.factor</span>(times_answered))) <span class="sc">+</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span><span class="fu">after_stat</span>(count)), <span class="at">stat=</span><span class="st">"count"</span>, <span class="at">position=</span><span class="fu">position_stack</span>(<span class="at">vjust=</span>.<span class="dv">5</span>), <span class="at">alpha=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(collection_phase<span class="sc">~</span>responses_id, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="sc">-</span><span class="dv">20</span>, <span class="at">hjust=</span><span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>() <span class="sc">+</span></span>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Comprehension check question responses (lines connect different attempts by same participant)"</span>,</span>
+<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Response"</span>,</span>
+<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Count"</span>,</span>
+<span id="cb53-20"><a href="#cb53-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Times answered"</span></span>
+<span id="cb53-21"><a href="#cb53-21" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_line()`: Each group consists of only one observation.
+ℹ Do you need to adjust the group aesthetic?</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_line()`: Each group consists of only one observation.
+ℹ Do you need to adjust the group aesthetic?</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/inspect-2.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="confirmatory-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="confirmatory-analysis">Confirmatory analysis</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (Adapted from original_code/competence_effort/Code/main_text/regression.R)</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Experiment 1</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>replication.dat <span class="ot">&lt;-</span> <span class="fu">local</span>({</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  dat <span class="ot">&lt;-</span> dat_clean <span class="co"># read.csv('./data/exp1.csv', header = T, stringsAsFactors = T)</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  dat<span class="sc">$</span>agent <span class="ot">&lt;-</span> <span class="fu">factor</span>(dat<span class="sc">$</span>agent, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'A'</span>, <span class="st">'B'</span>))</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  dat<span class="sc">$</span>round <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dat<span class="sc">$</span>round)</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>  dat<span class="sc">$</span>scenario <span class="ot">&lt;-</span> <span class="fu">factor</span>(dat<span class="sc">$</span>scenario, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">'F,F;F,F'</span>,<span class="st">'F,F;F,L'</span>,<span class="st">'F,L;F,L'</span>,<span class="st">'F,F;L,L'</span>,<span class="st">'F,L;L,L'</span>,<span class="st">'L,L;L,L'</span>), <span class="at">ordered =</span> T)</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>  dat<span class="sc">$</span>prob[dat<span class="sc">$</span>round<span class="sc">==</span><span class="dv">3</span> <span class="sc">&amp;</span> dat<span class="sc">$</span>agent<span class="sc">==</span><span class="st">'B'</span>] <span class="ot">&lt;-</span> <span class="cn">NaN</span> <span class="co"># so that the probabilities are only counted once for joint lifting</span></span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>  dat <span class="ot">&lt;-</span> <span class="fu">arrange</span>(dat,subject,scenario,round,agent)</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>  dat<span class="sc">$</span>model <span class="ot">&lt;-</span> <span class="st">'data'</span></span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>  dat</span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Lift probability</span></span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>replication.ttest_result <span class="ot">&lt;-</span> <span class="fu">local</span>({</span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t.test</span>(</span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># filter one agent so that the probability is only counted once. Round 3 is a joint lift.</span></span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a>    replication.dat<span class="sc">$</span>prob[replication.dat<span class="sc">$</span>round <span class="sc">==</span> <span class="dv">3</span> <span class="sc">&amp;</span> replication.dat<span class="sc">$</span>scenario <span class="sc">==</span> <span class="st">'F,F;F,F'</span> <span class="sc">&amp;</span> replication.dat<span class="sc">$</span>agent <span class="sc">==</span> <span class="st">'A'</span>],</span>
+<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu =</span> <span class="dv">0</span>,</span>
+<span id="cb56-20"><a href="#cb56-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">'two.sided'</span></span>
+<span id="cb56-21"><a href="#cb56-21" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb56-22"><a href="#cb56-22" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb56-23"><a href="#cb56-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-24"><a href="#cb56-24" aria-hidden="true" tabindex="-1"></a>replication.cohensd <span class="ot">&lt;-</span> effectsize<span class="sc">::</span><span class="fu">effectsize</span>(replication.ttest_result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
 <p>I found that participants rated the probability of joint success in round 3 as non-zero (<span class="math inline">\(M = 43.22\)</span>, 95% CI <span class="math inline">\([33.84, 52.60]\)</span>, <span class="math inline">\(t(49) = 9.26\)</span>, <span class="math inline">\(p &lt; .001\)</span>). See the black point range (data) for scenario “F,F;F,F” under Exploratory analyses.</p>
 <p>The effect size found is <em>d</em> = 1.31.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dat$prob[dat$round == 3 &amp; dat$scenario == 'F,F;F,F' &amp; dat$agent == 'A']</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> .<span class="dv">05</span></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>critical_tvalue <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> (alpha<span class="sc">/</span><span class="dv">2</span>), <span class="at">df=</span>replication.ttest_result<span class="sc">$</span>parameter) <span class="co"># dividing alpha by 2 since this is a two-tailed test</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> replication.dat</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(round <span class="sc">==</span> <span class="dv">3</span>, scenario <span class="sc">==</span> <span class="st">'F,F;F,F'</span>, agent <span class="sc">==</span> <span class="st">'A'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>  {<span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x=</span>prob)) <span class="sc">+</span></span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="fu">floor</span>(<span class="fu">sqrt</span>(<span class="fu">nrow</span>(.)))) <span class="sc">+</span></span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept=</span>critical_tvalue, <span class="at">color=</span><span class="st">'red'</span>) <span class="sc">+</span></span>
+<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y=</span><span class="st">'Density'</span>, <span class="at">x=</span><span class="st">'Lift probability in Round 3 (%)'</span>)}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -399,7 +1074,111 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 </section>
 <section id="exploratory-analyses" class="level3">
 <h3 class="anchored" data-anchor-id="exploratory-analyses">Exploratory analyses</h3>
-<p>I found/did not find that the joint effort model was the only model which qualitatively predicted both that joint success has non-zero probability (the result in confirmatory analysis) and that probability of joint success increases as individual success increases.</p>
+<p>I found that the joint effort model was the only model which not only predicted that joint success has non-zero probability (the result in confirmatory analysis), but also which qualitatively predicted that the probability of joint success increases as individual success increases.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># adapted from original_code/competence_effort/Code/main_text/plt.R and original_code/competence_effort/Code/main_text/plot_figures.R</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>simulation <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"new_code/memo-sandbox/webppl vs memo/xiang2023-exp1-round3-model_fits_results.csv"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(model, scenario, P) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">prob =</span> <span class="dv">100</span><span class="sc">*</span>P)</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>simulation<span class="sc">$</span>scenario <span class="ot">&lt;-</span> <span class="fu">factor</span>(simulation<span class="sc">$</span>scenario, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">'F,F;F,F'</span>,<span class="st">'F,F;F,L'</span>,<span class="st">'F,L;F,L'</span>,<span class="st">'F,F;L,L'</span>,<span class="st">'F,L;L,L'</span>,<span class="st">'L,L;L,L'</span>), <span class="at">ordered =</span> T)</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>fig3c <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(scenario, prob, <span class="at">group =</span> model, <span class="at">color =</span> model)) <span class="sc">+</span></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> simulation <span class="sc">%&gt;%</span> <span class="fu">filter</span>(model<span class="sc">==</span><span class="st">'compensatory'</span>)) <span class="sc">+</span></span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> simulation <span class="sc">%&gt;%</span> <span class="fu">filter</span>(model<span class="sc">==</span><span class="st">'solitary'</span>)) <span class="sc">+</span></span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> simulation <span class="sc">%&gt;%</span> <span class="fu">filter</span>(model<span class="sc">==</span><span class="st">'joint'</span>)) <span class="sc">+</span></span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> simulation <span class="sc">%&gt;%</span> <span class="fu">filter</span>(model<span class="sc">==</span><span class="st">'compensatory'</span>), <span class="at">size=</span>.<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> simulation <span class="sc">%&gt;%</span> <span class="fu">filter</span>(model<span class="sc">==</span><span class="st">'solitary'</span>), <span class="at">size=</span>.<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> simulation <span class="sc">%&gt;%</span> <span class="fu">filter</span>(model<span class="sc">==</span><span class="st">'joint'</span>), <span class="at">size=</span>.<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">data =</span> dat <span class="sc">%&gt;%</span> <span class="fu">filter</span>(round <span class="sc">==</span> <span class="dv">3</span> <span class="sc">&amp;</span> agent <span class="sc">==</span> <span class="st">'A'</span>), <span class="at">fun.data =</span> <span class="st">'mean_cl_boot'</span>, <span class="at">geom =</span> <span class="st">'errorbar'</span>, <span class="at">width =</span> .<span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">data =</span> dat <span class="sc">%&gt;%</span> <span class="fu">filter</span>(round <span class="sc">==</span> <span class="dv">3</span> <span class="sc">&amp;</span> agent <span class="sc">==</span> <span class="st">'A'</span>), <span class="at">fun =</span> <span class="st">'mean'</span>, <span class="at">geom =</span> <span class="st">'point'</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb58-20"><a href="#cb58-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb58-21"><a href="#cb58-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'Data'</span>,<span class="st">'Joint effort model'</span>,<span class="st">'Solitary effort model'</span>,<span class="st">'Compensatory effort model'</span>),</span>
+<span id="cb58-22"><a href="#cb58-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">'#000000'</span>,<span class="st">'#e35d5e'</span>,<span class="st">'#004385'</span>,<span class="st">'#05b2dc'</span>),</span>
+<span id="cb58-23"><a href="#cb58-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="st">'data'</span>,<span class="st">'joint'</span>,<span class="st">'solitary'</span>,<span class="st">'compensatory'</span>),</span>
+<span id="cb58-24"><a href="#cb58-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">guide =</span> ggh4x<span class="sc">::</span><span class="fu">guide_stringlegend</span>(<span class="at">position =</span> <span class="st">"top"</span>)</span>
+<span id="cb58-25"><a href="#cb58-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb58-26"><a href="#cb58-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb58-27"><a href="#cb58-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold.italic"</span>, <span class="at">size =</span> <span class="dv">18</span> <span class="sc">/</span> .pt)) <span class="sc">+</span></span>
+<span id="cb58-28"><a href="#cb58-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-29"><a href="#cb58-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb58-30"><a href="#cb58-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">'Round 1 and Round 2 outcome'</span>, <span class="at">y=</span><span class="st">'Lift probability in Round 3 (%)'</span>, <span class="at">color=</span><span class="cn">NULL</span>)</span>
+<span id="cb58-31"><a href="#cb58-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-32"><a href="#cb58-32" aria-hidden="true" tabindex="-1"></a><span class="co"># write temporarily to file to render in qmd</span></span>
+<span id="cb58-33"><a href="#cb58-33" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">'./writeup/replication-fig3c.png'</span>, <span class="at">plot =</span> fig3c, <span class="at">width=</span><span class="dv">4</span>, <span class="at">height=</span><span class="dv">3</span>)</span>
+<span id="cb58-34"><a href="#cb58-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-35"><a href="#cb58-35" aria-hidden="true" tabindex="-1"></a>original.fig3c <span class="ot">&lt;-</span> <span class="fu">local</span>({</span>
+<span id="cb58-36"><a href="#cb58-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># adapted from original_code/competence_effort/Code/main_text/plot_figures.R</span></span>
+<span id="cb58-37"><a href="#cb58-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-38"><a href="#cb58-38" aria-hidden="true" tabindex="-1"></a>  inference <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'./original_code/competence_effort/Code/main_text/exp1_simulation.csv'</span>, <span class="at">header =</span> T, <span class="at">stringsAsFactors =</span> T)</span>
+<span id="cb58-39"><a href="#cb58-39" aria-hidden="true" tabindex="-1"></a>  inference<span class="sc">$</span>round <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(inference<span class="sc">$</span>round)</span>
+<span id="cb58-40"><a href="#cb58-40" aria-hidden="true" tabindex="-1"></a>  inference<span class="sc">$</span>model <span class="ot">&lt;-</span> <span class="fu">factor</span>(inference<span class="sc">$</span>model, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">'joint'</span>,<span class="st">'solitary'</span>,<span class="st">'compensatory'</span>,<span class="st">'maximum'</span>), <span class="at">ordered =</span> T)</span>
+<span id="cb58-41"><a href="#cb58-41" aria-hidden="true" tabindex="-1"></a>  inference<span class="sc">$</span>scenario <span class="ot">&lt;-</span> <span class="fu">factor</span>(inference<span class="sc">$</span>scenario, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">'F,F;F,F'</span>,<span class="st">'F,F;F,L'</span>,<span class="st">'F,L;F,L'</span>,<span class="st">'F,F;L,L'</span>,<span class="st">'F,L;L,L'</span>,<span class="st">'L,L;L,L'</span>), <span class="at">ordered =</span> T)</span>
+<span id="cb58-42"><a href="#cb58-42" aria-hidden="true" tabindex="-1"></a>  inference<span class="sc">$</span>effort[inference<span class="sc">$</span>outcome<span class="sc">==</span><span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="cn">NaN</span></span>
+<span id="cb58-43"><a href="#cb58-43" aria-hidden="true" tabindex="-1"></a>  inference<span class="sc">$</span>prob[inference<span class="sc">$</span>round<span class="sc">==</span><span class="dv">3</span> <span class="sc">&amp;</span> inference<span class="sc">$</span>agent<span class="sc">==</span><span class="st">'B'</span>] <span class="ot">&lt;-</span> <span class="cn">NaN</span></span>
+<span id="cb58-44"><a href="#cb58-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-45"><a href="#cb58-45" aria-hidden="true" tabindex="-1"></a>  inference_subset <span class="ot">&lt;-</span> inference <span class="sc">%&gt;%</span> <span class="fu">filter</span>(round <span class="sc">==</span> <span class="dv">3</span> <span class="sc">&amp;</span> agent <span class="sc">==</span> <span class="st">'A'</span>)</span>
+<span id="cb58-46"><a href="#cb58-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-47"><a href="#cb58-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb58-48"><a href="#cb58-48" aria-hidden="true" tabindex="-1"></a>  original.dat <span class="sc">%&gt;%</span></span>
+<span id="cb58-49"><a href="#cb58-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(scenario, prob, <span class="at">group =</span> model, <span class="at">color =</span> model)) <span class="sc">+</span></span>
+<span id="cb58-50"><a href="#cb58-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-51"><a href="#cb58-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> inference_subset <span class="sc">%&gt;%</span> <span class="fu">filter</span>(model<span class="sc">==</span><span class="st">'compensatory'</span>)) <span class="sc">+</span></span>
+<span id="cb58-52"><a href="#cb58-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> inference_subset <span class="sc">%&gt;%</span> <span class="fu">filter</span>(model<span class="sc">==</span><span class="st">'solitary'</span>)) <span class="sc">+</span></span>
+<span id="cb58-53"><a href="#cb58-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data =</span> inference_subset <span class="sc">%&gt;%</span> <span class="fu">filter</span>(model<span class="sc">==</span><span class="st">'joint'</span>)) <span class="sc">+</span></span>
+<span id="cb58-54"><a href="#cb58-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data =</span> inference_subset <span class="sc">%&gt;%</span> <span class="fu">filter</span>(model<span class="sc">==</span><span class="st">'compensatory'</span>), <span class="at">size=</span>.<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb58-55"><a href="#cb58-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data =</span> inference_subset <span class="sc">%&gt;%</span> <span class="fu">filter</span>(model<span class="sc">==</span><span class="st">'solitary'</span>), <span class="at">size=</span>.<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb58-56"><a href="#cb58-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data =</span> inference_subset <span class="sc">%&gt;%</span> <span class="fu">filter</span>(model<span class="sc">==</span><span class="st">'joint'</span>), <span class="at">size=</span>.<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb58-57"><a href="#cb58-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-58"><a href="#cb58-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_summary</span>(<span class="at">data =</span> original.dat <span class="sc">%&gt;%</span> <span class="fu">filter</span>(round <span class="sc">==</span> <span class="dv">3</span> <span class="sc">&amp;</span> agent <span class="sc">==</span> <span class="st">'A'</span>), <span class="at">fun.data =</span> <span class="st">'mean_cl_boot'</span>, <span class="at">geom =</span> <span class="st">'errorbar'</span>, <span class="at">width =</span> .<span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb58-59"><a href="#cb58-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_summary</span>(<span class="at">data =</span> original.dat <span class="sc">%&gt;%</span> <span class="fu">filter</span>(round <span class="sc">==</span> <span class="dv">3</span> <span class="sc">&amp;</span> agent <span class="sc">==</span> <span class="st">'A'</span>), <span class="at">fun =</span> <span class="st">'mean'</span>, <span class="at">geom =</span> <span class="st">'point'</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb58-60"><a href="#cb58-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-61"><a href="#cb58-61" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(</span>
+<span id="cb58-62"><a href="#cb58-62" aria-hidden="true" tabindex="-1"></a>      <span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb58-63"><a href="#cb58-63" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'Data'</span>,<span class="st">'Joint effort model'</span>,<span class="st">'Solitary effort model'</span>,<span class="st">'Compensatory effort model'</span>),</span>
+<span id="cb58-64"><a href="#cb58-64" aria-hidden="true" tabindex="-1"></a>      <span class="at">values =</span> <span class="fu">c</span>(<span class="st">'#000000'</span>,<span class="st">'#e35d5e'</span>,<span class="st">'#004385'</span>,<span class="st">'#05b2dc'</span>),</span>
+<span id="cb58-65"><a href="#cb58-65" aria-hidden="true" tabindex="-1"></a>      <span class="at">limits =</span> <span class="fu">c</span>(<span class="st">'data'</span>,<span class="st">'joint'</span>,<span class="st">'solitary'</span>,<span class="st">'compensatory'</span>),</span>
+<span id="cb58-66"><a href="#cb58-66" aria-hidden="true" tabindex="-1"></a>      <span class="at">guide =</span> ggh4x<span class="sc">::</span><span class="fu">guide_stringlegend</span>(<span class="at">position =</span> <span class="st">"top"</span>)</span>
+<span id="cb58-67"><a href="#cb58-67" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb58-68"><a href="#cb58-68" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb58-69"><a href="#cb58-69" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold.italic"</span>, <span class="at">size =</span> <span class="dv">18</span> <span class="sc">/</span> .pt)) <span class="sc">+</span></span>
+<span id="cb58-70"><a href="#cb58-70" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb58-71"><a href="#cb58-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-72"><a href="#cb58-72" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb58-73"><a href="#cb58-73" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x=</span><span class="st">'Round 1 and Round 2 outcome'</span>, <span class="at">y=</span><span class="st">'Lift probability in Round 3 (%)'</span>, <span class="at">color=</span><span class="cn">NULL</span>)</span>
+<span id="cb58-74"><a href="#cb58-74" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb58-75"><a href="#cb58-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-76"><a href="#cb58-76" aria-hidden="true" tabindex="-1"></a><span class="co"># write temporarily to file to render in qmd</span></span>
+<span id="cb58-77"><a href="#cb58-77" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">'./writeup/original-fig3c.png'</span>, <span class="at">plot =</span> original.fig3c, <span class="at">width=</span><span class="dv">4</span>, <span class="at">height=</span><span class="dv">3</span>)</span>
+<span id="cb58-78"><a href="#cb58-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-79"><a href="#cb58-79" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb58-80"><a href="#cb58-80" aria-hidden="true" tabindex="-1"></a>fig3c_w_raw_data <span class="ot">&lt;-</span> fig3c <span class="sc">+</span></span>
+<span id="cb58-81"><a href="#cb58-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group=</span>subject), <span class="at">linetype=</span><span class="st">"solid"</span>, <span class="at">linewidth=</span>.<span class="dv">25</span>, <span class="at">alpha=</span>.<span class="dv">2</span>, <span class="at">data =</span> dat <span class="sc">%&gt;%</span> <span class="fu">filter</span>(round <span class="sc">==</span> <span class="dv">3</span> <span class="sc">&amp;</span> agent <span class="sc">==</span> <span class="st">'A'</span>), <span class="at">position=</span><span class="fu">position_jitter</span>(<span class="at">width=</span>.<span class="dv">05</span>, <span class="at">seed=</span><span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb58-82"><a href="#cb58-82" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">group=</span>subject), <span class="at">alpha=</span>.<span class="dv">2</span>, <span class="at">data =</span> dat <span class="sc">%&gt;%</span> <span class="fu">filter</span>(round <span class="sc">==</span> <span class="dv">3</span> <span class="sc">&amp;</span> agent <span class="sc">==</span> <span class="st">'A'</span>), <span class="at">size=</span>.<span class="dv">8</span>, <span class="at">position=</span><span class="fu">position_jitter</span>(<span class="at">width=</span>.<span class="dv">05</span>, <span class="at">seed=</span><span class="dv">0</span>))</span>
+<span id="cb58-83"><a href="#cb58-83" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb58-84"><a href="#cb58-84" aria-hidden="true" tabindex="-1"></a><span class="co"># write temporarily to file to render in qmd</span></span>
+<span id="cb58-85"><a href="#cb58-85" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">'./writeup/replication-fig3c-withrawdata.png'</span>, <span class="at">plot =</span> fig3c_w_raw_data, <span class="at">width=</span><span class="dv">6</span>, <span class="at">height=</span><span class="fl">4.5</span>)</span>
+<span id="cb58-86"><a href="#cb58-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-87"><a href="#cb58-87" aria-hidden="true" tabindex="-1"></a>fig3c_w_safejoint <span class="ot">&lt;-</span> fig3c <span class="sc">+</span></span>
+<span id="cb58-88"><a href="#cb58-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> simulation <span class="sc">%&gt;%</span> <span class="fu">filter</span>(model<span class="sc">==</span><span class="st">'safe_joint_w_gini'</span>)) <span class="sc">+</span></span>
+<span id="cb58-89"><a href="#cb58-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> simulation <span class="sc">%&gt;%</span> <span class="fu">filter</span>(model<span class="sc">==</span><span class="st">'safe_joint_w_gini'</span>), <span class="at">size=</span>.<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb58-90"><a href="#cb58-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb58-91"><a href="#cb58-91" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb58-92"><a href="#cb58-92" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'Data'</span>,<span class="st">'Joint effort'</span>,<span class="st">'Safe joint effort'</span>,<span class="st">'Solitary effort'</span>,<span class="st">'Compensatory effort'</span>),</span>
+<span id="cb58-93"><a href="#cb58-93" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">'#000000'</span>,<span class="st">'#e35d5e'</span>,<span class="st">'#b60cc5'</span>,<span class="st">'#004385'</span>,<span class="st">'#05b2dc'</span>),</span>
+<span id="cb58-94"><a href="#cb58-94" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="st">'data'</span>,<span class="st">'joint'</span>,<span class="st">'safe_joint_w_gini'</span>,<span class="st">'solitary'</span>,<span class="st">'compensatory'</span>),</span>
+<span id="cb58-95"><a href="#cb58-95" aria-hidden="true" tabindex="-1"></a>    <span class="at">guide =</span> ggh4x<span class="sc">::</span><span class="fu">guide_stringlegend</span>(<span class="at">position =</span> <span class="st">"top"</span>)</span>
+<span id="cb58-96"><a href="#cb58-96" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb58-97"><a href="#cb58-97" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb58-98"><a href="#cb58-98" aria-hidden="true" tabindex="-1"></a><span class="co"># write temporarily to file to render in qmd</span></span>
+<span id="cb58-99"><a href="#cb58-99" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">'./writeup/replication-fig3c-withsafejoint.png'</span>, <span class="at">plot =</span> fig3c_w_safejoint, <span class="at">width=</span><span class="dv">6</span>, <span class="at">height=</span><span class="fl">4.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
 <div class="columns">
 <div class="column">
 <div class="quarto-figure quarto-figure-center">
@@ -418,7 +1197,7 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -427,7 +1206,7 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -439,7 +1218,7 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -448,28 +1227,33 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./replication-fig3c-withsafejoint.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 3C Replication with Safe Joint Model</figcaption>
+<div id="fig-safejoint" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-safejoint-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./replication-fig3c-withsafejoint.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-safejoint-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Figure 3C Replication with Safe Joint Model
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 </div>
-<!-- ## Discussion
-
-### Summary of Replication Attempt
-
-Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.  
-
-### Commentary
-
-Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt.  None of these need to be long.
-
--->
+</section>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<section id="summary-of-replication-attempt" class="level3">
+<h3 class="anchored" data-anchor-id="summary-of-replication-attempt">Summary of Replication Attempt</h3>
+<p>The primary, confirmatory result fully replicated. The exporatory (qualitative) result also replicated.</p>
+</section>
+<section id="commentary" class="level3">
+<h3 class="anchored" data-anchor-id="commentary">Commentary</h3>
+<p>Replication success was expected due to the large effect size and clear qualitative pattern. However, the replication success of the confirmatory result nevertheless reinforces my confidence in the reliability of the task paradigm, and the replication of the qualitative pattern using a model reimplementation reinforces my confidence in both that pattern and the modeling approach.</p>
+<p>In my replication, I observed slightly larger CIs, and an effect size that was lower than the original. However, these may be expected due to publication bias. Further, I observed a slope inversion in the data means (i.e., estimated probability of round 3 succcess is lower for F,L;F,L than for F,F;F,L) which was not present in the data from the original study. Speculatively, this might be explainable by the safe joint effort model (see <a href="#fig-safejoint" class="quarto-xref">Figure&nbsp;1</a>), a modified version of the authors’ proposed joint effort model available in their supplement. In this case, the replication provides some support for that modified model.</p>
 </section>
 </section>
 <section id="references" class="level2">

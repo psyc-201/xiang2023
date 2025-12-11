@@ -87,4 +87,6 @@ See `original_code/competence_effort/Data/README.txt` for description of the der
 
 - As of 2025-11-13, on OSF, the first three csv files are pilots (6bt3juzg6gt3 was not a genuine pilot and just was moving through the task to test it technically)
 
-- On Prolific there are 51 participants, not 50, since one returned the study but was also approved (since they returned the study, it opened up the slot again). however, we only have 50 participants' data, since one participant's data (prolificId starting with 5c6) apparently wasn't recorded -- I think they didn't press "Next" at the very end of the study, which is necessary to save the data. (In the future, saving should happen before the completion code is given.)
+## Computational models
+
+`new_code/memo-sandbox` is an environment for building up memo models alongside reference examples (both in memo and in webppl). To run the code specifically for reproducing the computational modeling done in this replication, one file is sufficient: `new_code/memo-sandbox/webppl vs memo/xiang2023-exp1-round3-memo.qmd`.

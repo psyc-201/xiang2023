@@ -19,7 +19,7 @@ csl: "../apa.csl"
 
 ## Introduction
 
-My broad research interests include modeling how individuals perceive, represent, and judge potential collaborators' affordances for collaboration. @Xiang2023-zo propose and empirically validate a probabilistic model in which recursively updated inferences of competence and effort ("belief–desire–competence framework"), together with observed outcomes, jointly predict individuals' judgments of collaborators, across various cognitive tasks which are common within collaboration. In particular, in Experiment 1, their model best predicts participants' judgments about whether joint activity will succeed, compared to plausible alternative models. I am eager to attempt to replicate this finding to help establish the robustness of this model of collaborator judgment, before I may attempt to extend it in future work.
+How do individuals perceive, represent, and judge potential collaborators' affordances for collaboration? @Xiang2023-zo propose and empirically validate a probabilistic model in which recursively updated inferences of competence and effort ("belief–desire–competence framework"), together with observed outcomes, jointly predict individuals' judgments of collaborators, across various cognitive tasks which are common within collaboration. In particular, in Experiment 1, their model best predicts participants' judgments about whether joint activity will succeed, compared to plausible alternative models. I sought to replicate this finding to help establish the robustness of this model of collaborator judgment, before I might extend it in future work.
 
 Experiment 1 involves observing contestants try to lift a heavy box in a set of _contests_ (six total), each containing three _rounds_. In each contest, there are two unique avatars playing as the _contestants_. In rounds 1 and 2, each contestant attempts to lift the box by themselves. In round 3, the contestants attempt to lift the box together. In each round, after observing each contestant succeed or fail to lift the box, the participant judges the strength of each contestant (1–10), and for each contestant that successfully lifted the box, the participant judges that contestant's allocated effort (0%–100%). At the start of round 2, the participant judges each contestant's probability of lifting the box successfully (0%–100%), prior to observing the lift attempts. At the start of round 3, the participant judges the probability that the contestants will successfully lift the box together. Further, an incentive to the contestants for lifting the box is specified in each round: in the second and third rounds, the specified reward for lifting the box is double that of the first round. Participants are also told that the heavy box had a constant weight across all contests, which effectively requires at least 5 strength points applied (e.g., on average, 100% effort for a contestant with strength 5, or 50% effort for a contestant with strength 10, etc.). Last, participants see a progressively filled-out table of all the lift outcomes during each contest, visible throughout, including when making judgments.
 
@@ -27,9 +27,7 @@ Experiment 1 involves observing contestants try to lift a heavy box in a set of 
 
 ![An example table for a contest, as it would appear during the probability judgment at the beginning of round 3.](../new_code/competence_effort/Experiment/img/table.png){height=350}
 
-The challenges/opportunities for my learning in this replication project will include: 1) recreating the paper's proposed (joint effort) model and two alternative (solitary/compensatory effort) models of the probability of joint success in [memo](https://github.com/kach/memo) [@chandra2025memo] (based on the authors' pre-existing implementations in WebPPL), and 2) running these models over my newly collected data to attempt to replicate that the proposed model is most predictive of participants' judgments. (I will also replace the original authors' data-saving step (a php page) with [DataPipe](https://pipe.jspsych.org/).)
-
-Specifically, I will attempt to replicate that A) when rounds 1 and 2 feature no individual success, participants still judge the probability of joint success in round 3 as non-zero. In addition to this confirmatory analysis, I will attempt to qualitatively replicate that B) participants judge higher probability of joint success as cases of individual success increases, and that the proposed model is the only model evaluated which predicts both patterns A and B. See Analysis Plan below for more details.
+I sought to replicate that A) when rounds 1 and 2 feature no individual success, participants still judge the probability of joint success in round 3 as non-zero. In addition to this confirmatory analysis, I sought to qualitatively replicate that B) participants judge higher probability of joint success as cases of individual success increases, and that the proposed model is the only model evaluated which predicts both patterns A and B. See Analysis Plan below for more details.
 
 <!--
 the measure of interest: judged round 3 (joint success) probability ("participants believed that the lift probability for “F,F;F,F” was different from zero")
@@ -58,10 +56,10 @@ Presentation accompanying this report: [https://psyc-201.github.io/xiang2023/pre
 ### Power & Precision Analysis
 
 ```{r}
-#| echo: false
+#| code-fold: true
 # adapted from ./original_code/competence_effort/Code/main_text/regression.R
 
-library(tidyverse)
+suppressPackageStartupMessages(library(tidyverse))
 
 original.dat <- local({
   dat <- read.csv('./original_code/competence_effort/Data/exp1.csv', header = T, stringsAsFactors = T)
@@ -88,7 +86,7 @@ original.ttest_result <- local({
 original.cohensd <- effectsize::effectsize(original.ttest_result)
 ```
 
-The original effect size is _d_ = `r papaja::apa_num(original.cohensd$Cohens_d)`. <!-- d = 1.47 --> To achieve 80%, 90%, or 95% power to detect that effect size, I'd need:
+The original effect size is _d_ = `r papaja::apa_num(original.cohensd$Cohens_d)`. <!-- d = 1.47 --> To achieve 80%, 90%, or 95% power to detect that effect size, I needed:
 
 Target Power|Necessary N|Estimated Power
 ---|---|---
@@ -96,33 +94,33 @@ Target Power|Necessary N|Estimated Power
 90%|8|`r pwr::pwr.t.test(n=8, d=original.cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")$power * 100`%
 95%|9|`r pwr::pwr.t.test(n=9, d=original.cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")$power * 100`%
 
-Collecting 9 participants is completely feasible (with each spending ~16 minutes; see Procedure). To compensate for the original study's measured effect size being inflated (e.g., due to publication bias), 15 participants should be necessary for sufficient power for the primary effect of interest, and this count is also feasible.
+Collecting 9 participants was completely feasible (with each spending ~16 minutes; see Procedure). To compensate for the original study's measured effect size being inflated (e.g., due to publication bias), 15 participants would be necessary for sufficient power for the primary effect of interest, and this count was also feasible.
 
-However, for the sake of qualitatively replicating the overall pattern of estimated probabilities increasing as scenarios feature more successful individual lifts (general increase in probability from left to right in Figure 3C; which I've labeled "B" above), and that the joint effort model is the only considered model which captures both the key effect and this pattern, I find it prudent to retain the same sample size so that I may attempt to replicate the original qualitative finding with comparable precision. (Targeting higher precision could potentially counter aforementioned effect inflation present in the original paper, but as it is unclear how to quantify the necessary precision for these qualitative analyses, targeting the original precision appears to be a sensible option.)
+However, for the sake of qualitatively replicating the overall pattern of estimated probabilities increasing as scenarios feature more successful individual lifts (general increase in probability from left to right in Figure 3C; which I've labeled "B" above), and that the joint effort model is the only considered model which captures both the key effect and this pattern, I found it prudent to retain the same sample size so that I might attempt to replicate the original qualitative finding with comparable precision. (Targeting higher precision could potentially counter aforementioned effect inflation present in the original paper, but as it is unclear how to quantify the necessary precision for these qualitative analyses, targeting the original precision appears to be a sensible option.)
 
-Further, in the original study, given 50 participants, the key effect appeared quite robust, with the CI for the data from scenario "F,F;F,F" being quite far from the line LiftProbability=0 (see Figure 3C), suggesting that with 50 participants, we are nearly guaranteed to replicate this effect if it is true.
+Further, in the original study, given 50 participants, the key effect appeared quite robust, with the CI for the data from scenario "F,F;F,F" being quite far from the line LiftProbability=0 (see Figure 3C), suggesting that with 50 participants, I was nearly guaranteed to replicate this effect if it is true.
 
-Given my understanding of course funding available, collecting 50 participants is feasible.
+Given my understanding of course funding available, collecting 50 participants was feasible.
 
 ### Planned Sample
 
-Based on my power and precision considerations, I will collect 50 participants on Prolific (from the U.S., per the original authors' private note), following the specific exclusion strategy reported below.
+Based on my power and precision considerations, I planned to collect 50 participants on Prolific (from the U.S., per the original authors' private note), following the specific exclusion strategy reported below.
 
-I will follow precisely the data collection strategy in the original Experiment 1, as described on p. 1569:
+I followed precisely the data collection strategy in the original Experiment 1, as described on p. 1569:
 
 > "Participants’ demographic information was not collected. Participants completed a comprehension check before they moved on to the experiment. They were not allowed to proceed until they answered all the comprehension check questions correctly. ... To ensure data quality, we included two attention-check questions in the experiment. Participants who failed one attention check were warned immediately to pay closer attention. Participants who failed both attention checks were asked to leave the experiment and they were not counted among the 50 participants we recruited. A total of 10 participants failed one attention check, and we did not exclude their data in our analysis."
 
-In the original study, per the experiment code, participants who fail both attention checks are asked to return their submission (to self-exclude). Per our current IRB approval, we are not asking these participants to do so and will instead manually exclude them from our target sample and analysis.
+In the original study, per the experiment code, participants who fail both attention checks are asked to return their submission (to self-exclude). Per our current IRB approval, we did not ask these participants to do so and would instead manually exclude them from our target sample and analysis.
 
 ### Materials
 
-I will follow precisely the original Experiment 1. The materials for the experiment are available at [https://github.com/jczimm/competence_effort](https://github.com/jczimm/competence_effort/tree/23ad2edd00fa68e8d401e6dff8a86da8020982fe). This repository is a clone of the authors' [own code repository](https://github.com/yyyxiang/competence_effort/tree/ea2059499fa4398484d45184113ca2f7607545e5) for the paper, with the experimental task code copied from the authors' hosted version linked in their `README.md` file.
+I followed precisely the original Experiment 1. The materials for the experiment are available at [https://github.com/jczimm/competence_effort](https://github.com/jczimm/competence_effort/tree/23ad2edd00fa68e8d401e6dff8a86da8020982fe). This repository is a clone of the authors' [own code repository](https://github.com/yyyxiang/competence_effort/tree/ea2059499fa4398484d45184113ca2f7607545e5) for the paper, with the experimental task code copied from the authors' hosted version linked in their `README.md` file.
 
 See Procedure below for more details and a figure from the paper visualizing the task.
 
 ### Procedure
 
-I will follow precisely the original Experiment 1, as described on pp. 1569-1570:
+I would follow precisely the original Experiment 1, as described on pp. 1569-1570:
 
 > "... participants provided informed consent prior to the experiment. ... Participants observed six contests between different pairs of contestants (see Table 2 for a description of the contests; the order was randomized). In each contest, the contestants were given three attempts to lift a box, corresponding to three rounds. In the first two rounds, the contestants tried lifting the box themselves. The reward for lifting the box was $10 in Round 1 and $20 in Round 2. In the third round of each contest, the two contestants tried to lift thebox together for a reward of $20 each. Participants first saw the lift outcome of Round 1 and made strength judgments (1–10; 1 means extremely weak and 10 means extremely strong) and effort judgments (0%–100%) for each contestant. For Rounds 2 and 3, they predicted the probability of the contestants lifting the box (0%–100%) before seeing the outcome, then observed the actual outcome and made strength and effort judgments. Note that participants made effort judgments only when the outcome was Lift. Participants were informed that the weight of the box was always the same and equivalent to a strength of 5 (i.e., an average contestant with strength 5 exerting all of their efforts would be able to lift the box). Participants also saw a table of all the previous outcomes when making their guesses. Figure 2 shows an illustration of the task."
 > ![Table 2](./table2.png){height=350}
@@ -132,34 +130,34 @@ To summarise: there are six contests, each with three rounds, and multiple judgm
 
 According to the consent form in the [original experiment](https://gershmanlab.com/experiments/yang/toc/Experiment/index1.html), the study is estimated to take 15 minutes. Accordingly, adhering to Prolific's recommended rate of compensation ($12/hr), base compensation will be $3.
 
-For determining bonus compensation, I will follow precisely the original scheme as described on p. 1569:
+For determining bonus compensation, I followed precisely the original scheme as described on p. 1569:
 
 > "Participants received ... a potential bonus payment of up to $1. The amount of bonus they received was equal to the probability they put on the realized lift outcome on a randomly picked round."
 
 ### Analysis Plan
 
-I will conduct a one-sample _t_ test on the participants' reported round-3 lift probability for scenario “F,F;F,F” (i.e., each contestant failed to lift the box in both rounds 2 and 3), with the null hypothesis that the true lift probability is zero. See Planned Sample for the data exclusion rule.
+I conducted a **one-sample _t_ test on the participants' reported round-3 lift probability for scenario “F,F;F,F”** (i.e., each contestant failed to lift the box in both rounds 2 and 3), with the null hypothesis that the true lift probability is zero. See Planned Sample for the data exclusion rule.
 
-In addition to this confirmatory analysis, I will attempt to replicate the qualitative pattern that participants judge higher probability of joint success as cases of individual success increases. I will also reimplement their proposed model (joint effort) and alternative models (solitary effort and compensatory effort) in memo (see Differences from Original Study) and attempt to replicate that the proposed model is the only model evaluated which predicts both the qualitative pattern and the other result (that participants estimate round-3 lift probability as non-zero after two rounds of failures). See original paper's Figure 3C and accompanying explanation, pp. 1570-1571; I will recreate that figure and attempt to replicate that explanation on my own data. Further, I will also estimate and statistically test the difference in the probability judgments plotted in Figure 3C between the original data and my new data.
+In addition to this confirmatory analysis, I would attempt to replicate the qualitative pattern that participants judge higher probability of joint success as cases of individual success increases. I would also reimplement their proposed model (joint effort) and alternative models (solitary effort and compensatory effort) in [memo](https://github.com/kach/memo) [@chandra2025memo] (see Differences from Original Study) and attempt to replicate that the proposed model is the only model evaluated which predicts both the qualitative pattern and the other result (that participants estimate round-3 lift probability as non-zero after two rounds of failures). See original paper's Figure 3C and accompanying explanation, pp. 1570-1571; I would recreate that figure and attempt to replicate that explanation on my own data. Further, I would also estimate and statistically test the difference in the probability judgments plotted in Figure 3C between the original data and my new data.
 
 I must note that while the _t_ test alone does not justify the paper's central claim that the joint effort model is qualitatively predictive, in the absence one such statistical test, this _t_ test is a good alternative: this test demonstrates one of two key behavioral effects (p. 1570) which the model was qualitatively evaluated to predict. (In other words, I should attempt to replicate this behavioral effect before I could try to qualitatively replicate that the joint effort model is the only considered model which can predict it.)
 
 ### Differences from Original Study
 
-The sample will differ in that the original was from Amazon Mechanical Turk, while the new sample will be from Prolific. Accordingly, base compensation will be $3 instead of $2.
+The sample differed in that the original was from Amazon Mechanical Turk, while the new sample is from Prolific. Accordingly, base compensation was be $3 instead of $2.
 
-The only difference in setting is that the task will be hosted at `https://psyc-201.github.io/xiang2023/exp/index1.html` rather than `https://gershmanlab.com/experiments/yang/toc/Experiment/index1.html`.
+The only difference in setting is that the task was hosted at `https://psyc-201.github.io/xiang2023/exp/index1.html` rather than `https://gershmanlab.com/experiments/yang/toc/Experiment/index1.html`. Accordingly, I also replaced the original authors' data-saving step (a php page) with [DataPipe](https://pipe.jspsych.org/).
 
 The only known visible differences in procedure are:
 
 1. The consent form is updated according to the details provided by the UCSD course PSYC 201A
 2. In task instructions, "HIT" is renamed "submission"
 3. In task instructions, "Different pairs of contestants will come in to lift the box" becomes "For each contest, a new pair of contestants will come in to lift the box" (to clarify first two questions of comprehension check)
-4. No more than two attempts of the comprehension check will be allowed (per [Prolific guidelines](https://researcher-help.prolific.com/en/articles/445153-prolific-s-attention-and-comprehension-check-policy)). Accordingly, before the comprehension check, we added: "You will have two chances to complete the comprehension questions correctly before we ask you to return your submission, per Prolific guidelines."; and upon comprehension check failure, we added: "Please note that you have only X attempt(s) left."
+4. See @sec-method-changes for an additional change
 
-While the confirmatory analysis will be rerun using the original R code provided by the authors, for the qualitative replication attempt I will use a reimplementation of the joint effort model and the alternative models (solitary effort and compensatory effort models) in memo, which were originally written in WebPPL. I expect that reimplementation of the continuous probabilistic models in WebPPL as discrete probabilistic models in memo will produce higher estimate precision as the model predictions will be deterministic, rather than stochastic. (I will discretize the distribution at a high resolution such that there is no systematic difference in estimates.)
+While the confirmatory analysis was rerun using the original R code provided by the authors, for the qualitative replication I used a reimplementation of the joint effort model and the alternative models (solitary effort and compensatory effort models) in [memo](https://github.com/kach/memo) [@chandra2025memo], based on the authors' original implementations in WebPPL. I expected that reimplementation of the continuous probabilistic models in WebPPL as discrete probabilistic models in memo would produce higher estimate precision as the model predictions will be deterministic, rather than stochastic. (I also discretized the distribution at a high resolution such that there was no meaningful systematic difference in estimates.)
 
-I do not anticipate that these differences are meaningful regarding the original paper's claims and the analyses of interest. However, it is possible that 3 and 4 - improving comprehension-check fairness and reducing testing fatigue - may slightly improve measurement precision and reduce measurement bias, enhancing the claims of my replication.
+I did not anticipate that these differences are meaningful regarding the original paper's claims and the analyses of interest. However, it is possible that 3 and 4 - improving comprehension-check fairness and reducing testing fatigue - may slightly improve measurement precision and reduce measurement bias, enhancing the claims of my replication.
 
 ### Reliability and Validity
 
@@ -169,31 +167,35 @@ The reliability of this measure is unclear, given a lack of referenced evidence 
 
 Likewise, validity is unclear. And following the same logic, I infer that the validity may vary across participants, given that there could be individual differences in the accuracy of participations' estimation of the expected value of their internal posterior distribution.
 
-<!-- 
-
 ### Methods Addendum (Post Data Collection)
 
 #### Actual Sample
-  Sample size, demographics, data exclusions based on rules spelled out in analysis plan
 
-#### Differences from pre-data collection methods plan
-  Any differences from what was described as the original plan, or “none”.
+We collected data from 50 participants.
 
--->
+On Prolific there were 51 participants collected, not 50, since one returned the study but was also approved (since they returned the study, it opened up the slot again). However, we only have 50 participants' data, since one participant's data (prolificId starting with 5c6) wasn't recorded -- I think they didn't press "Next" at the very end of the study, which is necessary to save the data. (In any future iterations, saving should happen before the completion code is given.)
+
+Demographic information was not collected. By design of the experiment, participants who failed the comprehension check twice were excluded (see below). Following the planned data exclusion rule, 0 <!-- excluded_for_2inattention --> participants were excluded for failing both attention checks. A total of 10 <!-- kept_despite_1inattention --> participants failed one attention check, and we did not exclude their data in our analysis.
+
+#### Differences from pre-data collection methods plan {#sec-method-changes}
+
+After piloting, to align with [Prolific's guidelines](https://researcher-help.prolific.com/en/articles/445153-prolific-s-attention-and-comprehension-check-policy), I modified the task such that no more than two attempts of the comprehension check were allowed. Participants who failed the comprehension check twice were asked to return the submission. Accordingly, before the comprehension check, I added: "You will have two chances to complete the comprehension questions correctly before we ask you to return your submission, per Prolific guidelines."; and upon comprehension check failure, I added: "Please note that you have only X attempt(s) left."
+
+Unless marked otherwise, all results used only the sample collected after this change was made.
 
 ## Results
 
 
 ### Data preparation
 
-The data collected in this experiment will include task-level data:
+The data collected in this experiment included task-level data:
 
 - `subjectId`, `encryptedProlificId`
 - pre-set round outcomes (`round1_o`, `round2_o`, `round3_o`)
 - pre-set round incentives (`round1_reward`, `round2_reward`, `round3_reward`)
 - number of failed attention checks (`attention_sum`)
 
-It will also include round-level data:
+They also included round-level data:
 
 - contest index (`contest`)
 - round index (`round`)
@@ -202,15 +204,19 @@ It will also include round-level data:
 - outcomes (`r1_outcome_a`/`r2_outcome_a`/`r3_outcome_a`, and `r1_outcome_b`/`r2_outcome_b`/`r3_outcome_b`)
 - probability (`r1_prob_a`/`r2_prob_a`/`r3_prob_a`, and `r1_prob_b`/`r2_prob_b`/`r3_prob_b`)
 
-We will manually exclude any participants who failed both attention checks.
+I would manually exclude any participants who failed both attention checks.
 
 ```{r}
-#| include: false
+#| code-fold: true
+#| output: false
 ### Data Preparation
 
 #### Load Relevant Libraries and Functions
-library(tidyverse)
+suppressPackageStartupMessages(library(tidyverse))
 library(lmerTest)
+
+# Helper
+Dt <- function(data, options=list(autoWidth=TRUE)) DT::datatable(data, extensions = c('Responsive'), rownames = FALSE, options = options) 
 
 #### Import data
 
@@ -276,11 +282,12 @@ dat_raw <- list.files(path = './data', pattern = pattern_match_anonymized_raw_da
 dat_raw_annotated <- dat_raw %>%
   group_by(subjectId) %>%
   mutate(passed_an_attention_check = all(attention_sum >= 1, na.rm=T)) %>%
-  ungroup()
+  ungroup() %>%
+  mutate(collection_phase = ifelse(datapipe_meta.attributes.date_modified > lubridate::ymd("2025-11-20", tz="PST"), "main", "pilot"), collection_phase=ifelse(is.na(collection_phase), "pilot", collection_phase), collection_phase=factor(collection_phase, levels=c("pilot", "main")))
 
 #### Data exclusion / filtering
 # based on attention checks criterion
-# (also only include participants who have a session ID, as those who don't were not real Prolific participants; and only include participants who have done a trial, otherwise they probably failed the comprehension check the maximum number of times)
+# (also only include participants who have a session ID, as those who don't were not real Prolific participants; and only include participants who have done a trial, otherwise they have failed the comprehension check the maximum number of times)
 # and discard pilot data
 dat_raw_filtered <- dat_raw_annotated %>%
   filter(passed_an_attention_check) %>%
@@ -289,7 +296,7 @@ dat_raw_filtered <- dat_raw_annotated %>%
   filter(any(trial_type == "survey-html-form")) %>%
   ungroup() %>%
 
-  filter(datapipe_meta.attributes.date_modified > lubridate::ymd("2025-11-20", tz="PST"))
+  filter(collection_phase == "main")
 
 #### Prepare data for analysis - create columns etc.
 # Munge to generate the rows/columns I need for the analysis, which are per-round, per-agent data: 
@@ -360,8 +367,8 @@ dat_clean <- dat_raw_filtered %>%
 ```
 
 ```{r}
-#| include: false
 #| eval: false
+#| code-fold: true
 # Decrypt prolific IDs to determine bonuses
 
 if (interactive()) { # safeguard to help ensure this is not output by quarto
@@ -397,7 +404,7 @@ if (interactive()) { # safeguard to help ensure this is not output by quarto
         )
       ) %>%
       # filter to show only post-pilot participants
-      filter(datapipe_meta.attributes.date_modified > lubridate::ymd("2025-11-20", tz="PST")) %>%  
+      filter(collection_phase == "main") %>%  
       arrange(desc(prolificId)) %>%
       select(prolificId, bonus)
       
@@ -408,19 +415,23 @@ if (interactive()) { # safeguard to help ensure this is not output by quarto
 }
 ```
 
+::: {.callout-note icon="false" collapse="true"}
+
+## Sanity Checks
+
 ```{r}
 #| label: sanity-checks
-#| include: false
+#| code-fold: true
 
 # Sanity checks
 
-# count all participants with a sessionId
+message("count all participants with a sessionId")
 (real_participants <- dat_raw_annotated %>%
   group_by(subjectId) %>% filter(any(!is.na(sessionId))) %>%
   ungroup() %>% distinct(subjectId) %>%
   nrow())
 
-# count participants included
+message("count participants included")
 (filtered_participants <- dat_raw_filtered %>%
   ungroup() %>% distinct(subjectId) %>%
   nrow())
@@ -429,26 +440,42 @@ if (interactive()) { # safeguard to help ensure this is not output by quarto
   nrow())
 stopifnot(clean_participants == filtered_participants)
 
-# check that contest vs scenario is uniformly distributed, and that each participant did each contest and each scenario once
+message("count participants excluded due to failing both attention checks")
+(excluded_for_2inattention <- dat_raw_annotated %>%
+  filter(!passed_an_attention_check) %>%
+  group_by(subjectId) %>%
+  filter(any(!is.na(sessionId))) %>%
+  filter(any(trial_type == "survey-html-form")) %>%
+  ungroup() %>% distinct(subjectId) %>%
+  nrow())
+
+message("count participants kept because only failed one attention check")
+(kept_despite_1inattention <- dat_raw_filtered %>%
+  group_by(subjectId) %>%
+  filter(all(attention_sum < 2, na.rm=T)) %>%
+  ungroup() %>% distinct(subjectId) %>%
+  nrow())
+
+message("check that contest vs scenario is uniformly distributed, and that each participant did each contest and each scenario once")
 set.seed(1)
 dat_clean %>%
   filter(agent == 1, round == 3) %>%
   ggplot(aes(x = scenario, y = contest)) +
   geom_jitter(aes(color = subject), width=.1, height=.1)
 
-# clearer way to check that each subject did each scenario once 
+message("clearer way to check that each subject did each scenario once")
 dat_clean %>%
   filter(agent == 1, round == 3) %>%
   ggplot(aes(x = scenario)) +
   geom_col(aes(fill = subject), stat="count")
 
-# clearer way to check that each subject did each contest once
+message("clearer way to check that each subject did each contest once")
 dat_clean %>%
   filter(agent == 1, round == 3) %>%
   ggplot(aes(x = contest)) +
   geom_col(aes(fill = subject), stat="count")
 
-# check that effort and strength plots have missing data in the right places
+message("check that effort and strength plots have missing data in the right places")
 
 dat_clean %>%
   ggplot(aes(x = round, y=effort, color=subject)) +
@@ -467,24 +494,63 @@ dat_clean %>%
   geom_point() + geom_line() +
   geom_smooth(method=lm, se=F, color="black") +
   facet_wrap(scenario~agent)
-
-# review written responses
-dat_raw %>% filter(trial_type == "survey-text") %>% select(subjectId, responses) # %>% view
-
-# review comprehension checks
-dat_raw |> filter(trial_type == "survey-multi-choice") |> group_by(subjectId) |> count()
-
-dat_raw |> filter(trial_type == "survey-multi-choice") |> group_by(subjectId) |> mutate(attempts = n()) |> rowwise() |> mutate(responses = list(jsonlite::fromJSON(responses))) |> select(subjectId, responses, attempts) |> unnest_longer(responses) |>
-  group_by(subjectId, responses, attempts) |> mutate(times_answered = n()) |> ungroup() |>
-  # filter(startsWith(subjectId, "ne7k")) |>
-  # filter(attempts > 2) |>
-  ggplot(aes(x=responses, group=paste(subjectId, times_answered), fill=times_answered, color=subjectId)) + geom_col(stat="count") + facet_wrap(~responses_id, scales = "free") + theme(axis.text.x = element_text(angle = 20))
 ```
+
+```{r}
+#| label: inspect
+#| code-fold: true
+#| fig-width: 10
+#| fig-height: 6
+
+message("review written responses")
+dat_raw_annotated |>
+  filter(trial_type == "survey-text") |>
+  select(subjectId, internal_node_id, responses, collection_phase) |>
+  rowwise(subjectId) |>
+  mutate(responses = jsonlite::fromJSON(responses)$Q0) |>
+  group_by(subjectId) |>
+  mutate(question = ifelse(internal_node_id == min(internal_node_id), "DescribeTask", "Feedback")) |>
+  select(-internal_node_id) |>
+  pivot_wider(names_from = "question", values_from = "responses") |>
+  Dt()
+
+message("review comprehension checks")
+dat_raw_annotated |>
+  filter(trial_type == "survey-multi-choice") |>
+  group_by(collection_phase, subjectId) |>
+  summarise(checks = n()) |>
+  group_by(collection_phase, checks) |>
+  count()
+
+dat_raw_annotated |>
+  filter(trial_type == "survey-multi-choice") |>
+  group_by(subjectId) |> mutate(attempts = n()) |>
+  rowwise() |> mutate(responses = list(jsonlite::fromJSON(responses))) |>
+  select(subjectId, responses, attempts, collection_phase) |> unnest_longer(responses) |>
+  group_by(subjectId, responses, attempts) |> mutate(times_answered = n()) |>
+  ungroup() |>
+  ggplot(aes(x=responses, group=paste(times_answered, subjectId), fill=as.factor(times_answered))) +
+  geom_bar() +
+  geom_line(aes(y=after_stat(count)), stat="count", position=position_stack(vjust=.5), alpha=.5) +
+  facet_grid(collection_phase~responses_id, scales = "free") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = -20, hjust=0)) +
+  scale_fill_viridis_d() +
+  guides(color = "none") +
+  labs(
+    title = "Comprehension check question responses (lines connect different attempts by same participant)",
+    x = "Response",
+    y = "Count",
+    fill = "Times answered"
+  )
+```
+
+:::
 
 ### Confirmatory analysis
 
 ```{r}
-#| include: false
+#| code-fold: true
 
 # (Adapted from original_code/competence_effort/Code/main_text/regression.R)
 ## Experiment 1
@@ -517,7 +583,7 @@ I found that participants rated the probability of joint success in round 3 as n
 The effect size found is _d_ = `r papaja::apa_num(replication.cohensd$Cohens_d)`.
 
 ```{r}
-#| echo: false
+#| code-fold: true
 
 # dat$prob[dat$round == 3 & dat$scenario == 'F,F;F,F' & dat$agent == 'A']
 
@@ -538,10 +604,11 @@ The red line shows the critical t-value for detecting a statistically significan
 
 ### Exploratory analyses
 
-I found/did not find that the joint effort model was the only model which qualitatively predicted both that joint success has non-zero probability (the result in confirmatory analysis) and that probability of joint success increases as individual success increases.
+I found that the joint effort model was the only model which not only predicted that joint success has non-zero probability (the result in confirmatory analysis), but also which qualitatively predicted that the probability of joint success increases as individual success increases.
 
 ```{r}
-#| include: false
+#| code-fold: true
+#| output: false
 
 # adapted from original_code/competence_effort/Code/main_text/plt.R and original_code/competence_effort/Code/main_text/plot_figures.R
 simulation <- read_csv("new_code/memo-sandbox/webppl vs memo/xiang2023-exp1-round3-model_fits_results.csv") |> select(model, scenario, P) |> mutate(prob = 100*P)
@@ -621,8 +688,6 @@ original.fig3c <- local({
 # write temporarily to file to render in qmd
 ggsave('./writeup/original-fig3c.png', plot = original.fig3c, width=4, height=3)
 
-
-
 set.seed(1)
 fig3c_w_raw_data <- fig3c +
   geom_line(aes(group=subject), linetype="solid", linewidth=.25, alpha=.2, data = dat %>% filter(round == 3 & agent == 'A'), position=position_jitter(width=.05, seed=0)) +
@@ -638,7 +703,8 @@ fig3c_w_safejoint <- fig3c +
     name = NULL,
     labels = c('Data','Joint effort','Safe joint effort','Solitary effort','Compensatory effort'),
     values = c('#000000','#e35d5e','#b60cc5','#004385','#05b2dc'),
-    limits = c('data','joint','safe_joint_w_gini','solitary','compensatory')
+    limits = c('data','joint','safe_joint_w_gini','solitary','compensatory'),
+    guide = ggh4x::guide_stringlegend(position = "top")
   )
   
 # write temporarily to file to render in qmd
@@ -664,20 +730,20 @@ ggsave('./writeup/replication-fig3c-withsafejoint.png', plot = fig3c_w_safejoint
 
 ::: {.callout-note collapse="true"}
 ## Figure 3C Replication with Safe Joint Model
-![Figure 3C Replication with Safe Joint Model](./replication-fig3c-withsafejoint.png)
+![Figure 3C Replication with Safe Joint Model](./replication-fig3c-withsafejoint.png){#fig-safejoint}
 :::
 
-<!-- ## Discussion
+## Discussion
 
 ### Summary of Replication Attempt
 
-Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.  
+The primary, confirmatory result fully replicated. The exporatory (qualitative) result also replicated.
 
 ### Commentary
 
-Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt.  None of these need to be long.
+Replication success was expected due to the large effect size and clear qualitative pattern. However, the replication success of the confirmatory result nevertheless reinforces my confidence in the reliability of the task paradigm, and the replication of the qualitative pattern using a model reimplementation reinforces my confidence in both that pattern and the modeling approach.
 
--->
+In my replication, I observed slightly larger CIs, and an effect size that was lower than the original. However, these may be expected due to publication bias. Further, I observed a slope inversion in the data means (i.e., estimated probability of round 3 succcess is lower for F,L;F,L than for F,F;F,L) which was not present in the data from the original study. Speculatively, this might be explainable by the safe joint effort model (see @fig-safejoint), a modified version of the authors' proposed joint effort model available in their supplement. In this case, the replication provides some support for that modified model.
 
 ```{r}
 #| label: exports
