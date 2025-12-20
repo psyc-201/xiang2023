@@ -91,7 +91,7 @@ See `original_code/competence_effort/Data/README.txt` for description of the der
 > [!NOTE]
 > `new_code/memo-sandbox` is an environment for building up memo models alongside reference examples (both in memo and in webppl). To run the code specifically for reproducing the computational modeling done in this replication, one file is sufficient: `new_code/memo-sandbox/webppl vs memo/xiang2023-exp1-round3-memo.qmd`.
 >
-> See **`new_code/memo-sandbox`** for more information.
+> See **`new_code/memo-sandbox`** for more information, and https://jczimm.com/memo-sandbox/ for renders of relevant modeling code.
 
 ## References
 
