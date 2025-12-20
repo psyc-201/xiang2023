@@ -17,7 +17,7 @@ Made from template: https://github.com/psyc-201/replication_template
 - To deploy rendered documents, render locally then deploy the rendered files
 
 > [!IMPORTANT]
-> This repository contains key submodules for the experiment code and modeling code. To load them, run `git submodule update --init --recursive` after cloning the repository. (Whenever need to update submodule(s) to remote changes, run `git submodule update --remote [path]`.)
+> This repository contains key submodules for the experiment code and modeling code. To load them, run `git submodule update --init --recursive` after cloning the repository. (To update submodule(s) to remote changes, run `git submodule update --remote [path]`.)
 
 > [!WARNING]
 > To fetch data from OSF, need to set OSF_PAT (e.g., using a `.Renviron` file). If OSF_PAT is specified, the data will be fetched and resaved as `data/...-anon.csv`, assuming their contents are already non-identifiable (see `writeup/index.qmd`). Double-check that they are before committing them. If OSF_PAT is not specified, the anonymized data will be assumed to be already accessible in `data/`.
@@ -84,12 +84,14 @@ See `original_code/competence_effort/Data/README.txt` for description of the der
 ## More information about the collected data
 
 - The prolific IDs are encrypted on the client-side so OSF does not receive that identifying information
-
 - As of 2025-11-13, on OSF, the first three csv files are pilots (6bt3juzg6gt3 was not a genuine pilot and just was moving through the task to test it technically)
 
 ## Computational models
 
-`new_code/memo-sandbox` is an environment for building up memo models alongside reference examples (both in memo and in webppl). To run the code specifically for reproducing the computational modeling done in this replication, one file is sufficient: `new_code/memo-sandbox/webppl vs memo/xiang2023-exp1-round3-memo.qmd`. See `new_code/memo-sandbox` for more information.
+> [!NOTE]
+> `new_code/memo-sandbox` is an environment for building up memo models alongside reference examples (both in memo and in webppl). To run the code specifically for reproducing the computational modeling done in this replication, one file is sufficient: `new_code/memo-sandbox/webppl vs memo/xiang2023-exp1-round3-memo.qmd`.
+>
+> See **`new_code/memo-sandbox`** for more information.
 
 ## References
 
