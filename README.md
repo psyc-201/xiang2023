@@ -1,4 +1,4 @@
-# xiang2023 Replication Project
+# Xiang2023 Replication Project
 
 Made from template: https://github.com/psyc-201/replication_template
 
@@ -13,11 +13,11 @@ Made from template: https://github.com/psyc-201/replication_template
 
 - First, set up environment using `pixi install` then `pixi setup`
 - Can preview writeup, presentation, or both using `pixi run preview writeup`/`pixi run preview presentation`/`pixi run preview`
-- Can render writeup, presentation, or both using `pixi run render writeup`/`pixi run render presentation`/`pixi run preview`
+- Can render writeup, presentation, or both using `pixi run render writeup`/`pixi run render presentation`/`pixi run render`
 - To deploy rendered documents, render locally then deploy the rendered files
 
 > [!IMPORTANT]
-> This repository contains key submodules for the experiment code and modeling code. To load them, run `git submodule update --init --recursive` after cloning the repository.
+> This repository contains key submodules for the experiment code and modeling code. To load them, run `git submodule update --init --recursive` after cloning the repository. (Whenever need to update submodule(s) to remote changes, run `git submodule update --remote [path]`.)
 
 > [!WARNING]
 > To fetch data from OSF, need to set OSF_PAT (e.g., using a `.Renviron` file). If OSF_PAT is specified, the data will be fetched and resaved as `data/...-anon.csv`, assuming their contents are already non-identifiable (see `writeup/index.qmd`). Double-check that they are before committing them. If OSF_PAT is not specified, the anonymized data will be assumed to be already accessible in `data/`.
@@ -74,7 +74,7 @@ Note that some columns are only specified for some levels of Stage
 | trial_outcome | The actual outcome for the selected contestant |
 | bonus | The computed bonus |
 | attention_sum | The total number of attention checks passed |
-| attention | Did the participant pass both attention checks? (1 = passed both, 0 = failed at least one)
+| attention | Did the participant pass both attention checks? (1 = passed both, 0 = failed at least one) |
 | datapipe_meta.attributes.date_modified | The date the file on OSF was last modified (corresponds to when it was saved) |
 
 ### Clean data
@@ -89,4 +89,8 @@ See `original_code/competence_effort/Data/README.txt` for description of the der
 
 ## Computational models
 
-`new_code/memo-sandbox` is an environment for building up memo models alongside reference examples (both in memo and in webppl). To run the code specifically for reproducing the computational modeling done in this replication, one file is sufficient: `new_code/memo-sandbox/webppl vs memo/xiang2023-exp1-round3-memo.qmd`.
+`new_code/memo-sandbox` is an environment for building up memo models alongside reference examples (both in memo and in webppl). To run the code specifically for reproducing the computational modeling done in this replication, one file is sufficient: `new_code/memo-sandbox/webppl vs memo/xiang2023-exp1-round3-memo.qmd`. See `new_code/memo-sandbox` for more information.
+
+## References
+
+Xiang, Y., Vélez, N., & Gershman, S. J. (2023). Collaborative decision making is grounded in representations of other people’s competence and effort. _J. Exp. Psychol. Gen._, _152_(6), 1565–1579.

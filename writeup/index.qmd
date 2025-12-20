@@ -19,7 +19,7 @@ csl: "../apa.csl"
 
 ## Introduction
 
-How do individuals perceive, represent, and judge potential collaborators' affordances for collaboration? @Xiang2023-zo propose and empirically validate a probabilistic model in which recursively updated inferences of competence and effort ("belief–desire–competence framework"), together with observed outcomes, jointly predict individuals' judgments of collaborators, across various cognitive tasks which are common within collaboration. In particular, in Experiment 1, their model best predicts participants' judgments about whether joint activity will succeed, compared to plausible alternative models. I sought to replicate this finding to help establish the robustness of this model of collaborator judgment, before I might extend it in future work.
+How do individuals perceive, represent, and judge potential collaborators' affordances for collaboration? @Xiang2023-zo propose and empirically validate a probabilistic model in which jointly inferred estimates of competence and effort, given observed outcomes ("belief–desire–competence framework"), predict individuals' judgments of collaborators, across various cognitive tasks which are common within collaboration. In particular, in Experiment 1, their model best predicts participants' judgments about whether joint activity will succeed, compared to plausible alternative models. I sought to replicate this finding to help establish the robustness of this model of collaborator judgment, before I might extend it in future work.
 
 Experiment 1 involves observing contestants try to lift a heavy box in a set of _contests_ (six total), each containing three _rounds_. In each contest, there are two unique avatars playing as the _contestants_. In rounds 1 and 2, each contestant attempts to lift the box by themselves. In round 3, the contestants attempt to lift the box together. In each round, after observing each contestant succeed or fail to lift the box, the participant judges the strength of each contestant (1–10), and for each contestant that successfully lifted the box, the participant judges that contestant's allocated effort (0%–100%). At the start of round 2, the participant judges each contestant's probability of lifting the box successfully (0%–100%), prior to observing the lift attempts. At the start of round 3, the participant judges the probability that the contestants will successfully lift the box together. Further, an incentive to the contestants for lifting the box is specified in each round: in the second and third rounds, the specified reward for lifting the box is double that of the first round. Participants are also told that the heavy box had a constant weight across all contests, which effectively requires at least 5 strength points applied (e.g., on average, 100% effort for a contestant with strength 5, or 50% effort for a contestant with strength 10, etc.). Last, participants see a progressively filled-out table of all the lift outcomes during each contest, visible throughout, including when making judgments.
 
@@ -461,19 +461,22 @@ set.seed(1)
 dat_clean %>%
   filter(agent == 1, round == 3) %>%
   ggplot(aes(x = scenario, y = contest)) +
-  geom_jitter(aes(color = subject), width=.1, height=.1)
+  geom_jitter(aes(color = subject), width=.1, height=.1) +
+  theme(legend.position = "none")
 
 message("clearer way to check that each subject did each scenario once")
 dat_clean %>%
   filter(agent == 1, round == 3) %>%
   ggplot(aes(x = scenario)) +
-  geom_col(aes(fill = subject), stat="count")
+  geom_col(aes(fill = subject), stat="count") +
+  theme(legend.position = "none")
 
 message("clearer way to check that each subject did each contest once")
 dat_clean %>%
   filter(agent == 1, round == 3) %>%
   ggplot(aes(x = contest)) +
-  geom_col(aes(fill = subject), stat="count")
+  geom_col(aes(fill = subject), stat="count") +
+  theme(legend.position = "none")
 
 message("check that effort and strength plots have missing data in the right places")
 
@@ -481,19 +484,22 @@ dat_clean %>%
   ggplot(aes(x = round, y=effort, color=subject)) +
   geom_point() + geom_line() +
   geom_smooth(method=lm, se=F, color="black") +
-  facet_wrap(scenario~agent)
+  facet_wrap(scenario~agent) +
+  theme(legend.position = "none")
 
 dat_clean %>%
   ggplot(aes(x = round, y=strength, color=subject)) +
   geom_point() + geom_line() +
   geom_smooth(method=lm, se=F, color="black") +
-  facet_wrap(scenario~agent)
+  facet_wrap(scenario~agent) +
+  theme(legend.position = "none")
 
 dat_clean %>%
   ggplot(aes(x = round, y=prob, color=subject)) +
   geom_point() + geom_line() +
   geom_smooth(method=lm, se=F, color="black") +
-  facet_wrap(scenario~agent)
+  facet_wrap(scenario~agent) +
+  theme(legend.position = "none")
 ```
 
 ```{r}

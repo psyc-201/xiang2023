@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jacob C. Zimmerman">
-<meta name="dcterms.date" content="2025-12-10">
+<meta name="dcterms.date" content="2025-12-19">
 
 <title>Replication of Experiment 1 by Xiang, Vélez &amp; Gershman (2023, JEP:G)</title>
 <style>
@@ -237,7 +237,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 10, 2025</p>
+      <p class="date">December 19, 2025</p>
     </div>
   </div>
   
@@ -252,7 +252,7 @@ window.Quarto = {
 <!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>How do individuals perceive, represent, and judge potential collaborators’ affordances for collaboration? <span class="citation" data-cites="Xiang2023-zo">Xiang et al. (<a href="#ref-Xiang2023-zo" role="doc-biblioref">2023</a>)</span> propose and empirically validate a probabilistic model in which recursively updated inferences of competence and effort (“belief–desire–competence framework”), together with observed outcomes, jointly predict individuals’ judgments of collaborators, across various cognitive tasks which are common within collaboration. In particular, in Experiment 1, their model best predicts participants’ judgments about whether joint activity will succeed, compared to plausible alternative models. I sought to replicate this finding to help establish the robustness of this model of collaborator judgment, before I might extend it in future work.</p>
+<p>How do individuals perceive, represent, and judge potential collaborators’ affordances for collaboration? <span class="citation" data-cites="Xiang2023-zo">Xiang et al. (<a href="#ref-Xiang2023-zo" role="doc-biblioref">2023</a>)</span> propose and empirically validate a probabilistic model in which jointly inferred estimates of competence and effort, given observed outcomes (“belief–desire–competence framework”), predict individuals’ judgments of collaborators, across various cognitive tasks which are common within collaboration. In particular, in Experiment 1, their model best predicts participants’ judgments about whether joint activity will succeed, compared to plausible alternative models. I sought to replicate this finding to help establish the robustness of this model of collaborator judgment, before I might extend it in future work.</p>
 <p>Experiment 1 involves observing contestants try to lift a heavy box in a set of <em>contests</em> (six total), each containing three <em>rounds</em>. In each contest, there are two unique avatars playing as the <em>contestants</em>. In rounds 1 and 2, each contestant attempts to lift the box by themselves. In round 3, the contestants attempt to lift the box together. In each round, after observing each contestant succeed or fail to lift the box, the participant judges the strength of each contestant (1–10), and for each contestant that successfully lifted the box, the participant judges that contestant’s allocated effort (0%–100%). At the start of round 2, the participant judges each contestant’s probability of lifting the box successfully (0%–100%), prior to observing the lift attempts. At the start of round 3, the participant judges the probability that the contestants will successfully lift the box together. Further, an incentive to the contestants for lifting the box is specified in each round: in the second and third rounds, the specified reward for lifting the box is double that of the first round. Participants are also told that the heavy box had a constant weight across all contests, which effectively requires at least 5 strength points applied (e.g., on average, 100% effort for a contestant with strength 5, or 50% effort for a contestant with strength 10, etc.). Last, participants see a progressively filled-out table of all the lift outcomes during each contest, visible throughout, including when making judgments.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -773,7 +773,8 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>dat_clean <span class="sc">%&gt;%</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(agent <span class="sc">==</span> <span class="dv">1</span>, round <span class="sc">==</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> scenario, <span class="at">y =</span> contest)) <span class="sc">+</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">color =</span> subject), <span class="at">width=</span>.<span class="dv">1</span>, <span class="at">height=</span>.<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">color =</span> subject), <span class="at">width=</span>.<span class="dv">1</span>, <span class="at">height=</span>.<span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -794,7 +795,8 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>dat_clean <span class="sc">%&gt;%</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(agent <span class="sc">==</span> <span class="dv">1</span>, round <span class="sc">==</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> scenario)) <span class="sc">+</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> subject), <span class="at">stat=</span><span class="st">"count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> subject), <span class="at">stat=</span><span class="st">"count"</span>) <span class="sc">+</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -815,7 +817,8 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>dat_clean <span class="sc">%&gt;%</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(agent <span class="sc">==</span> <span class="dv">1</span>, round <span class="sc">==</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> contest)) <span class="sc">+</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> subject), <span class="at">stat=</span><span class="st">"count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> subject), <span class="at">stat=</span><span class="st">"count"</span>) <span class="sc">+</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -837,7 +840,8 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> round, <span class="at">y=</span>effort, <span class="at">color=</span>subject)) <span class="sc">+</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, <span class="at">se=</span>F, <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(scenario<span class="sc">~</span>agent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(scenario<span class="sc">~</span>agent) <span class="sc">+</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
@@ -867,7 +871,8 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> round, <span class="at">y=</span>strength, <span class="at">color=</span>subject)) <span class="sc">+</span></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, <span class="at">se=</span>F, <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(scenario<span class="sc">~</span>agent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(scenario<span class="sc">~</span>agent) <span class="sc">+</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
@@ -885,7 +890,8 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> round, <span class="at">y=</span>prob, <span class="at">color=</span>subject)) <span class="sc">+</span></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, <span class="at">se=</span>F, <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(scenario<span class="sc">~</span>agent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(scenario<span class="sc">~</span>agent) <span class="sc">+</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
