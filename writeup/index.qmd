@@ -727,17 +727,15 @@ fig3c_w_safejoint <- fig3c +
 ggsave('./writeup/replication-fig3c-withsafejoint.png', plot = fig3c_w_safejoint, width=6, height=4.5)
 ```
 
-:::: {.columns}
+::: {#fig-3c-comparison layout-ncol=2}
 
-::: {.column}
-![**Original (Figure 3C)**. "Model simulations averaged over 10 runs. Error bars indicate bootstrapped 95% confidence intervals." (p. 1571) Regenerated error bars using a fixed seed.](./original-fig3c.png){#fig-original-3C}
+![**Original Figure 3C**. "Model simulations averaged over 10 runs. Error bars indicate bootstrapped 95% confidence intervals." (p. 1571) Regenerated error bars using a fixed seed.](./original-fig3c.png){#fig-original-3C}
+
+![**Figure 3C Replication**. Model simulations consider strengths from 1 to 10 (inclusive) in steps of 0.03 (determined by machine memory constraints). Error bars indicate bootstrapped 95% confidence intervals.](./replication-fig3c.png){#fig-replication-3C}
+
+Comparison of original version and replication of Figure 3C from @Xiang2023-zo.
+
 :::
-
-::: {.column}
-![**Replication (Figure 3C)**. Model simulations consider strengths from 1 to 10 (inclusive) in steps of 0.03 (determined by memory constraints). Error bars indicate bootstrapped 95% confidence intervals.](./replication-fig3c.png){#fig-replication-3C}
-:::
-
-::::
 
 ::: {.callout-note collapse="true"}
 ## Figure 3C Replication with Raw Data

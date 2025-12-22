@@ -361,8 +361,8 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 </tbody>
 </table>
 <p>Collecting 9 participants was completely feasible (with each spending ~16 minutes; see <a href="#procedure">Procedure</a>). To compensate for the original study’s measured effect size being inflated (e.g., due to publication bias), 15 participants would be necessary for sufficient power for the primary effect of interest, and this count was also feasible.</p>
-<p>However, for the sake of qualitatively replicating the overall pattern of estimated probabilities increasing as scenarios feature more successful individual lifts (general increase in probability from left to right in <a href="#fig-original-3C" class="quarto-xref">Figure&nbsp;2</a>; which I’ve labeled “B” above), and that the joint effort model is the only considered model which captures both the key effect and this pattern, I found it prudent to retain the same sample size so that I might attempt to replicate the original qualitative finding with comparable precision. (Targeting higher precision could potentially counter aforementioned effect inflation present in the original paper, but as it is unclear how to quantify the necessary precision for these qualitative analyses, targeting the original precision appears to be a sensible option.)</p>
-<p>Further, in the original study, given 50 participants, the key effect appeared quite robust, with the CI for the data from scenario “F,F;F,F” being quite far from the line LiftProbability=0 (see <a href="#fig-original-3C" class="quarto-xref">Figure&nbsp;2</a>), suggesting that with 50 participants, I was nearly guaranteed to replicate this effect if it is true.</p>
+<p>However, for the sake of qualitatively replicating the overall pattern of estimated probabilities increasing as scenarios feature more successful individual lifts (general increase in probability from left to right in <a href="#fig-original-3C" class="quarto-xref">Figure&nbsp;2 (a)</a>; which I’ve labeled “B” above), and that the joint effort model is the only considered model which captures both the key effect and this pattern, I found it prudent to retain the same sample size so that I might attempt to replicate the original qualitative finding with comparable precision. (Targeting higher precision could potentially counter aforementioned effect inflation present in the original paper, but as it is unclear how to quantify the necessary precision for these qualitative analyses, targeting the original precision appears to be a sensible option.)</p>
+<p>Further, in the original study, given 50 participants, the key effect appeared quite robust, with the CI for the data from scenario “F,F;F,F” being quite far from the line LiftProbability=0 (see <a href="#fig-original-3C" class="quarto-xref">Figure&nbsp;2 (a)</a>), suggesting that with 50 participants, I was nearly guaranteed to replicate this effect if it is true.</p>
 <p>Given my understanding of course funding available, collecting 50 participants was feasible.</p>
 </section>
 <section id="planned-sample" class="level3">
@@ -1199,30 +1199,40 @@ Figure&nbsp;1: The red line shows the critical <span class="math inline">\(t\)</
 <span id="cb58-101"><a href="#cb58-101" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">'./writeup/replication-fig3c-withsafejoint.png'</span>, <span class="at">plot =</span> fig3c_w_safejoint, <span class="at">width=</span><span class="dv">6</span>, <span class="at">height=</span><span class="fl">4.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div class="columns">
-<div class="column">
+<div id="fig-3c-comparison" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3c-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-3c-comparison" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-original-3C" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
+<figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-original-3C-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="./original-fig3c.png" class="img-fluid figure-img">
+<img src="./original-fig3c.png" class="img-fluid figure-img" data-ref-parent="fig-3c-comparison">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-original-3C-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: <strong>Original (Figure 3C)</strong>. “Model simulations averaged over 10 runs. Error bars indicate bootstrapped 95% confidence intervals.” (p.&nbsp;1571) Regenerated error bars using a fixed seed.
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-original-3C-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) <strong>Original Figure 3C</strong>. “Model simulations averaged over 10 runs. Error bars indicate bootstrapped 95% confidence intervals.” (p.&nbsp;1571) Regenerated error bars using a fixed seed.
 </figcaption>
 </figure>
 </div>
-</div><div class="column">
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-3c-comparison" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div id="fig-replication-3C" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
+<figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-replication-3C-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="./replication-fig3c.png" class="img-fluid figure-img">
+<img src="./replication-fig3c.png" class="img-fluid figure-img" data-ref-parent="fig-3c-comparison">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-replication-3C-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: <strong>Replication (Figure 3C)</strong>. Model simulations consider strengths from 1 to 10 (inclusive) in steps of 0.03 (determined by memory constraints). Error bars indicate bootstrapped 95% confidence intervals.
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-replication-3C-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) <strong>Figure 3C Replication</strong>. Model simulations consider strengths from 1 to 10 (inclusive) in steps of 0.03 (determined by machine memory constraints). Error bars indicate bootstrapped 95% confidence intervals.
 </figcaption>
 </figure>
 </div>
 </div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3c-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Comparison of original version and replication of Figure 3C from <span class="citation" data-cites="Xiang2023-zo">Xiang et al. (<a href="#ref-Xiang2023-zo" role="doc-biblioref">2023</a>)</span>.
+</figcaption>
+</figure>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
@@ -1242,7 +1252,7 @@ Figure&nbsp;3: <strong>Replication (Figure 3C)</strong>. Model simulations consi
 <img src="./replication-fig3c-withrawdata.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rawdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Figure 3C Replication with Raw Data
+Figure&nbsp;3: Figure 3C Replication with Raw Data
 </figcaption>
 </figure>
 </div>
@@ -1267,7 +1277,7 @@ Figure&nbsp;4: Figure 3C Replication with Raw Data
 <img src="./replication-fig3c-withsafejoint.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-safejoint-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: Figure 3C Replication with Safe Joint Model
+Figure&nbsp;4: Figure 3C Replication with Safe Joint Model
 </figcaption>
 </figure>
 </div>
@@ -1285,7 +1295,7 @@ Figure&nbsp;5: Figure 3C Replication with Safe Joint Model
 <section id="commentary" class="level3">
 <h3 class="anchored" data-anchor-id="commentary">Commentary</h3>
 <p>Replication success was expected due to the large effect size and clear qualitative pattern. However, the replication success of the confirmatory result nevertheless reinforces my confidence in the reliability of the task paradigm, and the replication of the qualitative pattern using a model reimplementation reinforces my confidence in both that pattern and the modeling approach.</p>
-<p>In my replication, I observed slightly larger CIs, and an effect size that was lower than the original. However, these may be expected due to publication bias. Further, I observed a slope inversion in the data means (i.e., estimated probability of round 3 succcess is lower for F,L;F,L than for F,F;F,L) which was not present in the data from the original study. Speculatively, this might be explainable by the safe joint effort model (see <a href="#fig-safejoint" class="quarto-xref">Figure&nbsp;5</a>), a modified version of the authors’ proposed joint effort model available in their supplement. In this case, the replication provides some support for that modified model.</p>
+<p>In my replication, I observed slightly larger CIs, and an effect size that was lower than the original. However, these may be expected due to publication bias. Further, I observed a slope inversion in the data means (i.e., estimated probability of round 3 succcess is lower for F,L;F,L than for F,F;F,L) which was not present in the data from the original study. Speculatively, this might be explainable by the safe joint effort model (see <a href="#fig-safejoint" class="quarto-xref">Figure&nbsp;4</a>), a modified version of the authors’ proposed joint effort model available in their supplement. In this case, the replication provides some support for that modified model.</p>
 </section>
 </section>
 <section id="references" class="level2">
