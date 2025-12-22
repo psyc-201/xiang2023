@@ -110,7 +110,7 @@ I followed precisely the data collection strategy in the original Experiment 1, 
 
 > "Participants’ demographic information was not collected. Participants completed a comprehension check before they moved on to the experiment. They were not allowed to proceed until they answered all the comprehension check questions correctly. ... To ensure data quality, we included two attention-check questions in the experiment. Participants who failed one attention check were warned immediately to pay closer attention. Participants who failed both attention checks were asked to leave the experiment and they were not counted among the 50 participants we recruited. A total of 10 participants failed one attention check, and we did not exclude their data in our analysis."
 
-In the original study, per the experiment code, participants who fail both attention checks are asked to return their submission (to self-exclude). Per our current IRB approval, we did not ask these participants to do so and would instead manually exclude them from our target sample and analysis.
+In the original study, per the experiment code, participants who fail both attention checks are asked to return their submission (to self-exclude). Per our current IRB approval, I did not ask these participants to do so and would instead manually exclude them from my target sample and analysis.
 
 ### Materials
 
@@ -171,11 +171,11 @@ Likewise, validity is unclear. And following the same logic, I infer that the va
 
 #### Actual Sample
 
-We collected data from 50 participants.
+I collected data from 50 participants.
 
-On Prolific there were 51 participants collected, not 50, since one returned the study but was also approved (since they returned the study, it opened up the slot again). However, we only have 50 participants' data, since one participant's data (prolificId starting with 5c6) wasn't recorded; I think they didn't press "Next" at the very end of the study, which is necessary to save the data. (In any future iterations, saving should happen before the completion code is given.)
+On Prolific there were 51 participants collected, not 50, since one returned the study but was also approved (since they returned the study, it opened up the slot again). However, I only have 50 participants' data, since one participant's data (prolificId starting with 5c6) wasn't recorded; I think they didn't press "Next" at the very end of the study, which is necessary to save the data. (In any future iterations, saving should happen before the completion code is given.)
 
-Demographic information was not collected. By design of the experiment, participants who failed the comprehension check twice were excluded (see below). Following the planned data exclusion rule, 0 <!-- excluded_for_2inattention --> participants were excluded for failing both attention checks. A total of 10 <!-- kept_despite_1inattention --> participants failed one attention check, and we did not exclude their data in our analysis.
+Demographic information was not collected. By design of the experiment, participants who failed the comprehension check twice were excluded (see below). Following the planned data exclusion rule, 0 <!-- excluded_for_2inattention --> participants were excluded for failing both attention checks. A total of 10 <!-- kept_despite_1inattention --> participants failed one attention check, and I did not exclude their data in my analysis.
 
 #### Differences from pre-data collection methods plan
 
@@ -733,7 +733,7 @@ ggsave('./writeup/replication-fig3c-withsafejoint.png', plot = fig3c_w_safejoint
 
 ![**Figure 3C Replication**. Model simulations consider strengths from 1 to 10 (inclusive) in steps of 0.03 (determined by machine memory constraints). Error bars indicate bootstrapped 95% confidence intervals.](./replication-fig3c.png){#fig-replication-3C}
 
-Comparison of original version and replication of Figure 3C from @Xiang2023-zo.
+Comparison of Figure 3C from @Xiang2023-zo and my replication.
 
 :::
 
