@@ -333,7 +333,7 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>original.cohensd <span class="ot">&lt;-</span> effectsize<span class="sc">::</span><span class="fu">effectsize</span>(original.ttest_result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<p>The original effect size is <em>d</em> = 1.47. <!-- d = 1.47 --> To achieve 80%, 90%, or 95% power to detect that effect size, I needed:</p>
+<p>The original effect size is <span class="math inline">\(d = 1.47\)</span>. <!-- d = 1.47 --> To achieve 80%, 90%, or 95% power to detect that effect size, I needed:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -361,8 +361,8 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 </tbody>
 </table>
 <p>Collecting 9 participants was completely feasible (with each spending ~16 minutes; see <a href="#procedure">Procedure</a>). To compensate for the original study’s measured effect size being inflated (e.g., due to publication bias), 15 participants would be necessary for sufficient power for the primary effect of interest, and this count was also feasible.</p>
-<p>However, for the sake of qualitatively replicating the overall pattern of estimated probabilities increasing as scenarios feature more successful individual lifts (general increase in probability from left to right in Figure 3C; which I’ve labeled “B” above), and that the joint effort model is the only considered model which captures both the key effect and this pattern, I found it prudent to retain the same sample size so that I might attempt to replicate the original qualitative finding with comparable precision. (Targeting higher precision could potentially counter aforementioned effect inflation present in the original paper, but as it is unclear how to quantify the necessary precision for these qualitative analyses, targeting the original precision appears to be a sensible option.)</p>
-<p>Further, in the original study, given 50 participants, the key effect appeared quite robust, with the CI for the data from scenario “F,F;F,F” being quite far from the line LiftProbability=0 (see <a href="#fig-original-3C" class="quarto-xref">Figure&nbsp;1</a>), suggesting that with 50 participants, I was nearly guaranteed to replicate this effect if it is true.</p>
+<p>However, for the sake of qualitatively replicating the overall pattern of estimated probabilities increasing as scenarios feature more successful individual lifts (general increase in probability from left to right in <a href="#fig-original-3C" class="quarto-xref">Figure&nbsp;2</a>; which I’ve labeled “B” above), and that the joint effort model is the only considered model which captures both the key effect and this pattern, I found it prudent to retain the same sample size so that I might attempt to replicate the original qualitative finding with comparable precision. (Targeting higher precision could potentially counter aforementioned effect inflation present in the original paper, but as it is unclear how to quantify the necessary precision for these qualitative analyses, targeting the original precision appears to be a sensible option.)</p>
+<p>Further, in the original study, given 50 participants, the key effect appeared quite robust, with the CI for the data from scenario “F,F;F,F” being quite far from the line LiftProbability=0 (see <a href="#fig-original-3C" class="quarto-xref">Figure&nbsp;2</a>), suggesting that with 50 participants, I was nearly guaranteed to replicate this effect if it is true.</p>
 <p>Given my understanding of course funding available, collecting 50 participants was feasible.</p>
 </section>
 <section id="planned-sample" class="level3">
@@ -394,9 +394,9 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 </section>
 <section id="analysis-plan" class="level3">
 <h3 class="anchored" data-anchor-id="analysis-plan">Analysis Plan</h3>
-<p>I conducted a <strong>one-sample <em>t</em> test on the participants’ reported round-3 lift probability for scenario “F,F;F,F”</strong> (i.e., each contestant failed to lift the box in both rounds 2 and 3), with the null hypothesis that the true lift probability is zero. See Planned Sample for the data exclusion rule.</p>
+<p>I conducted a <strong>one-sample <span class="math inline">\(t\)</span> test on the participants’ reported round-3 lift probability for scenario “F,F;F,F”</strong> (i.e., each contestant failed to lift the box in both rounds 2 and 3), with the null hypothesis that the true lift probability is zero. See Planned Sample for the data exclusion rule.</p>
 <p>In addition to this confirmatory analysis, I would attempt to replicate the qualitative pattern that participants judge higher probability of joint success as cases of individual success increases. I would also reimplement their proposed model (joint effort) and alternative models (solitary effort and compensatory effort) in <a href="https://github.com/kach/memo">memo</a> <span class="citation" data-cites="chandra2025memo">(<a href="#ref-chandra2025memo" role="doc-biblioref">Chandra et al., 2025</a>)</span> (see <a href="#differences-from-original-study">Differences from Original Study</a>) and attempt to replicate that the proposed model is the only model evaluated which predicts both the qualitative pattern and the other result (that participants estimate round-3 lift probability as non-zero after two rounds of failures). See original paper’s Figure 3C and accompanying explanation, pp.&nbsp;1570-1571; I would recreate that figure and attempt to replicate that explanation on my own data. Further, I would also estimate and statistically test the difference in the probability judgments plotted in Figure 3C between the original data and my new data.</p>
-<p>I must note that while the <em>t</em> test alone does not justify the paper’s central claim that the joint effort model is qualitatively predictive, in the absence one such statistical test, this <em>t</em> test is a good alternative: this test demonstrates one of two key behavioral effects (p.&nbsp;1570) which the model was qualitatively evaluated to predict. (In other words, I should attempt to replicate this behavioral effect before I could try to qualitatively replicate that the joint effort model is the only considered model which can predict it.)</p>
+<p>I must note that while the <span class="math inline">\(t\)</span> test alone does not justify the paper’s central claim that the joint effort model is qualitatively predictive, in the absence one such statistical test, this <span class="math inline">\(t\)</span> test is a good alternative: this test demonstrates one of two key behavioral effects (p.&nbsp;1570) which the model was qualitatively evaluated to predict. (In other words, I should attempt to replicate this behavioral effect before I could try to qualitatively replicate that the joint effort model is the only considered model which can predict it.)</p>
 </section>
 <section id="differences-from-original-study" class="level3">
 <h3 class="anchored" data-anchor-id="differences-from-original-study">Differences from Original Study</h3>
@@ -407,7 +407,7 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 <li>The consent form is updated according to the details provided by the UCSD course PSYC 201A</li>
 <li>In task instructions, “HIT” is renamed “submission”</li>
 <li>In task instructions, “Different pairs of contestants will come in to lift the box” becomes “For each contest, a new pair of contestants will come in to lift the box” (to clarify first two questions of comprehension check)</li>
-<li>See <a href="#sec-method-changes" class="quarto-xref">Section&nbsp;2.8.2</a> for an additional change</li>
+<li>See <a href="#differences-from-pre-data-collection-methods-plan">Differences from pre-data collection methods plan</a> for an additional change</li>
 </ol>
 <p>While the confirmatory analysis was rerun using the original R code provided by the authors, for the qualitative replication I used a reimplementation of the joint effort model and the alternative models (solitary effort and compensatory effort models) in <a href="https://github.com/kach/memo">memo</a> <span class="citation" data-cites="chandra2025memo">(<a href="#ref-chandra2025memo" role="doc-biblioref">Chandra et al., 2025</a>)</span>, based on the authors’ original implementations in WebPPL. I expected that reimplementation of the continuous probabilistic models in WebPPL as discrete probabilistic models in memo would produce higher estimate precision as the model predictions will be deterministic, rather than stochastic. (I also discretized the distribution at a high resolution such that there was no meaningful systematic difference in estimates.)</p>
 <p>I did not anticipate that these differences are meaningful regarding the original paper’s claims and the analyses of interest. However, it is possible that 3 and 4 - improving comprehension-check fairness and reducing testing fatigue - may slightly improve measurement precision and reduce measurement bias, enhancing the claims of my replication.</p>
@@ -426,8 +426,8 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 <p>On Prolific there were 51 participants collected, not 50, since one returned the study but was also approved (since they returned the study, it opened up the slot again). However, we only have 50 participants’ data, since one participant’s data (prolificId starting with 5c6) wasn’t recorded; I think they didn’t press “Next” at the very end of the study, which is necessary to save the data. (In any future iterations, saving should happen before the completion code is given.)</p>
 <p>Demographic information was not collected. By design of the experiment, participants who failed the comprehension check twice were excluded (see below). Following the planned data exclusion rule, 0 <!-- excluded_for_2inattention --> participants were excluded for failing both attention checks. A total of 10 <!-- kept_despite_1inattention --> participants failed one attention check, and we did not exclude their data in our analysis.</p>
 </section>
-<section id="sec-method-changes" class="level4">
-<h4 class="anchored" data-anchor-id="sec-method-changes">Differences from pre-data collection methods plan</h4>
+<section id="differences-from-pre-data-collection-methods-plan" class="level4">
+<h4 class="anchored" data-anchor-id="differences-from-pre-data-collection-methods-plan">Differences from pre-data collection methods plan</h4>
 <p>After piloting, to align with <a href="https://researcher-help.prolific.com/en/articles/445153-prolific-s-attention-and-comprehension-check-policy">Prolific’s guidelines</a>, I modified the task such that no more than two attempts of the comprehension check were allowed. Participants who failed the comprehension check twice were asked to return the submission. Accordingly, before the comprehension check, I added: “You will have two chances to complete the comprehension questions correctly before we ask you to return your submission, per Prolific guidelines.”; and upon comprehension check failure, I added: “Please note that you have only X attempt(s) left.”</p>
 <p>Unless marked otherwise, all results used only the sample collected after this change was made.</p>
 </section>
@@ -774,7 +774,7 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(agent <span class="sc">==</span> <span class="dv">1</span>, round <span class="sc">==</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> scenario, <span class="at">y =</span> contest)) <span class="sc">+</span></span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">color =</span> subject), <span class="at">width=</span>.<span class="dv">1</span>, <span class="at">height=</span>.<span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -796,7 +796,7 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(agent <span class="sc">==</span> <span class="dv">1</span>, round <span class="sc">==</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> scenario)) <span class="sc">+</span></span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">stat=</span><span class="st">"count"</span>) <span class="sc">+</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -819,7 +819,7 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">contest =</span> <span class="fu">factor</span>(contest)) <span class="sc">%&gt;%</span></span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> contest)) <span class="sc">+</span></span>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">stat=</span><span class="st">"count"</span>) <span class="sc">+</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -838,12 +838,12 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>dat_clean <span class="sc">%&gt;%</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">round =</span> <span class="fu">factor</span>(round)) <span class="sc">%&gt;%</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">round =</span> <span class="fu">factor</span>(round), <span class="at">agent =</span> <span class="fu">factor</span>(agent, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Agent A"</span>, <span class="st">"Agent B"</span>))) <span class="sc">%&gt;%</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> round, <span class="at">y=</span>effort, <span class="at">color=</span>subject, <span class="at">group=</span><span class="dv">1</span>)) <span class="sc">+</span> <span class="co"># set group since needed for geom_smooth to connect across the factor-type x=round</span></span>
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group=</span>subject)) <span class="sc">+</span></span>
 <span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, <span class="at">se=</span>F, <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
 <span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(scenario<span class="sc">~</span>agent) <span class="sc">+</span></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
@@ -870,12 +870,12 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>dat_clean <span class="sc">%&gt;%</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">round =</span> <span class="fu">factor</span>(round)) <span class="sc">%&gt;%</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">round =</span> <span class="fu">factor</span>(round), <span class="at">agent =</span> <span class="fu">factor</span>(agent, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Agent A"</span>, <span class="st">"Agent B"</span>))) <span class="sc">%&gt;%</span></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> round, <span class="at">y=</span>strength, <span class="at">color=</span>subject, <span class="at">group=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group=</span>subject)) <span class="sc">+</span></span>
 <span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, <span class="at">se=</span>F, <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
 <span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(scenario<span class="sc">~</span>agent) <span class="sc">+</span></span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
@@ -890,12 +890,12 @@ Presentation accompanying this report: <a href="https://psyc-201.github.io/xiang
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>dat_clean <span class="sc">%&gt;%</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">round =</span> <span class="fu">factor</span>(round)) <span class="sc">%&gt;%</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">round =</span> <span class="fu">factor</span>(round), <span class="at">agent =</span> <span class="fu">factor</span>(agent, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"Agent A"</span>, <span class="st">"Agent B"</span>))) <span class="sc">%&gt;%</span></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> round, <span class="at">y=</span>prob, <span class="at">color=</span>subject, <span class="at">group=</span><span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group=</span>subject)) <span class="sc">+</span></span>
 <span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, <span class="at">se=</span>F, <span class="at">color=</span><span class="st">"black"</span>) <span class="sc">+</span></span>
 <span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(scenario<span class="sc">~</span>agent) <span class="sc">+</span></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
@@ -1054,8 +1054,7 @@ the `.groups` argument.</code></pre>
 </details>
 </div>
 <p>I found that A) participants rated the probability of joint success in round 3 as non-zero (<span class="math inline">\(M = 43.22\)</span>, 95% CI <span class="math inline">\([33.84, 52.60]\)</span>, <span class="math inline">\(t(49) = 9.26\)</span>, <span class="math inline">\(p &lt; .001\)</span>). See the black point range (data) for scenario “F,F;F,F” under Exploratory analyses.</p>
-<p>The effect size found is <em>d</em> = 1.31.</p>
-<div class="cell">
+<p>The effect size found is <span class="math inline">\(d = 1.31\)</span>.</p>
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dat$prob[dat$round == 3 &amp; dat$scenario == 'F,F;F,F' &amp; dat$agent == 'A']</span></span>
@@ -1070,8 +1069,12 @@ the `.groups` argument.</code></pre>
 <span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="fu">floor</span>(<span class="fu">sqrt</span>(<span class="fu">nrow</span>(.)))) <span class="sc">+</span></span>
 <span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>)) <span class="sc">+</span></span>
 <span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept=</span>critical_tvalue, <span class="at">color=</span><span class="st">'red'</span>) <span class="sc">+</span></span>
-<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y=</span><span class="st">'Density'</span>, <span class="at">x=</span><span class="st">'Lift probability in Round 3 (%)'</span>)}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">y=</span><span class="st">'Density'</span>, <span class="at">x=</span><span class="st">'Lift probability in Round 3 (%)'</span>)}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div id="fig-replication-effectsize" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-replication-effectsize-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1080,7 +1083,12 @@ the `.groups` argument.</code></pre>
 </div>
 </div>
 </div>
-<p>The red line shows the critical t-value for detecting a statistically significant effect with α = 0.05.</p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-replication-effectsize-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The red line shows the critical <span class="math inline">\(t\)</span> value for detecting a statistically significant effect with <span class="math inline">\(\alpha = 0.05\)</span>.
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="exploratory-analyses" class="level3">
 <h3 class="anchored" data-anchor-id="exploratory-analyses">Exploratory analyses</h3>
@@ -1199,15 +1207,19 @@ the `.groups` argument.</code></pre>
 <img src="./original-fig3c.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-original-3C-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: <strong>Original (Figure 3C)</strong>. “Model simulations averaged over 10 runs. Error bars indicate bootstrapped 95% confidence intervals.” (p.&nbsp;1571) Regenerated error bars using a fixed seed.
+Figure&nbsp;2: <strong>Original (Figure 3C)</strong>. “Model simulations averaged over 10 runs. Error bars indicate bootstrapped 95% confidence intervals.” (p.&nbsp;1571) Regenerated error bars using a fixed seed.
 </figcaption>
 </figure>
 </div>
 </div><div class="column">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./replication-fig3c.png" class="img-fluid figure-img"></p>
-<figcaption><strong>New (Figure 3C Replication)</strong>. Model simulations consider strengths from 1 to 10 (inclusive) in steps of 0.03 (determined by memory constraints). Error bars indicate bootstrapped 95% confidence intervals.</figcaption>
+<div id="fig-replication-3C" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-replication-3C-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./replication-fig3c.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-replication-3C-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: <strong>Replication (Figure 3C)</strong>. Model simulations consider strengths from 1 to 10 (inclusive) in steps of 0.03 (determined by memory constraints). Error bars indicate bootstrapped 95% confidence intervals.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -1224,10 +1236,14 @@ Figure&nbsp;1: <strong>Original (Figure 3C)</strong>. “Model simulations avera
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./replication-fig3c-withrawdata.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 3C Replication with Raw Data</figcaption>
+<div id="fig-rawdata" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rawdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./replication-fig3c-withrawdata.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rawdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Figure 3C Replication with Raw Data
+</figcaption>
 </figure>
 </div>
 </div>
@@ -1251,7 +1267,7 @@ Figure&nbsp;1: <strong>Original (Figure 3C)</strong>. “Model simulations avera
 <img src="./replication-fig3c-withsafejoint.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-safejoint-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Figure 3C Replication with Safe Joint Model
+Figure&nbsp;5: Figure 3C Replication with Safe Joint Model
 </figcaption>
 </figure>
 </div>
@@ -1269,7 +1285,7 @@ Figure&nbsp;2: Figure 3C Replication with Safe Joint Model
 <section id="commentary" class="level3">
 <h3 class="anchored" data-anchor-id="commentary">Commentary</h3>
 <p>Replication success was expected due to the large effect size and clear qualitative pattern. However, the replication success of the confirmatory result nevertheless reinforces my confidence in the reliability of the task paradigm, and the replication of the qualitative pattern using a model reimplementation reinforces my confidence in both that pattern and the modeling approach.</p>
-<p>In my replication, I observed slightly larger CIs, and an effect size that was lower than the original. However, these may be expected due to publication bias. Further, I observed a slope inversion in the data means (i.e., estimated probability of round 3 succcess is lower for F,L;F,L than for F,F;F,L) which was not present in the data from the original study. Speculatively, this might be explainable by the safe joint effort model (see <a href="#fig-safejoint" class="quarto-xref">Figure&nbsp;2</a>), a modified version of the authors’ proposed joint effort model available in their supplement. In this case, the replication provides some support for that modified model.</p>
+<p>In my replication, I observed slightly larger CIs, and an effect size that was lower than the original. However, these may be expected due to publication bias. Further, I observed a slope inversion in the data means (i.e., estimated probability of round 3 succcess is lower for F,L;F,L than for F,F;F,L) which was not present in the data from the original study. Speculatively, this might be explainable by the safe joint effort model (see <a href="#fig-safejoint" class="quarto-xref">Figure&nbsp;5</a>), a modified version of the authors’ proposed joint effort model available in their supplement. In this case, the replication provides some support for that modified model.</p>
 </section>
 </section>
 <section id="references" class="level2">
