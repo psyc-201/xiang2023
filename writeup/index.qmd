@@ -19,7 +19,7 @@ csl: "../apa.csl"
 
 ## Introduction
 
-How do individuals perceive, represent, and judge potential collaborators' affordances for collaboration? @Xiang2023-zo propose and empirically validate a probabilistic model in which jointly inferred estimates of competence and effort, given observed outcomes ("belief–desire–competence framework"), predict individuals' judgments of collaborators, across various cognitive tasks which are common within collaboration. In particular, in Experiment 1, their model best predicts participants' judgments about whether joint activity will succeed, compared to plausible alternative models. I sought to replicate this finding to help establish the robustness of this model of collaborator judgment, before I might extend it in future work.
+How do individuals perceive, represent, and judge potential collaborators' affordances for collaboration? @Xiang2023-zo propose and empirically validate a probabilistic model in which jointly inferred estimates of competence and effort, given observed outcomes ("belief–desire–competence framework"), predict individuals' judgments of collaborators, across various cognitive tasks which are common within collaboration. In particular, in Experiment 1, their model best predicts participants' judgments about whether joint activity will succeed, compared to plausible alternative models. I sought to replicate this finding to help establish the robustness of this model of judgments about collaborators, before I might extend it in future work.
 
 Experiment 1 involves observing contestants try to lift a heavy box in a set of _contests_ (six total), each containing three _rounds_. In each contest, there are two unique avatars playing as the _contestants_. In rounds 1 and 2, each contestant attempts to lift the box by themselves. In round 3, the contestants attempt to lift the box together. In each round, after observing each contestant succeed or fail to lift the box, the participant judges the strength of each contestant (1–10), and for each contestant that successfully lifted the box, the participant judges that contestant's allocated effort (0%–100%). At the start of round 2, the participant judges each contestant's probability of lifting the box successfully (0%–100%), prior to observing the lift attempts. At the start of round 3, the participant judges the probability that the contestants will successfully lift the box together. Further, an incentive to the contestants for lifting the box is specified in each round: in the second and third rounds, the specified reward for lifting the box is double that of the first round. Participants are also told that the heavy box had a constant weight across all contests, which effectively requires at least 5 strength points applied (e.g., on average, 100% effort for a contestant with strength 5, or 50% effort for a contestant with strength 10, etc.). Last, participants see a progressively filled-out table of all the lift outcomes during each contest, visible throughout, including when making judgments.
 
@@ -94,11 +94,11 @@ Target Power|Necessary N|Estimated Power
 90%|8|`r pwr::pwr.t.test(n=8, d=original.cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")$power * 100`%
 95%|9|`r pwr::pwr.t.test(n=9, d=original.cohensd$Cohens_d, sig.level=.05, type="one.sample", alternative="two.sided")$power * 100`%
 
-Collecting 9 participants was completely feasible (with each spending ~16 minutes; see Procedure). To compensate for the original study's measured effect size being inflated (e.g., due to publication bias), 15 participants would be necessary for sufficient power for the primary effect of interest, and this count was also feasible.
+Collecting 9 participants was completely feasible (with each spending ~16 minutes; see [Procedure](#procedure)). To compensate for the original study's measured effect size being inflated (e.g., due to publication bias), 15 participants would be necessary for sufficient power for the primary effect of interest, and this count was also feasible.
 
 However, for the sake of qualitatively replicating the overall pattern of estimated probabilities increasing as scenarios feature more successful individual lifts (general increase in probability from left to right in Figure 3C; which I've labeled "B" above), and that the joint effort model is the only considered model which captures both the key effect and this pattern, I found it prudent to retain the same sample size so that I might attempt to replicate the original qualitative finding with comparable precision. (Targeting higher precision could potentially counter aforementioned effect inflation present in the original paper, but as it is unclear how to quantify the necessary precision for these qualitative analyses, targeting the original precision appears to be a sensible option.)
 
-Further, in the original study, given 50 participants, the key effect appeared quite robust, with the CI for the data from scenario "F,F;F,F" being quite far from the line LiftProbability=0 (see Figure 3C), suggesting that with 50 participants, I was nearly guaranteed to replicate this effect if it is true.
+Further, in the original study, given 50 participants, the key effect appeared quite robust, with the CI for the data from scenario "F,F;F,F" being quite far from the line LiftProbability=0 (see @fig-original-3C), suggesting that with 50 participants, I was nearly guaranteed to replicate this effect if it is true.
 
 Given my understanding of course funding available, collecting 50 participants was feasible.
 
@@ -138,7 +138,7 @@ For determining bonus compensation, I followed precisely the original scheme as 
 
 I conducted a **one-sample _t_ test on the participants' reported round-3 lift probability for scenario “F,F;F,F”** (i.e., each contestant failed to lift the box in both rounds 2 and 3), with the null hypothesis that the true lift probability is zero. See Planned Sample for the data exclusion rule.
 
-In addition to this confirmatory analysis, I would attempt to replicate the qualitative pattern that participants judge higher probability of joint success as cases of individual success increases. I would also reimplement their proposed model (joint effort) and alternative models (solitary effort and compensatory effort) in [memo](https://github.com/kach/memo) [@chandra2025memo] (see Differences from Original Study) and attempt to replicate that the proposed model is the only model evaluated which predicts both the qualitative pattern and the other result (that participants estimate round-3 lift probability as non-zero after two rounds of failures). See original paper's Figure 3C and accompanying explanation, pp. 1570-1571; I would recreate that figure and attempt to replicate that explanation on my own data. Further, I would also estimate and statistically test the difference in the probability judgments plotted in Figure 3C between the original data and my new data.
+In addition to this confirmatory analysis, I would attempt to replicate the qualitative pattern that participants judge higher probability of joint success as cases of individual success increases. I would also reimplement their proposed model (joint effort) and alternative models (solitary effort and compensatory effort) in [memo](https://github.com/kach/memo) [@chandra2025memo] (see [Differences from Original Study](#differences-from-original-study)) and attempt to replicate that the proposed model is the only model evaluated which predicts both the qualitative pattern and the other result (that participants estimate round-3 lift probability as non-zero after two rounds of failures). See original paper's Figure 3C and accompanying explanation, pp. 1570-1571; I would recreate that figure and attempt to replicate that explanation on my own data. Further, I would also estimate and statistically test the difference in the probability judgments plotted in Figure 3C between the original data and my new data.
 
 I must note that while the _t_ test alone does not justify the paper's central claim that the joint effort model is qualitatively predictive, in the absence one such statistical test, this _t_ test is a good alternative: this test demonstrates one of two key behavioral effects (p. 1570) which the model was qualitatively evaluated to predict. (In other words, I should attempt to replicate this behavioral effect before I could try to qualitatively replicate that the joint effort model is the only considered model which can predict it.)
 
@@ -173,7 +173,7 @@ Likewise, validity is unclear. And following the same logic, I infer that the va
 
 We collected data from 50 participants.
 
-On Prolific there were 51 participants collected, not 50, since one returned the study but was also approved (since they returned the study, it opened up the slot again). However, we only have 50 participants' data, since one participant's data (prolificId starting with 5c6) wasn't recorded -- I think they didn't press "Next" at the very end of the study, which is necessary to save the data. (In any future iterations, saving should happen before the completion code is given.)
+On Prolific there were 51 participants collected, not 50, since one returned the study but was also approved (since they returned the study, it opened up the slot again). However, we only have 50 participants' data, since one participant's data (prolificId starting with 5c6) wasn't recorded; I think they didn't press "Next" at the very end of the study, which is necessary to save the data. (In any future iterations, saving should happen before the completion code is given.)
 
 Demographic information was not collected. By design of the experiment, participants who failed the comprehension check twice were excluded (see below). Following the planned data exclusion rule, 0 <!-- excluded_for_2inattention --> participants were excluded for failing both attention checks. A total of 10 <!-- kept_despite_1inattention --> participants failed one attention check, and we did not exclude their data in our analysis.
 
@@ -468,35 +468,39 @@ message("clearer way to check that each subject did each scenario once")
 dat_clean %>%
   filter(agent == 1, round == 3) %>%
   ggplot(aes(x = scenario)) +
-  geom_col(aes(fill = subject), stat="count") +
+  geom_col(stat="count") +
   theme(legend.position = "none")
 
 message("clearer way to check that each subject did each contest once")
 dat_clean %>%
   filter(agent == 1, round == 3) %>%
+  mutate(contest = factor(contest)) %>%
   ggplot(aes(x = contest)) +
-  geom_col(aes(fill = subject), stat="count") +
+  geom_col(stat="count") +
   theme(legend.position = "none")
 
 message("check that effort and strength plots have missing data in the right places")
 
 dat_clean %>%
-  ggplot(aes(x = round, y=effort, color=subject)) +
-  geom_point() + geom_line() +
+  mutate(round = factor(round)) %>%
+  ggplot(aes(x = round, y=effort, color=subject, group=1)) + # set group since needed for geom_smooth to connect across the factor-type x=round
+  geom_point() + geom_line(aes(group=subject)) +
   geom_smooth(method=lm, se=F, color="black") +
   facet_wrap(scenario~agent) +
   theme(legend.position = "none")
 
 dat_clean %>%
-  ggplot(aes(x = round, y=strength, color=subject)) +
-  geom_point() + geom_line() +
+  mutate(round = factor(round)) %>%
+  ggplot(aes(x = round, y=strength, color=subject, group=1)) +
+  geom_point() + geom_line(aes(group=subject)) +
   geom_smooth(method=lm, se=F, color="black") +
   facet_wrap(scenario~agent) +
   theme(legend.position = "none")
 
 dat_clean %>%
-  ggplot(aes(x = round, y=prob, color=subject)) +
-  geom_point() + geom_line() +
+  mutate(round = factor(round)) %>%
+  ggplot(aes(x = round, y=prob, color=subject, group=1)) +
+  geom_point() + geom_line(aes(group=subject)) +
   geom_smooth(method=lm, se=F, color="black") +
   facet_wrap(scenario~agent) +
   theme(legend.position = "none")
@@ -584,7 +588,7 @@ replication.ttest_result <- local({
 replication.cohensd <- effectsize::effectsize(replication.ttest_result)
 ```
 
-I found that participants rated the probability of joint success in round 3 as non-zero (`r papaja::apa_print(replication.ttest_result)$full_result`). See the black point range (data) for scenario "F,F;F,F" under Exploratory analyses.
+I found that A) participants rated the probability of joint success in round 3 as non-zero (`r papaja::apa_print(replication.ttest_result)$full_result`). See the black point range (data) for scenario "F,F;F,F" under Exploratory analyses.
 
 The effect size found is _d_ = `r papaja::apa_num(replication.cohensd$Cohens_d)`.
 
@@ -610,14 +614,16 @@ The red line shows the critical t-value for detecting a statistically significan
 
 ### Exploratory analyses
 
-I found that the joint effort model was the only model which not only predicted that joint success has non-zero probability (the result in confirmatory analysis), but also which qualitatively predicted that the probability of joint success increases as individual success increases.
+I found that B) the probability of joint success increased as individual success increased. Further, the joint effort model was the only model which predicted both pattern A (that joint success has non-zero probability; see [Confirmatory analysis](#confirmatory-analysis)) and pattern B (joint success probability increases as individual success increases).
 
 ```{r}
 #| code-fold: true
 #| output: false
 
 # adapted from original_code/competence_effort/Code/main_text/plt.R and original_code/competence_effort/Code/main_text/plot_figures.R
-simulation <- read_csv("new_code/memo-sandbox/webppl vs memo/xiang2023-exp1-round3-model_fits_results.csv") |> select(model, scenario, P) |> mutate(prob = 100*P)
+simulation <- read_csv("new_code/memo-sandbox/webppl vs memo/xiang2023-exp1-round3-model_fits_results.csv") |>
+  select(model, scenario, P) |>
+  mutate(prob = 100*P)
 simulation$scenario <- factor(simulation$scenario, levels = c('F,F;F,F','F,F;F,L','F,L;F,L','F,F;L,L','F,L;L,L','L,L;L,L'), ordered = T)
 
 set.seed(1)
@@ -720,7 +726,7 @@ ggsave('./writeup/replication-fig3c-withsafejoint.png', plot = fig3c_w_safejoint
 :::: {.columns}
 
 ::: {.column}
-![**Original (Figure 3C)**. "Model simulations averaged over 10 runs. Error bars indicate bootstrapped 95% confidence intervals." (p. 1571) Regenerated error bars using a fixed seed.](./original-fig3c.png)
+![**Original (Figure 3C)**. "Model simulations averaged over 10 runs. Error bars indicate bootstrapped 95% confidence intervals." (p. 1571) Regenerated error bars using a fixed seed.](./original-fig3c.png){#fig-original-3C}
 :::
 
 ::: {.column}
@@ -743,7 +749,7 @@ ggsave('./writeup/replication-fig3c-withsafejoint.png', plot = fig3c_w_safejoint
 
 ### Summary of Replication Attempt
 
-The primary, confirmatory result fully replicated. The exporatory (qualitative) result also replicated.
+The primary, confirmatory result fully replicated: A) when rounds 1 and 2 feature no individual success, participants still judge the probability of joint success in round 3 as non-zero. The exploratory (qualitative) result also replicated: B) participants judge higher probability of joint success as cases of individual success increases. Further, I replicated that the authors' proposed model was the only model evaluated which predicts both patterns A and B, comparing it to plausible alternative models. In conjunction, my replication supports the robustness of this model of reasoning about collaborators.
 
 ### Commentary
 
