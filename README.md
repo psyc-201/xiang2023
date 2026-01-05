@@ -11,7 +11,7 @@ Made from template: https://github.com/psyc-201/replication_template
 
 ## Usage
 
-- First, set up environment using `pixi install` then `pixi setup`
+- First, set up environment using `pixi install` then `pixi run install_non_conda`
 - Can preview writeup, presentation, or both using `pixi run preview writeup`/`pixi run preview presentation`/`pixi run preview`
 - Can render writeup, presentation, or both using `pixi run render writeup`/`pixi run render presentation`/`pixi run render`
 - To deploy rendered documents, render locally then deploy the rendered files
