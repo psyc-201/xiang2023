@@ -368,6 +368,12 @@ dat_clean <- dat_raw_filtered %>%
 
 ```{r}
 #| eval: false
+#| include: false
+write_csv(dat_clean, "data/clean-anon.csv")
+```
+
+```{r}
+#| eval: false
 #| code-fold: true
 # Decrypt prolific IDs to determine bonuses
 
@@ -725,6 +731,7 @@ fig3c_w_safejoint <- fig3c +
   
 # write temporarily to file to render in qmd
 ggsave('./writeup/replication-fig3c-withsafejoint.png', plot = fig3c_w_safejoint, width=6, height=4.5)
+ggsave('./writeup/replication-fig3c-withsafejoint-small.png', plot = fig3c_w_safejoint, width=4, height=3)
 ```
 
 ::: {#fig-3c-comparison layout-ncol=2}

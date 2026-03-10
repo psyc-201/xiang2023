@@ -272,7 +272,7 @@ Collaborators' chance of succeeding together increased with more individual succ
 ::: {.notes}
 &lt;Read slide, explaining plots&gt;
 
-In sum, they replcicated that joint success is possible even if there is no prior evidence of individual success, AND joint success likelihood increases as cases of individual success increases. In conjunction, these results support the [joint effort model]{color="red"} of reasoning about collaborators' effort
+In sum, I replicated that joint success is possible even if there is no prior evidence of individual success, AND joint success likelihood increases as cases of individual success increases. In conjunction, these results support the [joint effort model]{color="red"} of reasoning about collaborators' effort
 :::
 
 ## Discussion
